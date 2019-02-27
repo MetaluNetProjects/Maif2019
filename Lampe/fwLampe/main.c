@@ -8,13 +8,13 @@
 #include <fruit.h>
 #include <analog.h>
 #include <switch.h>
-#include <ADXL345.h>
+//#include <ADXL345.h>
 #include <APDS9960.h>
 #include <i2c_master.h>
 
 t_delay mainDelay;
-ADXL345 adxl1;
-ADXL345 adxl2;
+//ADXL345 adxl1;
+//ADXL345 adxl2;
 
 char APDSOK = 0;
 uint16_t colR, colG, colB, colC;
@@ -37,9 +37,14 @@ void setup(void) {
 	fruitInit();
 			
 	pinModeDigitalOut(LED); 	// set the LED pin mode to digital out
-	pinModeDigitalOut(SWLED); 	// set the LED pin mode to digital out
-	delayStart(mainDelay, 5000); 	// init the mainDelay to 5 ms
+//	pinModeDigitalOut(SWLED); 	// set the LED pin mode to digital out
+	pinModeAnalogOut(LEDR); 
+	pinModeAnalogOut(LEDG); 
+	pinModeAnalogOut(LEDB);
 
+	analogWrite(LEDR, 0); 
+	analogWrite(LEDG, 0); 
+	analogWrite(LEDB, 0); 
 //----------- Analog setup ----------------
 	analogInit();		// init analog module	
 	analogSelect(3,POT1);
@@ -53,21 +58,23 @@ void setup(void) {
 	
 	switchInit();
 	INTCON2bits.RBPU = 0; // enable pullups on PORTB
-	switchSelect(0,SWITCH);
-	switchSelect(1,PEDAL1);
+	switchSelect(0, SWITCH);
+	/*switchSelect(1,PEDAL1);
 	switchSelect(2,PEDAL2);
 	switchSelect(3,PEDAL3);
-	switchSelect(4,PEDAL4);
+	switchSelect(4,PEDAL4);*/
 
 //----------- setup I2C master ----------------
 	i2cm_init(I2C_MASTER, I2C_SLEW_ON, FOSC/400000/4-1);
 	
 //----------- setup ADXL345 ----------------
-	ADXL345Init(&adxl1, 0); // 1st ADXL345's SDO pin is high voltage level
-	ADXL345Init(&adxl2, 1); // 2nd ADXL345's SDO pin is low voltage level
+//	ADXL345Init(&adxl1, 0); // ADXL345's SDO pin is high voltage level
+//	ADXL345Init(&adxl1, 1); // ADXL345's SDO pin is low voltage level
 
 //----------- setup APDS9960 ----------------
 	APDS9960setup();
+
+	delayStart(mainDelay, 5000); 	// init the mainDelay to 5 ms
 }
 
 unsigned char cycle = 0;
@@ -125,15 +132,15 @@ void loop() {
 	if(delayFinished(mainDelay)) // when mainDelay triggers :
 	{
 		delayStart(mainDelay, 10000); 	// re-init mainDelay
-		if((cycle&1) == 0) ADXL345Send(&adxl1, 1);
-		else ADXL345Send(&adxl2, 2);
+		//if((cycle&1) == 0) ADXL345Send(&adxl1, 1);
+		//else ADXL345Send(&adxl2, 2);
 		if(!switchSend()) analogSend();		// send analog channels that changed
 		cycle++;
 		fraiseService();	// listen to Fraise events
-		ADXL345Service(&adxl1);
+		//ADXL345Service(&adxl1);
 		fraiseService();	// listen to Fraise events
-		ADXL345Service(&adxl2);
-		fraiseService();	// listen to Fraise events
+		//ADXL345Service(&adxl2);
+		//fraiseService();	// listen to Fraise events
 		if(cycle == 0) printf("CAPDSOK %d\n", APDSOK);
 		//APDS9960_service();
 	}
@@ -150,10 +157,10 @@ void fraiseReceiveChar() // receive text
 		c=fraiseGetChar();
 		digitalWrite(LED, c!='0');		
 	}
-	if(c=='S'){		//switch SWLED on/off 
+	/*if(c=='S'){		//switch SWLED on/off 
 		c=fraiseGetChar();
 		digitalWrite(SWLED, c=='0');		
-	}
+	}*/
 	else if(c=='E') { 	// echo text (send it back to host)
 		printf("C");
 		c = fraiseGetLen(); 			// get length of current packet
@@ -162,8 +169,8 @@ void fraiseReceiveChar() // receive text
 	}	
 	else if(c=='R') { 	// reset I2C
 		i2cm_init(I2C_MASTER, I2C_SLEW_ON, FOSC/400000/4-1);
-		ADXL345Init(&adxl1, 0);
-		ADXL345Init(&adxl2, 1);
+		//ADXL345Init(&adxl1, 0);
+		//ADXL345Init(&adxl2, 1);
 	}
 	else if(c=='A') { 	// reset APDS
 		i2cm_init(I2C_MASTER, I2C_SLEW_ON, FOSC/400000/4-1);
@@ -171,3 +178,18 @@ void fraiseReceiveChar() // receive text
 	}
 }
 
+void fraiseReceive() // receive raw
+{
+	unsigned char c;//, c2;
+	int val;
+
+	c=fraiseGetChar();
+	if(c == 10) {
+		val = fraiseGetInt();
+		analogWrite(LEDR, val);
+		val = fraiseGetInt();
+		analogWrite(LEDG, val);
+		val = fraiseGetInt();
+		analogWrite(LEDB, val);
+	}
+}

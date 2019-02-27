@@ -7,12 +7,11 @@
 #define I2CMASTER_PORT 1 // 0=noir +3V=rouge SCL=K5=jaune SDA=K7=orange
 
 #define SWITCH K11
-#define SWLED K12
+//#define SWLED K12
 
-#define PEDAL1 MB1
-#define PEDAL2 MBEN
-#define PEDAL3 MBPWM
-#define PEDAL4 MOTB_CURRENT
+#define LEDR MB1
+#define LEDG MBPWM
+#define LEDB MB2
 
 
 #define POT1 K1
