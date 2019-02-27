@@ -1,10 +1,10 @@
-#N canvas 153 105 405 478 10;
+#N canvas 477 127 405 478 10;
 #X declare -path Fraise -stdpath Fraise;
 #X obj 21 16 declare -path Fraise -stdpath Fraise;
 #X obj 21 38 pied/pied 0 41424;
 #X obj 23 134 fruit/fruit 1 PHARE 10 fwPhare;
 #X obj 25 204 fruit/fruit 1 TUPPER1 11 fwTupper;
-#N canvas 70 127 573 539 Phare 1;
+#N canvas 60 119 573 539 Phare 0;
 #X text 210 109 BoutonRouge: K11 / LED:K12(LED sur Vdd);
 #X text 210 93 Pots: K1 K2 K3;
 #X obj 19 198 route s;
@@ -31,7 +31,7 @@
 #X obj 58 302 route 0 1 2;
 #X obj 115 259 / 8192;
 #X text 209 74 I2C1: K5:SCK K7:SDA;
-#N canvas 602 90 501 630 AXL 0;
+#N canvas 587 82 501 630 AXL 0;
 #N canvas 472 92 495 705 attacks 0;
 #X obj 20 13 inlet;
 #X obj 20 57 unpack f f f;
@@ -152,7 +152,6 @@
 #X obj 22 435 / -0.7;
 #X obj 22 228 t a a;
 #X obj 22 456 pack f f, f 21;
-#X floatatom 158 486 5 0 0 0 - - -;
 #X obj 165 63 s AXL_SEPARATION;
 #X obj 165 20 loadbang;
 #X msg 165 41 5;
@@ -163,12 +162,10 @@
 #X obj 23 169 s PHARE_ATTACK;
 #X obj 22 476 s PHARE_ASSIETTE;
 #X obj 22 207 r AXLSLOWPHARE;
-#X floatatom 289 300 5 0 0 0 - - -;
-#X connect 0 0 32 0;
+#X connect 0 0 31 0;
 #X connect 1 0 8 0;
 #X connect 1 1 2 0;
 #X connect 1 2 4 0;
-#X connect 1 2 35 0;
 #X connect 2 0 3 0;
 #X connect 2 1 3 1;
 #X connect 3 0 6 0;
@@ -194,17 +191,16 @@
 #X connect 18 0 20 0;
 #X connect 19 0 21 0;
 #X connect 20 0 23 1;
-#X connect 20 0 24 0;
 #X connect 21 0 23 0;
 #X connect 22 0 17 0;
 #X connect 22 1 1 0;
-#X connect 23 0 33 0;
-#X connect 26 0 27 0;
-#X connect 27 0 25 0;
-#X connect 28 0 30 0;
-#X connect 29 0 28 0;
-#X connect 31 0 0 0;
-#X connect 34 0 22 0;
+#X connect 23 0 32 0;
+#X connect 25 0 26 0;
+#X connect 26 0 24 0;
+#X connect 27 0 29 0;
+#X connect 28 0 27 0;
+#X connect 30 0 0 0;
+#X connect 33 0 22 0;
 #X restore 18 94 pd AXL;
 #X obj 19 177 fruit/receive PHARE;
 #X obj 19 485 s PHARE_BOUTON;
@@ -220,6 +216,7 @@
 #X obj 346 328 fruit/send2 PHARE;
 #X obj 387 255 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
+#X obj 58 333 s PHARE_VOLUME;
 #X connect 2 0 27 0;
 #X connect 2 1 3 0;
 #X connect 3 0 17 0;
@@ -238,6 +235,7 @@
 #X connect 18 0 21 0;
 #X connect 18 0 12 0;
 #X connect 20 0 33 1;
+#X connect 21 0 35 0;
 #X connect 22 0 18 1;
 #X connect 25 0 2 0;
 #X connect 27 0 26 0;
@@ -255,7 +253,6 @@
 #X obj 244 264 Tupper-fraise 2;
 #X obj 246 319 Tupper-fraise 3;
 #X obj 244 357 Tupper-fraise 4;
-#X obj 25 412 fruit/fruit 1 BOUILLOIRE 14 fwBouilloire;
 #N canvas 0 79 602 573 Bouilloire 0;
 #X text 210 109 BoutonRouge: K11 / LED:K12(LED sur Vdd);
 #X text 210 93 Pots: K1 K2 K3;
@@ -318,3 +315,4 @@
 #X connect 24 2 27 0;
 #X connect 28 0 2 0;
 #X restore 285 430 pd Bouilloire;
+#X obj 25 412 fruit/fruit 1 BOUILLOIRE 15 fwBouilloire;

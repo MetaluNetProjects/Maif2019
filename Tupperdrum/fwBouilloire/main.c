@@ -58,7 +58,7 @@ void fraiseReceiveChar() // receive text
 	}
 	if(c=='S'){		//switch SWLED on/off 
 		c=fraiseGetChar();
-		digitalWrite(SWLED, c=='0');		
+		digitalWrite(SWLED, c!='0');		
 	}
 	else if(c=='E') { 	// echo text (send it back to host)
 		printf("C");
