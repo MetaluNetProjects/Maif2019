@@ -1,4 +1,4 @@
-#N canvas 0 79 450 361 10;
+#N canvas 0 79 361 362 10;
 #X obj 37 37 inlet;
 #X obj 37 58 sel 1 0;
 #X msg 37 130 1;
@@ -12,7 +12,7 @@
 #X obj 160 274 change;
 #X obj 160 315 outlet;
 #X msg 49 87 stop;
-#X msg 138 218 0;
+#X msg 147 217 0;
 #X obj 205 212 del 250;
 #X obj 205 132 f;
 #X obj 205 153 sel 1 0;
@@ -21,6 +21,9 @@
 #X msg 271 185 stop;
 #X msg 232 184 stop;
 #X obj 37 109 del 250;
+#X obj 116 96 loadbang;
+#X obj 116 117 del 200;
+#X msg 116 138 0;
 #X connect 0 0 1 0;
 #X connect 1 0 6 0;
 #X connect 1 0 21 0;
@@ -52,3 +55,7 @@
 #X connect 19 0 14 0;
 #X connect 20 0 18 0;
 #X connect 21 0 2 0;
+#X connect 22 0 23 0;
+#X connect 23 0 24 0;
+#X connect 24 0 11 0;
+#X connect 24 0 5 0;
