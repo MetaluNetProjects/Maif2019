@@ -22,12 +22,12 @@
 #X msg 408 66 4;
 #X obj 353 223 sel 1;
 #X obj 353 176 spigot;
-#X obj 398 175 tgl 15 0 empty empty empty 17 7 0 10 -4034 -1 -1 0 1
+#X obj 398 175 tgl 15 0 empty empty empty 17 7 0 10 -4034 -1 -1 1 1
 ;
 #X obj 390 224 bng 15 80 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 23 195 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 6226 1;
 #X text 415 49 nb_steps;
 #X text 509 48 clock_divide;
 #X obj 21 36 declare -path effects -path rhythmic -path moonlib;
@@ -36,7 +36,7 @@
 #X msg 613 208 3;
 #X msg 583 198 2;
 #X obj 30 588 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 19 1;
 #X obj 27 608 MORPHgroup TUPPER\$1 FX;
 #X obj 20 215 MORPHgroup TUPPER\$1 A;
 #X obj 17 171 rhythmicPatterns TUPPER\$1 rhythm1;
@@ -64,14 +64,12 @@
 #X obj 75 412 / 2;
 #X obj 26 504 songParam SONGS TUPPER\$1_FX 0.1;
 #X obj 26 525 spigot 1;
-#X obj 26 546 + 1;
-#X obj 26 567 / 2;
 #X obj 215 282 r TUPPER\$1_BOUTON;
 #X obj 188 278 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 191 327 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 276 324 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 276 324 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 261 377 r LEDROUGE;
 #X obj 261 398 &&;
@@ -115,24 +113,25 @@
 #X obj 655 190 change;
 #X obj 655 148 * 7.5;
 #X obj 655 211 + 1;
-#X floatatom 655 232 5 0 0 0 - - -;
 #X obj 478 156 s TUPPER\$1-rhythm1-nbsteps;
 #X obj 215 303 rhythmicButton;
+#X obj 620 275 nbx 1 50 -1e+37 1e+37 0 0 empty empty pattern 0 65 0
+30 -4034 -1 -1 1 256;
 #X connect 2 0 33 0;
 #X connect 3 0 33 1;
 #X connect 4 0 2 0;
 #X connect 5 0 25 0;
-#X connect 7 0 66 0;
-#X connect 7 1 66 1;
-#X connect 8 0 75 0;
-#X connect 9 0 66 0;
+#X connect 7 0 64 0;
+#X connect 7 1 64 1;
+#X connect 8 0 72 0;
+#X connect 9 0 64 0;
 #X connect 10 0 25 0;
-#X connect 11 0 66 0;
+#X connect 11 0 64 0;
 #X connect 12 0 7 0;
 #X connect 13 0 7 0;
 #X connect 14 0 7 0;
 #X connect 15 0 7 0;
-#X connect 16 0 66 0;
+#X connect 16 0 64 0;
 #X connect 17 0 20 0;
 #X connect 17 0 40 0;
 #X connect 18 0 35 0;
@@ -153,7 +152,7 @@
 #X connect 38 0 42 0;
 #X connect 39 0 44 0;
 #X connect 40 0 36 0;
-#X connect 41 0 67 0;
+#X connect 41 0 65 0;
 #X connect 42 0 49 0;
 #X connect 43 0 47 0;
 #X connect 44 0 41 0;
@@ -166,27 +165,25 @@
 #X connect 52 0 53 0;
 #X connect 53 0 21 0;
 #X connect 54 0 55 0;
-#X connect 55 0 56 0;
-#X connect 56 0 57 0;
-#X connect 57 0 29 0;
-#X connect 58 0 76 0;
-#X connect 59 0 76 0;
-#X connect 61 0 19 0;
-#X connect 61 0 63 1;
-#X connect 62 0 63 0;
-#X connect 63 0 65 0;
-#X connect 65 0 64 0;
-#X connect 66 0 8 0;
-#X connect 66 0 10 0;
-#X connect 67 0 7 0;
+#X connect 55 0 29 0;
+#X connect 56 0 73 0;
+#X connect 57 0 73 0;
+#X connect 59 0 19 0;
+#X connect 59 0 61 1;
+#X connect 60 0 61 0;
+#X connect 61 0 63 0;
+#X connect 63 0 62 0;
+#X connect 64 0 8 0;
+#X connect 64 0 10 0;
+#X connect 65 0 7 0;
+#X connect 66 0 67 0;
+#X connect 67 0 70 0;
 #X connect 68 0 69 0;
-#X connect 69 0 72 0;
-#X connect 70 0 71 0;
-#X connect 71 0 73 0;
-#X connect 72 0 70 0;
-#X connect 73 0 35 1;
-#X connect 73 0 74 0;
-#X connect 76 0 60 0;
-#X connect 76 0 45 1;
-#X connect 76 0 41 1;
-#X connect 76 1 61 0;
+#X connect 69 0 71 0;
+#X connect 70 0 68 0;
+#X connect 71 0 35 1;
+#X connect 71 0 74 0;
+#X connect 73 0 58 0;
+#X connect 73 0 45 1;
+#X connect 73 0 41 1;
+#X connect 73 1 59 0;

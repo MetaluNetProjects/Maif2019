@@ -1,4 +1,4 @@
-#N canvas 194 166 292 436 10;
+#N canvas 95 100 469 463 10;
 #X declare -stdpath iemlib -lib iemlib1;
 #X declare -path ../domoTools/gammabs;
 #X declare -path ../domoTools/domonet;
@@ -93,7 +93,7 @@
 #X connect 31 0 13 0;
 #X connect 34 0 33 0;
 #X restore 26 371 pd notebanks;
-#N canvas 298 319 625 384 General 1;
+#N canvas 676 292 625 384 General 1;
 #X obj 26 94 getenv HOME;
 #X obj 245 117 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -155,7 +155,7 @@
 #X connect 24 0 3 0;
 #X connect 25 0 1 0;
 #X restore 24 58 pd General;
-#X obj 126 82 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 126 82 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 126 123 s LEDROUGE;
 #X obj 196 60 r BOUTONROUGE;
@@ -204,6 +204,14 @@
 #X obj 170 385 l Percu PERCU 4;
 #X obj 191 195 PHARE, f 6;
 #X obj 191 220 TUPPER 1;
+#X obj 191 244 TUPPER 2;
+#X obj 190 272 TUPPER 3;
+#X obj 190 296 TUPPER 4;
+#X text 250 222 grosse caisse;
+#X text 246 243 caisse claire;
+#X text 246 271 charleyston;
+#X text 253 296 basse;
+#X text 238 195 hélicon;
 #X connect 2 0 3 0;
 #X connect 2 1 4 0;
 #X connect 3 0 5 0;
