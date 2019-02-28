@@ -156,7 +156,7 @@
 #X restore 93 220 pd add_voices;
 #X floatatom 339 176 5 0 0 0 - - -;
 #X obj 608 463 hsl 128 15 0 1 0 0 accord-snd accord-rcv accord -2 -8
-0 10 -262144 -1 -1 1400 1;
+0 10 -262144 -1 -1 10638 1;
 #X obj 145 92 r accord-snd;
 #X obj 145 113 * 10;
 #X obj 663 107 declare -path AutoPreset;
@@ -166,7 +166,7 @@
 -1;
 #X obj 661 154 loadbang;
 #X obj 668 311 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 17 1;
 #X obj 663 86 declare -path effects -path rhythmic -path moonlib;
 #X obj 661 133 apmaster LAMPE;
 #X obj 661 195 apmasterfile LAMPE SETTINGS/LAMPE.txt;
@@ -178,7 +178,7 @@
 #X obj 723 265 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 607 530 hsl 128 15 0 1 0 0 vibrato-snd vibrato-rcv vibrato -2
--8 0 10 -262144 -1 -1 6200 1;
+-8 0 10 -262144 -1 -1 0 1;
 #X obj 606 554 apf LAMPE-FX vibrato vibrato;
 #N canvas 0 79 450 300 vibrato 0;
 #X obj 147 119 osc~;
@@ -209,9 +209,9 @@
 #X connect 9 0 10 0;
 #X connect 10 0 33 0;
 #X connect 11 0 13 0;
+#X connect 11 0 58 0;
 #X connect 12 0 11 1;
 #X connect 14 0 11 0;
-#X connect 14 0 58 0;
 #X connect 14 0 80 0;
 #X connect 15 0 14 1;
 #X connect 16 0 17 0;
