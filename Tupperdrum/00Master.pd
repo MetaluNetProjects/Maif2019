@@ -1,4 +1,4 @@
-#N canvas 95 100 469 463 10;
+#N canvas 272 219 469 463 10;
 #X declare -stdpath iemlib -lib iemlib1;
 #X declare -path ../domoTools/gammabs;
 #X declare -path ../domoTools/domonet;
@@ -156,7 +156,7 @@
 #X connect 24 0 3 0;
 #X connect 25 0 1 0;
 #X restore 24 58 pd General;
-#X obj 126 82 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 126 82 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 126 123 s LEDROUGE;
 #X obj 196 60 r BOUTONROUGE;
@@ -227,6 +227,15 @@
 #X text 246 271 charleyston;
 #X text 253 296 basse;
 #X text 238 195 hélicon;
+#X obj 326 76 sel 1;
+#X obj 326 99 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 326 119 sel 0 1;
+#X msg 321 143 symbol /CHORD;
+#X msg 344 169 symbol /GAMME;
+#X obj 321 195 s MAINGAMME;
+#X obj 319 7 r BOUILLOIRE_BOUTON;
+#X obj 319 28 s BOUTONROUGE;
 #X connect 2 0 3 0;
 #X connect 2 1 4 0;
 #X connect 3 0 5 0;
@@ -235,5 +244,13 @@
 #X connect 9 0 14 0;
 #X connect 14 0 18 0;
 #X connect 16 0 17 0;
+#X connect 16 0 34 0;
 #X connect 17 0 18 1;
 #X connect 18 0 15 0;
+#X connect 34 0 35 0;
+#X connect 35 0 36 0;
+#X connect 36 0 37 0;
+#X connect 36 1 38 0;
+#X connect 37 0 39 0;
+#X connect 38 0 39 0;
+#X connect 40 0 41 0;

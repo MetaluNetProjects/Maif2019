@@ -30,19 +30,19 @@
 #X obj 44 279 mull~ 0 10, f 16;
 #X obj 108 79 ead~ 1 100, f 17;
 #X obj 167 337 hsl 80 20 0 1 0 0 \$1-\$2-autotune-snd \$1-\$2-autotune-rcv
-autotune 2 10 0 10 -262144 -1 -1 0 1;
+autotune 2 10 0 10 -262144 -1 -1 4400 1;
 #X obj 167 360 hsl 80 20 0 1 0 0 \$1-\$2-freq-snd \$1-\$2-freq-rcv
-freq 2 10 0 10 -262144 -1 -1 0 1;
+freq 2 10 0 10 -262144 -1 -1 794 1;
 #X obj 167 412 hsl 80 20 0 1 0 0 \$1-\$2-attack-snd \$1-\$2-attack-rcv
-attack 2 10 0 10 -262144 -1 -1 0 1;
+attack 2 10 0 10 -262144 -1 -1 2900 1;
 #X obj 167 435 hsl 80 20 0 1 0 0 \$1-\$2-decay-snd \$1-\$2-decay-rcv
-decay 2 10 0 10 -262144 -1 -1 0 1;
+decay 2 10 0 10 -262144 -1 -1 7900 1;
 #X obj 167 383 hsl 80 20 0 1 0 0 \$1-\$2-env2f-snd \$1-\$2-env2f-rcv
 env2f 2 10 0 10 -262144 -1 -1 0 1;
 #X obj 167 468 hsl 80 20 0 1 0 0 \$1-\$2-noise-snd \$1-\$2-noise-rcv
 noise 2 10 0 10 -262144 -1 -1 0 1;
 #X obj 167 495 hsl 80 20 0 1 0 0 \$1-\$2-volume-snd \$1-\$2-volume-rcv
-volume 2 10 0 10 -258113 -1 -1 0 1;
+volume 2 10 0 10 -258113 -1 -1 6801 1;
 #X obj 334 333 apf \$1 \$2-autotune \$1-\$2-autotune;
 #X obj 334 353 apf \$1 \$2-freq \$1-\$2-freq;
 #X obj 334 374 apf \$1 \$2-env2f \$1-\$2-env2f;
@@ -63,6 +63,8 @@ volume 2 10 0 10 -258113 -1 -1 0 1;
 #X obj 32 444 apeq \$1 \$2-ortho1;
 #X obj 322 53 declare -path creb -lib creb;
 #X obj 157 167 gammeRound /CHORD;
+#X obj 287 170 r MAINGAMME;
+#X msg 287 191 set \$1;
 #X connect 2 0 5 0;
 #X connect 4 0 18 0;
 #X connect 5 0 3 0;
@@ -102,4 +104,6 @@ volume 2 10 0 10 -258113 -1 -1 0 1;
 #X connect 50 0 51 0;
 #X connect 51 0 41 0;
 #X connect 53 0 12 0;
+#X connect 54 0 55 0;
+#X connect 55 0 53 0;
 #X coords 0 -1 1 1 220 205 1 30 320;
