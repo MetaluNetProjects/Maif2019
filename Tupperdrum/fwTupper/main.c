@@ -19,7 +19,7 @@ void setup(void) {
 	fruitInit();
 			
 	pinModeDigitalOut(LED); 	// set the LED pin mode to digital out
-	pinModeDigitalOut(SWLED); 	// set the LED pin mode to digital out
+	pinModeAnalogOut(SWLED); 	// set the LED pin mode to digital out
 
 //----------- Analog setup ----------------
 	analogInit();		// init analog module	
@@ -58,6 +58,9 @@ void loop() {
 		fraiseService();	// listen to Fraise events
 		ADXL345Service(&adxl1);
 		fraiseService();	// listen to Fraise events
+		cycle++;
+		/*if(cycle > 100) analogWrite(SWLED, 1021);
+		else analogWrite(SWLED, 0);*/
 	}
 }
 
@@ -72,7 +75,7 @@ void fraiseReceiveChar() // receive text
 		c=fraiseGetChar();
 		digitalWrite(LED, c!='0');		
 	}
-	if(c=='S'){		//switch SWLED on/off 
+	else if(c=='S'){		//switch SWLED on/off 
 		c=fraiseGetChar();
 		digitalWrite(SWLED, c!='0');		
 	}
@@ -89,3 +92,14 @@ void fraiseReceiveChar() // receive text
 	}
 }
 
+void fraiseReceive()
+{
+	unsigned char c;//, c2;
+	unsigned int i;
+	
+	c = fraiseGetChar();
+	if(c == 1){		//switch SWLED pwm
+		i = fraiseGetInt();
+		analogWrite(SWLED, i);		
+	}
+}

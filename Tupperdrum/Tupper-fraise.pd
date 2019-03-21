@@ -195,7 +195,7 @@
 #X floatatom 167 250 5 0 0 3 select - -;
 #X floatatom 205 249 5 0 0 3 fx - -;
 #X floatatom 243 249 5 0 0 3 volume - -;
-#X obj 200 172 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 200 172 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 57 195 unpack f f;
 #X obj 57 286 pack f f, f 10;
@@ -209,9 +209,13 @@
 #X obj 86 379 s TUPPER\$1_SELECT;
 #X obj 18 422 s TUPPER\$1_BOUTON;
 #X obj 128 339 s TUPPER\$1_VOLUME;
-#X obj 52 401 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 52 401 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 432 240 r TUPPER\$1_LED;
+#X obj 374 193 r TUPPER\$1_LED;
+#X floatatom 312 205 5 0 0 0 - - -;
+#X msg 364 249 c 1 i \$1;
+#X msg 322 165 0;
+#X floatatom 383 220 5 0 0 0 - - -;
 #X connect 4 0 6 0;
 #X connect 4 1 5 0;
 #X connect 5 0 16 0;
@@ -230,8 +234,12 @@
 #X connect 16 1 20 0;
 #X connect 17 0 9 0;
 #X connect 17 0 11 0;
+#X connect 18 0 19 0;
 #X connect 19 0 22 1;
 #X connect 20 0 17 1;
 #X connect 21 0 4 0;
-#X connect 28 0 19 0;
-#X connect 28 0 18 0;
+#X connect 28 0 30 0;
+#X connect 28 0 32 0;
+#X connect 29 0 30 0;
+#X connect 30 0 22 0;
+#X connect 31 0 30 0;
