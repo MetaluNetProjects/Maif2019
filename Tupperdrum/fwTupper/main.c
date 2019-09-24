@@ -87,7 +87,7 @@ void fraiseReceiveChar() // receive text
 	}	
 	else if(c=='R') { 	// reset I2C
 		i2cm_init(I2C_MASTER, I2C_SLEW_ON, FOSC/400000/4-1);
-		ADXL345Init(&adxl1, 0);
+		ADXL345Init(&adxl1, 1);
 		//ADXL345Init(&adxl2, 1);
 	}
 }

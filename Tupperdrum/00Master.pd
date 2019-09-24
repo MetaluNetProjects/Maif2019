@@ -1,4 +1,4 @@
-#N canvas 272 219 469 463 10;
+#N canvas 535 112 469 463 10;
 #X declare -stdpath iemlib -lib iemlib1;
 #X declare -path ../domoTools/gammabs;
 #X declare -path ../domoTools/domonet;
@@ -60,7 +60,7 @@
 #X obj 113 104 s reloadNotes;
 #X obj 116 84 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 18 9 notebank 1 7 Ant1-wavtables;
+#X obj 18 9 l notebank 1 7 Ant1-wavtables;
 #X connect 2 0 3 0;
 #X connect 3 0 0 0;
 #X connect 3 1 1 0;
@@ -156,43 +156,43 @@
 #X connect 24 0 3 0;
 #X connect 25 0 1 0;
 #X restore 24 58 pd General;
-#X obj 126 82 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 126 82 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 126 123 s LEDROUGE;
 #X obj 196 60 r BOUTONROUGE;
 #X obj 196 81 == 0;
 #X obj 126 102 spigot 1, f 12;
-#N canvas 824 567 662 390 MASTER 0;
-#X obj 177 222 limiter~;
-#X obj 137 223 z~ 64;
+#N canvas 704 378 662 390 MASTER 0;
+#X obj 174 230 limiter~;
+#X obj 134 231 z~ 64;
 #X obj 134 19 catch~ master;
-#X obj 137 244 *~;
-#X obj 131 285 dac~;
+#X obj 134 252 *~;
+#X obj 125 337 dac~;
 #X obj 342 23 catch~ reverb;
 #X obj 264 137 r POTVOL;
 #X msg 264 197 \$1 20;
 #X obj 264 218 line~;
-#X obj 136 187 *~;
+#X obj 133 195 *~;
 #X obj 323 146 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 6950 1;
+-1 -1 6350 1;
 #X obj 380 102 loadbang;
 #X msg 380 123 0.5;
 #X obj 264 176 pow 2;
-#X obj 135 159 hip~ 30;
 #X obj 341 45 l rev3~ 100 92 2000 20;
 #X obj 226 18 r POTHIP;
 #X obj 226 81 mtof;
 #X floatatom 281 67 8 0 0 0 - - -;
 #X obj 289 3 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 12700 1;
 #X obj 412 251 declare -lib iemlib;
-#X obj 226 39 * -120;
 #X obj 226 60 + 120;
-#X obj 135 135 hp10_butt~ 2 10;
 #X obj 134 40 *~ 0.1;
+#X obj 226 40 * -110;
+#X obj 134 72 hip~ 10;
+#X obj 133 121 hp6_butt~ 14 20;
 #X connect 0 0 3 1;
 #X connect 1 0 3 0;
-#X connect 2 0 24 0;
+#X connect 2 0 21 0;
 #X connect 3 0 4 0;
 #X connect 3 0 4 1;
 #X connect 6 0 13 0;
@@ -204,14 +204,15 @@
 #X connect 11 0 12 0;
 #X connect 12 0 10 0;
 #X connect 13 0 7 0;
-#X connect 14 0 9 0;
-#X connect 16 0 21 0;
-#X connect 17 0 23 1;
-#X connect 19 0 21 0;
-#X connect 21 0 22 0;
-#X connect 22 0 17 0;
-#X connect 23 0 14 0;
-#X connect 24 0 23 0;
+#X connect 15 0 22 0;
+#X connect 16 0 17 0;
+#X connect 16 0 24 1;
+#X connect 18 0 22 0;
+#X connect 20 0 16 0;
+#X connect 21 0 23 0;
+#X connect 22 0 20 0;
+#X connect 23 0 24 0;
+#X connect 24 0 9 0;
 #X restore 23 15 pd MASTER;
 #X obj 170 323 l Orchestre ORCH 1;
 #X obj 170 345 l Bruits BRUIT 2;

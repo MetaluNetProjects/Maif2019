@@ -23,7 +23,7 @@
 #X obj 37 109 del 250;
 #X obj 116 96 loadbang;
 #X obj 116 117 del 200;
-#X msg 116 138 0;
+#X msg 116 138 1 \, 0;
 #X connect 0 0 1 0;
 #X connect 1 0 6 0;
 #X connect 1 0 21 0;
