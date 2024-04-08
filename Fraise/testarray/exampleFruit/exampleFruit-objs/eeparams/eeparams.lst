@@ -1,0 +1,1807 @@
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE  1
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00001 ;--------------------------------------------------------
+                      00002 ; File Created by SDCC : free open source ANSI-C Compiler
+                      00003 ; Version 3.6.9 #10186 (Linux)
+                      00004 ;--------------------------------------------------------
+                      00005 ; PIC16 port for the Microchip 16-bit core micros
+                      00006 ;--------------------------------------------------------
+                      00007         list    p=18f26k22
+                      00008         radix   dec
+                      00009 
+                      00010 
+                      00011 ;--------------------------------------------------------
+                      00012 ; public variables in this module
+                      00013 ;--------------------------------------------------------
+  0000                00014         global  _EEdeclareChar
+  0000                00015         global  _EEdeclareInt
+  0000                00016         global  _EEdeclareLong
+  0000                00017         global  _EEwriteMain
+  0000                00018         global  _EEreadMain
+  0000                00019         global  _eeaddress
+  0000                00020         global  _eeoperation
+  0000                00021         global  _EELoadChar
+  0000                00022         global  _EELoadInt
+  0000                00023         global  _EELoadLong
+  0000                00024         global  _EESaveChar
+  0000                00025         global  _EESaveInt
+  0000                00026         global  _EESaveLong
+                      00027 
+                      00028 ;--------------------------------------------------------
+                      00029 ; extern variables in this module
+                      00030 ;--------------------------------------------------------
+  0000                00031         extern  __gptrput1
+  0000                00032         extern  __gptrget1
+  0000                00033         extern  __gptrput2
+  0000                00034         extern  __gptrget2
+  0000                00035         extern  __gptrput4
+  0000                00036         extern  __gptrget4
+  0000                00037         extern  _ANSELAbits
+  0000                00038         extern  _ANSELBbits
+  0000                00039         extern  _ANSELCbits
+  0000                00040         extern  _PMD2bits
+  0000                00041         extern  _PMD1bits
+  0000                00042         extern  _PMD0bits
+  0000                00043         extern  _DACCON1bits
+  0000                00044         extern  _VREFCON2bits
+  0000                00045         extern  _DACCON0bits
+  0000                00046         extern  _VREFCON1bits
+  0000                00047         extern  _FVRCONbits
+  0000                00048         extern  _VREFCON0bits
+  0000                00049         extern  _CTMUICONbits
+  0000                00050         extern  _CTMUICONHbits
+  0000                00051         extern  _CTMUCON1bits
+  0000                00052         extern  _CTMUCONLbits
+  0000                00053         extern  _CTMUCON0bits
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE  2
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+  0000                00054         extern  _CTMUCONHbits
+  0000                00055         extern  _SRCON1bits
+  0000                00056         extern  _SRCON0bits
+  0000                00057         extern  _CCPTMRS1bits
+  0000                00058         extern  _CCPTMRS0bits
+  0000                00059         extern  _T6CONbits
+  0000                00060         extern  _T5GCONbits
+  0000                00061         extern  _T5CONbits
+  0000                00062         extern  _T4CONbits
+  0000                00063         extern  _CCP5CONbits
+  0000                00064         extern  _CCP4CONbits
+  0000                00065         extern  _PSTR3CONbits
+  0000                00066         extern  _CCP3ASbits
+  0000                00067         extern  _ECCP3ASbits
+  0000                00068         extern  _PWM3CONbits
+  0000                00069         extern  _CCP3CONbits
+  0000                00070         extern  _SLRCONbits
+  0000                00071         extern  _WPUBbits
+  0000                00072         extern  _IOCBbits
+  0000                00073         extern  _PSTR2CONbits
+  0000                00074         extern  _CCP2ASbits
+  0000                00075         extern  _ECCP2ASbits
+  0000                00076         extern  _PWM2CONbits
+  0000                00077         extern  _CCP2CONbits
+  0000                00078         extern  _SSP2CON3bits
+  0000                00079         extern  _SSP2MSKbits
+  0000                00080         extern  _SSP2CON2bits
+  0000                00081         extern  _SSP2CON1bits
+  0000                00082         extern  _SSP2STATbits
+  0000                00083         extern  _BAUD2CONbits
+  0000                00084         extern  _BAUDCON2bits
+  0000                00085         extern  _RC2STAbits
+  0000                00086         extern  _RCSTA2bits
+  0000                00087         extern  _TX2STAbits
+  0000                00088         extern  _TXSTA2bits
+  0000                00089         extern  _CM12CONbits
+  0000                00090         extern  _CM2CON1bits
+  0000                00091         extern  _CM2CONbits
+  0000                00092         extern  _CM2CON0bits
+  0000                00093         extern  _CM1CONbits
+  0000                00094         extern  _CM1CON0bits
+  0000                00095         extern  _PIE4bits
+  0000                00096         extern  _PIR4bits
+  0000                00097         extern  _IPR4bits
+  0000                00098         extern  _PIE5bits
+  0000                00099         extern  _PIR5bits
+  0000                00100         extern  _IPR5bits
+  0000                00101         extern  _PORTAbits
+  0000                00102         extern  _PORTBbits
+  0000                00103         extern  _PORTCbits
+  0000                00104         extern  _PORTEbits
+  0000                00105         extern  _LATAbits
+  0000                00106         extern  _LATBbits
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE  3
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+  0000                00107         extern  _LATCbits
+  0000                00108         extern  _DDRAbits
+  0000                00109         extern  _TRISAbits
+  0000                00110         extern  _DDRBbits
+  0000                00111         extern  _TRISBbits
+  0000                00112         extern  _DDRCbits
+  0000                00113         extern  _TRISCbits
+  0000                00114         extern  _TRISEbits
+  0000                00115         extern  _OSCTUNEbits
+  0000                00116         extern  _HLVDCONbits
+  0000                00117         extern  _LVDCONbits
+  0000                00118         extern  _PIE1bits
+  0000                00119         extern  _PIR1bits
+  0000                00120         extern  _IPR1bits
+  0000                00121         extern  _PIE2bits
+  0000                00122         extern  _PIR2bits
+  0000                00123         extern  _IPR2bits
+  0000                00124         extern  _PIE3bits
+  0000                00125         extern  _PIR3bits
+  0000                00126         extern  _IPR3bits
+  0000                00127         extern  _EECON1bits
+  0000                00128         extern  _EEADRbits
+  0000                00129         extern  _EEADRHbits
+  0000                00130         extern  _RC1STAbits
+  0000                00131         extern  _RCSTAbits
+  0000                00132         extern  _RCSTA1bits
+  0000                00133         extern  _TX1STAbits
+  0000                00134         extern  _TXSTAbits
+  0000                00135         extern  _TXSTA1bits
+  0000                00136         extern  _T3CONbits
+  0000                00137         extern  _T3GCONbits
+  0000                00138         extern  _ECCP1ASbits
+  0000                00139         extern  _ECCPASbits
+  0000                00140         extern  _PWM1CONbits
+  0000                00141         extern  _PWMCONbits
+  0000                00142         extern  _BAUD1CONbits
+  0000                00143         extern  _BAUDCONbits
+  0000                00144         extern  _BAUDCON1bits
+  0000                00145         extern  _BAUDCTLbits
+  0000                00146         extern  _PSTR1CONbits
+  0000                00147         extern  _PSTRCONbits
+  0000                00148         extern  _T2CONbits
+  0000                00149         extern  _CCP1CONbits
+  0000                00150         extern  _ADCON2bits
+  0000                00151         extern  _ADCON1bits
+  0000                00152         extern  _ADCON0bits
+  0000                00153         extern  _SSP1CON2bits
+  0000                00154         extern  _SSPCON2bits
+  0000                00155         extern  _SSP1CON1bits
+  0000                00156         extern  _SSPCON1bits
+  0000                00157         extern  _SSP1STATbits
+  0000                00158         extern  _SSPSTATbits
+  0000                00159         extern  _SSP1MSKbits
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE  4
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+  0000                00160         extern  _SSPMSKbits
+  0000                00161         extern  _SSP1CON3bits
+  0000                00162         extern  _SSPCON3bits
+  0000                00163         extern  _T1GCONbits
+  0000                00164         extern  _T1CONbits
+  0000                00165         extern  _RCONbits
+  0000                00166         extern  _WDTCONbits
+  0000                00167         extern  _OSCCON2bits
+  0000                00168         extern  _OSCCONbits
+  0000                00169         extern  _T0CONbits
+  0000                00170         extern  _STATUSbits
+  0000                00171         extern  _INTCON3bits
+  0000                00172         extern  _INTCON2bits
+  0000                00173         extern  _INTCONbits
+  0000                00174         extern  _STKPTRbits
+  0000                00175         extern  _stdin
+  0000                00176         extern  _stdout
+  0000                00177         extern  _Now
+  0000                00178         extern  _PORTZ
+  0000                00179         extern  _PORTZbits
+  0000                00180         extern  _LATZ
+  0000                00181         extern  _LATZbits
+  0000                00182         extern  _TRICZ
+  0000                00183         extern  _TRISZbits
+  0000                00184         extern  _ANSELZ
+  0000                00185         extern  _ANSELZbits
+  0000                00186         extern  _ANSELA
+  0000                00187         extern  _ANSELB
+  0000                00188         extern  _ANSELC
+  0000                00189         extern  _PMD2
+  0000                00190         extern  _PMD1
+  0000                00191         extern  _PMD0
+  0000                00192         extern  _DACCON1
+  0000                00193         extern  _VREFCON2
+  0000                00194         extern  _DACCON0
+  0000                00195         extern  _VREFCON1
+  0000                00196         extern  _FVRCON
+  0000                00197         extern  _VREFCON0
+  0000                00198         extern  _CTMUICON
+  0000                00199         extern  _CTMUICONH
+  0000                00200         extern  _CTMUCON1
+  0000                00201         extern  _CTMUCONL
+  0000                00202         extern  _CTMUCON0
+  0000                00203         extern  _CTMUCONH
+  0000                00204         extern  _SRCON1
+  0000                00205         extern  _SRCON0
+  0000                00206         extern  _CCPTMRS1
+  0000                00207         extern  _CCPTMRS0
+  0000                00208         extern  _T6CON
+  0000                00209         extern  _PR6
+  0000                00210         extern  _TMR6
+  0000                00211         extern  _T5GCON
+  0000                00212         extern  _T5CON
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE  5
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+  0000                00213         extern  _TMR5
+  0000                00214         extern  _TMR5L
+  0000                00215         extern  _TMR5H
+  0000                00216         extern  _T4CON
+  0000                00217         extern  _PR4
+  0000                00218         extern  _TMR4
+  0000                00219         extern  _CCP5CON
+  0000                00220         extern  _CCPR5
+  0000                00221         extern  _CCPR5L
+  0000                00222         extern  _CCPR5H
+  0000                00223         extern  _CCP4CON
+  0000                00224         extern  _CCPR4
+  0000                00225         extern  _CCPR4L
+  0000                00226         extern  _CCPR4H
+  0000                00227         extern  _PSTR3CON
+  0000                00228         extern  _CCP3AS
+  0000                00229         extern  _ECCP3AS
+  0000                00230         extern  _PWM3CON
+  0000                00231         extern  _CCP3CON
+  0000                00232         extern  _CCPR3
+  0000                00233         extern  _CCPR3L
+  0000                00234         extern  _CCPR3H
+  0000                00235         extern  _SLRCON
+  0000                00236         extern  _WPUB
+  0000                00237         extern  _IOCB
+  0000                00238         extern  _PSTR2CON
+  0000                00239         extern  _CCP2AS
+  0000                00240         extern  _ECCP2AS
+  0000                00241         extern  _PWM2CON
+  0000                00242         extern  _CCP2CON
+  0000                00243         extern  _CCPR2
+  0000                00244         extern  _CCPR2L
+  0000                00245         extern  _CCPR2H
+  0000                00246         extern  _SSP2CON3
+  0000                00247         extern  _SSP2MSK
+  0000                00248         extern  _SSP2CON2
+  0000                00249         extern  _SSP2CON1
+  0000                00250         extern  _SSP2STAT
+  0000                00251         extern  _SSP2ADD
+  0000                00252         extern  _SSP2BUF
+  0000                00253         extern  _BAUD2CON
+  0000                00254         extern  _BAUDCON2
+  0000                00255         extern  _RC2STA
+  0000                00256         extern  _RCSTA2
+  0000                00257         extern  _TX2STA
+  0000                00258         extern  _TXSTA2
+  0000                00259         extern  _TX2REG
+  0000                00260         extern  _TXREG2
+  0000                00261         extern  _RC2REG
+  0000                00262         extern  _RCREG2
+  0000                00263         extern  _SP2BRG
+  0000                00264         extern  _SPBRG2
+  0000                00265         extern  _SP2BRGH
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE  6
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+  0000                00266         extern  _SPBRGH2
+  0000                00267         extern  _CM12CON
+  0000                00268         extern  _CM2CON1
+  0000                00269         extern  _CM2CON
+  0000                00270         extern  _CM2CON0
+  0000                00271         extern  _CM1CON
+  0000                00272         extern  _CM1CON0
+  0000                00273         extern  _PIE4
+  0000                00274         extern  _PIR4
+  0000                00275         extern  _IPR4
+  0000                00276         extern  _PIE5
+  0000                00277         extern  _PIR5
+  0000                00278         extern  _IPR5
+  0000                00279         extern  _PORTA
+  0000                00280         extern  _PORTB
+  0000                00281         extern  _PORTC
+  0000                00282         extern  _PORTE
+  0000                00283         extern  _LATA
+  0000                00284         extern  _LATB
+  0000                00285         extern  _LATC
+  0000                00286         extern  _DDRA
+  0000                00287         extern  _TRISA
+  0000                00288         extern  _DDRB
+  0000                00289         extern  _TRISB
+  0000                00290         extern  _DDRC
+  0000                00291         extern  _TRISC
+  0000                00292         extern  _TRISE
+  0000                00293         extern  _OSCTUNE
+  0000                00294         extern  _HLVDCON
+  0000                00295         extern  _LVDCON
+  0000                00296         extern  _PIE1
+  0000                00297         extern  _PIR1
+  0000                00298         extern  _IPR1
+  0000                00299         extern  _PIE2
+  0000                00300         extern  _PIR2
+  0000                00301         extern  _IPR2
+  0000                00302         extern  _PIE3
+  0000                00303         extern  _PIR3
+  0000                00304         extern  _IPR3
+  0000                00305         extern  _EECON1
+  0000                00306         extern  _EECON2
+  0000                00307         extern  _EEDATA
+  0000                00308         extern  _EEADR
+  0000                00309         extern  _EEADRH
+  0000                00310         extern  _RC1STA
+  0000                00311         extern  _RCSTA
+  0000                00312         extern  _RCSTA1
+  0000                00313         extern  _TX1STA
+  0000                00314         extern  _TXSTA
+  0000                00315         extern  _TXSTA1
+  0000                00316         extern  _TX1REG
+  0000                00317         extern  _TXREG
+  0000                00318         extern  _TXREG1
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE  7
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+  0000                00319         extern  _RC1REG
+  0000                00320         extern  _RCREG
+  0000                00321         extern  _RCREG1
+  0000                00322         extern  _SP1BRG
+  0000                00323         extern  _SPBRG
+  0000                00324         extern  _SPBRG1
+  0000                00325         extern  _SP1BRGH
+  0000                00326         extern  _SPBRGH
+  0000                00327         extern  _SPBRGH1
+  0000                00328         extern  _T3CON
+  0000                00329         extern  _TMR3
+  0000                00330         extern  _TMR3L
+  0000                00331         extern  _TMR3H
+  0000                00332         extern  _T3GCON
+  0000                00333         extern  _ECCP1AS
+  0000                00334         extern  _ECCPAS
+  0000                00335         extern  _PWM1CON
+  0000                00336         extern  _PWMCON
+  0000                00337         extern  _BAUD1CON
+  0000                00338         extern  _BAUDCON
+  0000                00339         extern  _BAUDCON1
+  0000                00340         extern  _BAUDCTL
+  0000                00341         extern  _PSTR1CON
+  0000                00342         extern  _PSTRCON
+  0000                00343         extern  _T2CON
+  0000                00344         extern  _PR2
+  0000                00345         extern  _TMR2
+  0000                00346         extern  _CCP1CON
+  0000                00347         extern  _CCPR1
+  0000                00348         extern  _CCPR1L
+  0000                00349         extern  _CCPR1H
+  0000                00350         extern  _ADCON2
+  0000                00351         extern  _ADCON1
+  0000                00352         extern  _ADCON0
+  0000                00353         extern  _ADRES
+  0000                00354         extern  _ADRESL
+  0000                00355         extern  _ADRESH
+  0000                00356         extern  _SSP1CON2
+  0000                00357         extern  _SSPCON2
+  0000                00358         extern  _SSP1CON1
+  0000                00359         extern  _SSPCON1
+  0000                00360         extern  _SSP1STAT
+  0000                00361         extern  _SSPSTAT
+  0000                00362         extern  _SSP1ADD
+  0000                00363         extern  _SSPADD
+  0000                00364         extern  _SSP1BUF
+  0000                00365         extern  _SSPBUF
+  0000                00366         extern  _SSP1MSK
+  0000                00367         extern  _SSPMSK
+  0000                00368         extern  _SSP1CON3
+  0000                00369         extern  _SSPCON3
+  0000                00370         extern  _T1GCON
+  0000                00371         extern  _T1CON
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE  8
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+  0000                00372         extern  _TMR1
+  0000                00373         extern  _TMR1L
+  0000                00374         extern  _TMR1H
+  0000                00375         extern  _RCON
+  0000                00376         extern  _WDTCON
+  0000                00377         extern  _OSCCON2
+  0000                00378         extern  _OSCCON
+  0000                00379         extern  _T0CON
+  0000                00380         extern  _TMR0
+  0000                00381         extern  _TMR0L
+  0000                00382         extern  _TMR0H
+  0000                00383         extern  _STATUS
+  0000                00384         extern  _FSR2L
+  0000                00385         extern  _FSR2H
+  0000                00386         extern  _PLUSW2
+  0000                00387         extern  _PREINC2
+  0000                00388         extern  _POSTDEC2
+  0000                00389         extern  _POSTINC2
+  0000                00390         extern  _INDF2
+  0000                00391         extern  _BSR
+  0000                00392         extern  _FSR1L
+  0000                00393         extern  _FSR1H
+  0000                00394         extern  _PLUSW1
+  0000                00395         extern  _PREINC1
+  0000                00396         extern  _POSTDEC1
+  0000                00397         extern  _POSTINC1
+  0000                00398         extern  _INDF1
+  0000                00399         extern  _WREG
+  0000                00400         extern  _FSR0L
+  0000                00401         extern  _FSR0H
+  0000                00402         extern  _PLUSW0
+  0000                00403         extern  _PREINC0
+  0000                00404         extern  _POSTDEC0
+  0000                00405         extern  _POSTINC0
+  0000                00406         extern  _INDF0
+  0000                00407         extern  _INTCON3
+  0000                00408         extern  _INTCON2
+  0000                00409         extern  _INTCON
+  0000                00410         extern  _PROD
+  0000                00411         extern  _PRODL
+  0000                00412         extern  _PRODH
+  0000                00413         extern  _TABLAT
+  0000                00414         extern  _TBLPTR
+  0000                00415         extern  _TBLPTRL
+  0000                00416         extern  _TBLPTRH
+  0000                00417         extern  _TBLPTRU
+  0000                00418         extern  _PC
+  0000                00419         extern  _PCL
+  0000                00420         extern  _PCLATH
+  0000                00421         extern  _PCLATU
+  0000                00422         extern  _STKPTR
+  0000                00423         extern  _TOS
+  0000                00424         extern  _TOSL
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE  9
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+  0000                00425         extern  _TOSH
+  0000                00426         extern  _TOSU
+  0000                00427         extern  _eeWriteByte
+  0000                00428         extern  _eeReadByte
+                      00429 
+                      00430 ;--------------------------------------------------------
+                      00431 ;       Equates to used internal registers
+                      00432 ;--------------------------------------------------------
+  00000FD8            00433 STATUS  equ     0xfd8
+  00000FE8            00434 WREG    equ     0xfe8
+  00000FF6            00435 TBLPTRL equ     0xff6
+  00000FF7            00436 TBLPTRH equ     0xff7
+  00000FE9            00437 FSR0L   equ     0xfe9
+  00000FE1            00438 FSR1L   equ     0xfe1
+  00000FD9            00439 FSR2L   equ     0xfd9
+  00000FE6            00440 POSTINC1        equ     0xfe6
+  00000FE5            00441 POSTDEC1        equ     0xfe5
+  00000FE4            00442 PREINC1 equ     0xfe4
+  00000FDB            00443 PLUSW2  equ     0xfdb
+  00000FF3            00444 PRODL   equ     0xff3
+  00000FF4            00445 PRODH   equ     0xff4
+                      00446 
+                      00447 
+                      00448 ; Internal registers
+                      00449 .registers      udata_ovr       0x0000
+000000                00450 r0x00   res     1
+000001                00451 r0x01   res     1
+000002                00452 r0x02   res     1
+000003                00453 r0x03   res     1
+000004                00454 r0x04   res     1
+000005                00455 r0x05   res     1
+000006                00456 r0x06   res     1
+000007                00457 r0x07   res     1
+000008                00458 r0x08   res     1
+000009                00459 r0x09   res     1
+00000A                00460 r0x0a   res     1
+00000B                00461 r0x0b   res     1
+                      00462 
+                      00463 udata_eeparams_0        udata
+000000                00464 _eeaddress      res     2
+                      00465 
+                      00466 udata_eeparams_1        udata
+000000                00467 _eeoperation    res     1
+                      00468 
+                      00469 ;--------------------------------------------------------
+                      00470 ; global & static initialisations
+                      00471 ;--------------------------------------------------------
+                      00472 ; I code from now on!
+                      00473 ; ; Starting pCode block
+                      00474 S_eeparams__EEreadMain  code
+000000                00475 _EEreadMain:
+000000 010?           00476         BANKSEL _eeoperation
+                      00477 ;       .line   112; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c       eeoperation=EE_RD;
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 10
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+000002 6B??           00478         CLRF    _eeoperation, B
+                      00479 ;       .line   113; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c       eeaddress=EEUSER;
+000004 0E1C           00480         MOVLW   0x1c
+000006 010?           00481         BANKSEL _eeaddress
+000008 6F??           00482         MOVWF   _eeaddress, B
+                      00483 ; removed redundant BANKSEL
+00000A 6B??           00484         CLRF    (_eeaddress + 1), B
+                      00485 ;       .line   117; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c       }
+00000C 0012           00486         RETURN  
+                      00487 
+                      00488 ; ; Starting pCode block
+                      00489 S_eeparams__EEwriteMain code
+000000                00490 _EEwriteMain:
+                      00491 ;       .line   103; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c       eeoperation=EE_WR;
+000000 0E01           00492         MOVLW   0x01
+000002 010?           00493         BANKSEL _eeoperation
+000004 6F??           00494         MOVWF   _eeoperation, B
+                      00495 ;       .line   104; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c       eeaddress=EEUSER;
+000006 0E1C           00496         MOVLW   0x1c
+000008 010?           00497         BANKSEL _eeaddress
+00000A 6F??           00498         MOVWF   _eeaddress, B
+                      00499 ; removed redundant BANKSEL
+00000C 6B??           00500         CLRF    (_eeaddress + 1), B
+                      00501 ;       .line   108; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c       }
+00000E 0012           00502         RETURN  
+                      00503 
+                      00504 ; ; Starting pCode block
+                      00505 S_eeparams__EEdeclareLong       code
+000000                00506 _EEdeclareLong:
+                      00507 ;       .line   92; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        void EEdeclareLong(unsig
+                            ned long *data)
+000000 CFD9 FFE5      00508         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      00509         MOVFF   FSR1L, FSR2L
+000008 C??? F???      00510         MOVFF   r0x00, POSTDEC1
+00000C C??? F???      00511         MOVFF   r0x01, POSTDEC1
+000010 C??? F???      00512         MOVFF   r0x02, POSTDEC1
+000014 C??? F???      00513         MOVFF   r0x03, POSTDEC1
+000018 C??? F???      00514         MOVFF   r0x04, POSTDEC1
+00001C C??? F???      00515         MOVFF   r0x05, POSTDEC1
+000020 C??? F???      00516         MOVFF   r0x06, POSTDEC1
+000024 0E02           00517         MOVLW   0x02
+000026 CFDB F000      00518         MOVFF   PLUSW2, r0x00
+00002A 0E03           00519         MOVLW   0x03
+00002C CFDB F000      00520         MOVFF   PLUSW2, r0x01
+000030 0E04           00521         MOVLW   0x04
+000032 CFDB F000      00522         MOVFF   PLUSW2, r0x02
+000036 010?           00523         BANKSEL _eeoperation
+                      00524 ;       .line   94; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        if(eeoperation==EE_RD) *
+                            data=EELoadLong();
+000038 51??           00525         MOVF    _eeoperation, W, B
+00003A E1??           00526         BNZ     _00176_DS_
+00003C EC?? F0??      00527         CALL    _EELoadLong
+000040 6E??           00528         MOVWF   r0x03
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 11
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+000042 CFF3 F000      00529         MOVFF   PRODL, r0x04
+000046 CFF4 F000      00530         MOVFF   PRODH, r0x05
+00004A CFE9 F000      00531         MOVFF   FSR0L, r0x06
+00004E C??? F???      00532         MOVFF   r0x03, POSTDEC1
+000052 C??? F???      00533         MOVFF   r0x04, PRODH
+000056 C??? F???      00534         MOVFF   r0x05, TBLPTRL
+00005A C??? F???      00535         MOVFF   r0x06, TBLPTRH
+00005E C??? F???      00536         MOVFF   r0x00, FSR0L
+000062 C??? F???      00537         MOVFF   r0x01, PRODL
+000066 50??           00538         MOVF    r0x02, W
+000068 EC?? F0??      00539         CALL    __gptrput4
+00006C D???           00540         BRA     _00178_DS_
+00006E                00541 _00176_DS_:
+00006E 010?           00542         BANKSEL _eeoperation
+                      00543 ;       .line   95; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        else if(eeoperation==EE_
+                            WR) EESaveLong(*data);
+000070 51??           00544         MOVF    _eeoperation, W, B
+000072 0A01           00545         XORLW   0x01
+000074 E1??           00546         BNZ     _00178_DS_
+000076 C??? F???      00547         MOVFF   r0x00, FSR0L
+00007A C??? F???      00548         MOVFF   r0x01, PRODL
+00007E 50??           00549         MOVF    r0x02, W
+000080 EC?? F0??      00550         CALL    __gptrget4
+000084 6E??           00551         MOVWF   r0x00
+000086 CFF3 F000      00552         MOVFF   PRODL, r0x01
+00008A CFF4 F000      00553         MOVFF   PRODH, r0x02
+00008E CFE9 F000      00554         MOVFF   FSR0L, r0x03
+000092 50??           00555         MOVF    r0x03, W
+000094 6EE5           00556         MOVWF   POSTDEC1
+000096 50??           00557         MOVF    r0x02, W
+000098 6EE5           00558         MOVWF   POSTDEC1
+00009A 50??           00559         MOVF    r0x01, W
+00009C 6EE5           00560         MOVWF   POSTDEC1
+00009E 50??           00561         MOVF    r0x00, W
+0000A0 6EE5           00562         MOVWF   POSTDEC1
+0000A2 EC?? F0??      00563         CALL    _EESaveLong
+0000A6 0E04           00564         MOVLW   0x04
+0000A8 26E1           00565         ADDWF   FSR1L, F
+0000AA                00566 _00178_DS_:
+                      00567 ;       .line   96; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        }
+0000AA CFE4 F000      00568         MOVFF   PREINC1, r0x06
+0000AE CFE4 F000      00569         MOVFF   PREINC1, r0x05
+0000B2 CFE4 F000      00570         MOVFF   PREINC1, r0x04
+0000B6 CFE4 F000      00571         MOVFF   PREINC1, r0x03
+0000BA CFE4 F000      00572         MOVFF   PREINC1, r0x02
+0000BE CFE4 F000      00573         MOVFF   PREINC1, r0x01
+0000C2 CFE4 F000      00574         MOVFF   PREINC1, r0x00
+0000C6 CFE4 FFD9      00575         MOVFF   PREINC1, FSR2L
+0000CA 0012           00576         RETURN  
+                      00577 
+                      00578 ; ; Starting pCode block
+                      00579 S_eeparams__EEdeclareInt        code
+000000                00580 _EEdeclareInt:
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 12
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00581 ;       .line   86; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        void EEdeclareInt(unsign
+                            ed int *data)
+000000 CFD9 FFE5      00582         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      00583         MOVFF   FSR1L, FSR2L
+000008 C??? F???      00584         MOVFF   r0x00, POSTDEC1
+00000C C??? F???      00585         MOVFF   r0x01, POSTDEC1
+000010 C??? F???      00586         MOVFF   r0x02, POSTDEC1
+000014 C??? F???      00587         MOVFF   r0x03, POSTDEC1
+000018 C??? F???      00588         MOVFF   r0x04, POSTDEC1
+00001C 0E02           00589         MOVLW   0x02
+00001E CFDB F000      00590         MOVFF   PLUSW2, r0x00
+000022 0E03           00591         MOVLW   0x03
+000024 CFDB F000      00592         MOVFF   PLUSW2, r0x01
+000028 0E04           00593         MOVLW   0x04
+00002A CFDB F000      00594         MOVFF   PLUSW2, r0x02
+00002E 010?           00595         BANKSEL _eeoperation
+                      00596 ;       .line   88; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        if(eeoperation==EE_RD) *
+                            data=EELoadInt();
+000030 51??           00597         MOVF    _eeoperation, W, B
+000032 E1??           00598         BNZ     _00157_DS_
+000034 EC?? F0??      00599         CALL    _EELoadInt
+000038 6E??           00600         MOVWF   r0x03
+00003A CFF3 F000      00601         MOVFF   PRODL, r0x04
+00003E C??? F???      00602         MOVFF   r0x03, POSTDEC1
+000042 C??? F???      00603         MOVFF   r0x04, PRODH
+000046 C??? F???      00604         MOVFF   r0x00, FSR0L
+00004A C??? F???      00605         MOVFF   r0x01, PRODL
+00004E 50??           00606         MOVF    r0x02, W
+000050 EC?? F0??      00607         CALL    __gptrput2
+000054 D???           00608         BRA     _00159_DS_
+000056                00609 _00157_DS_:
+000056 010?           00610         BANKSEL _eeoperation
+                      00611 ;       .line   89; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        else if(eeoperation==EE_
+                            WR) EESaveInt(*data);
+000058 51??           00612         MOVF    _eeoperation, W, B
+00005A 0A01           00613         XORLW   0x01
+00005C E1??           00614         BNZ     _00159_DS_
+00005E C??? F???      00615         MOVFF   r0x00, FSR0L
+000062 C??? F???      00616         MOVFF   r0x01, PRODL
+000066 50??           00617         MOVF    r0x02, W
+000068 EC?? F0??      00618         CALL    __gptrget2
+00006C 6E??           00619         MOVWF   r0x00
+00006E CFF3 F000      00620         MOVFF   PRODL, r0x01
+000072 50??           00621         MOVF    r0x01, W
+000074 6EE5           00622         MOVWF   POSTDEC1
+000076 50??           00623         MOVF    r0x00, W
+000078 6EE5           00624         MOVWF   POSTDEC1
+00007A EC?? F0??      00625         CALL    _EESaveInt
+00007E 52E6           00626         MOVF    POSTINC1, F
+000080 52E6           00627         MOVF    POSTINC1, F
+000082                00628 _00159_DS_:
+                      00629 ;       .line   90; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        }
+000082 CFE4 F000      00630         MOVFF   PREINC1, r0x04
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 13
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+000086 CFE4 F000      00631         MOVFF   PREINC1, r0x03
+00008A CFE4 F000      00632         MOVFF   PREINC1, r0x02
+00008E CFE4 F000      00633         MOVFF   PREINC1, r0x01
+000092 CFE4 F000      00634         MOVFF   PREINC1, r0x00
+000096 CFE4 FFD9      00635         MOVFF   PREINC1, FSR2L
+00009A 0012           00636         RETURN  
+                      00637 
+                      00638 ; ; Starting pCode block
+                      00639 S_eeparams__EEdeclareChar       code
+000000                00640 _EEdeclareChar:
+                      00641 ;       .line   80; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        void EEdeclareChar(unsig
+                            ned char *data)
+000000 CFD9 FFE5      00642         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      00643         MOVFF   FSR1L, FSR2L
+000008 C??? F???      00644         MOVFF   r0x00, POSTDEC1
+00000C C??? F???      00645         MOVFF   r0x01, POSTDEC1
+000010 C??? F???      00646         MOVFF   r0x02, POSTDEC1
+000014 C??? F???      00647         MOVFF   r0x03, POSTDEC1
+000018 0E02           00648         MOVLW   0x02
+00001A CFDB F000      00649         MOVFF   PLUSW2, r0x00
+00001E 0E03           00650         MOVLW   0x03
+000020 CFDB F000      00651         MOVFF   PLUSW2, r0x01
+000024 0E04           00652         MOVLW   0x04
+000026 CFDB F000      00653         MOVFF   PLUSW2, r0x02
+00002A 010?           00654         BANKSEL _eeoperation
+                      00655 ;       .line   82; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        if(eeoperation==EE_RD) *
+                            data=EELoadChar();
+00002C 51??           00656         MOVF    _eeoperation, W, B
+00002E E1??           00657         BNZ     _00138_DS_
+000030 EC?? F0??      00658         CALL    _EELoadChar
+000034 6E??           00659         MOVWF   r0x03
+000036 C??? F???      00660         MOVFF   r0x03, POSTDEC1
+00003A C??? F???      00661         MOVFF   r0x00, FSR0L
+00003E C??? F???      00662         MOVFF   r0x01, PRODL
+000042 50??           00663         MOVF    r0x02, W
+000044 EC?? F0??      00664         CALL    __gptrput1
+000048 D???           00665         BRA     _00140_DS_
+00004A                00666 _00138_DS_:
+00004A 010?           00667         BANKSEL _eeoperation
+                      00668 ;       .line   83; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        else if(eeoperation==EE_
+                            WR) EESaveChar(*data);
+00004C 51??           00669         MOVF    _eeoperation, W, B
+00004E 0A01           00670         XORLW   0x01
+000050 E1??           00671         BNZ     _00140_DS_
+000052 C??? F???      00672         MOVFF   r0x00, FSR0L
+000056 C??? F???      00673         MOVFF   r0x01, PRODL
+00005A 50??           00674         MOVF    r0x02, W
+00005C EC?? F0??      00675         CALL    __gptrget1
+                      00676 ; #     MOVWF   r0x00
+                      00677 ; #     MOVF    r0x00, W
+000060 6EE5           00678         MOVWF   POSTDEC1
+000062 EC?? F0??      00679         CALL    _EESaveChar
+000066 52E6           00680         MOVF    POSTINC1, F
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 14
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+000068                00681 _00140_DS_:
+                      00682 ;       .line   84; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        }
+000068 CFE4 F000      00683         MOVFF   PREINC1, r0x03
+00006C CFE4 F000      00684         MOVFF   PREINC1, r0x02
+000070 CFE4 F000      00685         MOVFF   PREINC1, r0x01
+000074 CFE4 F000      00686         MOVFF   PREINC1, r0x00
+000078 CFE4 FFD9      00687         MOVFF   PREINC1, FSR2L
+00007C 0012           00688         RETURN  
+                      00689 
+                      00690 ; ; Starting pCode block
+                      00691 S_eeparams__EESaveLong  code
+000000                00692 _EESaveLong:
+                      00693 ;       .line   69; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        void EESaveLong(long dat
+                            a) //untested
+000000 CFD9 FFE5      00694         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      00695         MOVFF   FSR1L, FSR2L
+000008 C??? F???      00696         MOVFF   r0x00, POSTDEC1
+00000C C??? F???      00697         MOVFF   r0x01, POSTDEC1
+000010 C??? F???      00698         MOVFF   r0x02, POSTDEC1
+000014 C??? F???      00699         MOVFF   r0x03, POSTDEC1
+000018 C??? F???      00700         MOVFF   r0x04, POSTDEC1
+00001C C??? F???      00701         MOVFF   r0x05, POSTDEC1
+000020 0E02           00702         MOVLW   0x02
+000022 CFDB F000      00703         MOVFF   PLUSW2, r0x00
+000026 0E03           00704         MOVLW   0x03
+000028 CFDB F000      00705         MOVFF   PLUSW2, r0x01
+00002C 0E04           00706         MOVLW   0x04
+00002E CFDB F000      00707         MOVFF   PLUSW2, r0x02
+000032 0E05           00708         MOVLW   0x05
+000034 CFDB F000      00709         MOVFF   PLUSW2, r0x03
+                      00710 ;       .line   71; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        EE_WRITEBYTE_NEXT(data>>
+                            24);
+000038 C??? F???      00711         MOVFF   _eeaddress, r0x04
+00003C C??? F???      00712         MOVFF   (_eeaddress + 1), r0x05
+000040 010?           00713         BANKSEL _eeaddress
+000042 3F??           00714         INCFSZ  _eeaddress, F, B
+000044 D???           00715         BRA     _10197_DS_
+                      00716 ; removed redundant BANKSEL
+000046 2B??           00717         INCF    (_eeaddress + 1), F, B
+000048                00718 _10197_DS_:
+000048 50??           00719         MOVF    r0x03, W
+00004A 6EE5           00720         MOVWF   POSTDEC1
+00004C 50??           00721         MOVF    r0x04, W
+00004E 6EE5           00722         MOVWF   POSTDEC1
+000050 EC?? F0??      00723         CALL    _eeWriteByte
+000054 52E6           00724         MOVF    POSTINC1, F
+000056 52E6           00725         MOVF    POSTINC1, F
+                      00726 ;       .line   72; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        EE_WRITEBYTE_NEXT(data>>
+                            16);
+000058 C??? F???      00727         MOVFF   _eeaddress, r0x04
+00005C C??? F???      00728         MOVFF   (_eeaddress + 1), r0x05
+000060 010?           00729         BANKSEL _eeaddress
+000062 3F??           00730         INCFSZ  _eeaddress, F, B
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 15
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+000064 D???           00731         BRA     _20198_DS_
+                      00732 ; removed redundant BANKSEL
+000066 2B??           00733         INCF    (_eeaddress + 1), F, B
+000068                00734 _20198_DS_:
+                      00735 ; #     MOVF    r0x02, W
+                      00736 ; #     MOVWF   r0x05
+                      00737 ; #     MOVF    r0x05, W
+000068 50??           00738         MOVF    r0x02, W
+00006A 6E??           00739         MOVWF   r0x05
+00006C 6EE5           00740         MOVWF   POSTDEC1
+00006E 50??           00741         MOVF    r0x04, W
+000070 6EE5           00742         MOVWF   POSTDEC1
+000072 EC?? F0??      00743         CALL    _eeWriteByte
+000076 52E6           00744         MOVF    POSTINC1, F
+000078 52E6           00745         MOVF    POSTINC1, F
+                      00746 ;       .line   73; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        EE_WRITEBYTE_NEXT(data>>
+                            8);
+00007A C??? F???      00747         MOVFF   _eeaddress, r0x04
+00007E C??? F???      00748         MOVFF   (_eeaddress + 1), r0x05
+000082 010?           00749         BANKSEL _eeaddress
+000084 3F??           00750         INCFSZ  _eeaddress, F, B
+000086 D???           00751         BRA     _30199_DS_
+                      00752 ; removed redundant BANKSEL
+000088 2B??           00753         INCF    (_eeaddress + 1), F, B
+00008A                00754 _30199_DS_:
+                      00755 ; #     MOVF    r0x01, W
+                      00756 ; #     MOVWF   r0x06
+                      00757 ; #     MOVF    r0x06, W
+00008A 50??           00758         MOVF    r0x01, W
+00008C 6EE5           00759         MOVWF   POSTDEC1
+00008E 50??           00760         MOVF    r0x04, W
+000090 6EE5           00761         MOVWF   POSTDEC1
+000092 EC?? F0??      00762         CALL    _eeWriteByte
+000096 52E6           00763         MOVF    POSTINC1, F
+000098 52E6           00764         MOVF    POSTINC1, F
+                      00765 ;       .line   74; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        EE_WRITEBYTE_NEXT(data);
+00009A C??? F???      00766         MOVFF   _eeaddress, r0x04
+00009E C??? F???      00767         MOVFF   (_eeaddress + 1), r0x05
+0000A2 010?           00768         BANKSEL _eeaddress
+0000A4 3F??           00769         INCFSZ  _eeaddress, F, B
+0000A6 D???           00770         BRA     _40200_DS_
+                      00771 ; removed redundant BANKSEL
+0000A8 2B??           00772         INCF    (_eeaddress + 1), F, B
+0000AA                00773 _40200_DS_:
+0000AA 50??           00774         MOVF    r0x00, W
+0000AC 6EE5           00775         MOVWF   POSTDEC1
+0000AE 50??           00776         MOVF    r0x04, W
+0000B0 6EE5           00777         MOVWF   POSTDEC1
+0000B2 EC?? F0??      00778         CALL    _eeWriteByte
+0000B6 52E6           00779         MOVF    POSTINC1, F
+0000B8 52E6           00780         MOVF    POSTINC1, F
+                      00781 ;       .line   75; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        }
+0000BA CFE4 F000      00782         MOVFF   PREINC1, r0x05
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 16
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+0000BE CFE4 F000      00783         MOVFF   PREINC1, r0x04
+0000C2 CFE4 F000      00784         MOVFF   PREINC1, r0x03
+0000C6 CFE4 F000      00785         MOVFF   PREINC1, r0x02
+0000CA CFE4 F000      00786         MOVFF   PREINC1, r0x01
+0000CE CFE4 F000      00787         MOVFF   PREINC1, r0x00
+0000D2 CFE4 FFD9      00788         MOVFF   PREINC1, FSR2L
+0000D6 0012           00789         RETURN  
+                      00790 
+                      00791 ; ; Starting pCode block
+                      00792 S_eeparams__EESaveInt   code
+000000                00793 _EESaveInt:
+                      00794 ;       .line   63; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        void EESaveInt(int data)
+000000 CFD9 FFE5      00795         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      00796         MOVFF   FSR1L, FSR2L
+000008 C??? F???      00797         MOVFF   r0x00, POSTDEC1
+00000C C??? F???      00798         MOVFF   r0x01, POSTDEC1
+000010 C??? F???      00799         MOVFF   r0x02, POSTDEC1
+000014 C??? F???      00800         MOVFF   r0x03, POSTDEC1
+000018 0E02           00801         MOVLW   0x02
+00001A CFDB F000      00802         MOVFF   PLUSW2, r0x00
+00001E 0E03           00803         MOVLW   0x03
+000020 CFDB F000      00804         MOVFF   PLUSW2, r0x01
+                      00805 ;       .line   65; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        EE_WRITEBYTE_NEXT(data>>
+                            8);
+000024 C??? F???      00806         MOVFF   _eeaddress, r0x02
+000028 C??? F???      00807         MOVFF   (_eeaddress + 1), r0x03
+00002C 010?           00808         BANKSEL _eeaddress
+00002E 3F??           00809         INCFSZ  _eeaddress, F, B
+000030 D???           00810         BRA     _50201_DS_
+                      00811 ; removed redundant BANKSEL
+000032 2B??           00812         INCF    (_eeaddress + 1), F, B
+000034                00813 _50201_DS_:
+000034 50??           00814         MOVF    r0x01, W
+000036 6EE5           00815         MOVWF   POSTDEC1
+000038 50??           00816         MOVF    r0x02, W
+00003A 6EE5           00817         MOVWF   POSTDEC1
+00003C EC?? F0??      00818         CALL    _eeWriteByte
+000040 52E6           00819         MOVF    POSTINC1, F
+000042 52E6           00820         MOVF    POSTINC1, F
+                      00821 ;       .line   66; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        EE_WRITEBYTE_NEXT(data&2
+                            55);
+000044 C??? F???      00822         MOVFF   _eeaddress, r0x02
+000048 C??? F???      00823         MOVFF   (_eeaddress + 1), r0x03
+00004C 010?           00824         BANKSEL _eeaddress
+00004E 3F??           00825         INCFSZ  _eeaddress, F, B
+000050 D???           00826         BRA     _60202_DS_
+                      00827 ; removed redundant BANKSEL
+000052 2B??           00828         INCF    (_eeaddress + 1), F, B
+000054                00829 _60202_DS_:
+000054 50??           00830         MOVF    r0x00, W
+000056 6EE5           00831         MOVWF   POSTDEC1
+000058 50??           00832         MOVF    r0x02, W
+00005A 6EE5           00833         MOVWF   POSTDEC1
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 17
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+00005C EC?? F0??      00834         CALL    _eeWriteByte
+000060 52E6           00835         MOVF    POSTINC1, F
+000062 52E6           00836         MOVF    POSTINC1, F
+                      00837 ;       .line   67; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        }
+000064 CFE4 F000      00838         MOVFF   PREINC1, r0x03
+000068 CFE4 F000      00839         MOVFF   PREINC1, r0x02
+00006C CFE4 F000      00840         MOVFF   PREINC1, r0x01
+000070 CFE4 F000      00841         MOVFF   PREINC1, r0x00
+000074 CFE4 FFD9      00842         MOVFF   PREINC1, FSR2L
+000078 0012           00843         RETURN  
+                      00844 
+                      00845 ; ; Starting pCode block
+                      00846 S_eeparams__EESaveChar  code
+000000                00847 _EESaveChar:
+                      00848 ;       .line   58; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        void EESaveChar(unsigned
+                             char data)
+000000 CFD9 FFE5      00849         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      00850         MOVFF   FSR1L, FSR2L
+000008 C??? F???      00851         MOVFF   r0x00, POSTDEC1
+00000C C??? F???      00852         MOVFF   r0x01, POSTDEC1
+000010 C??? F???      00853         MOVFF   r0x02, POSTDEC1
+000014 0E02           00854         MOVLW   0x02
+000016 CFDB F000      00855         MOVFF   PLUSW2, r0x00
+                      00856 ;       .line   60; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        EE_WRITEBYTE_NEXT(data);
+00001A C??? F???      00857         MOVFF   _eeaddress, r0x01
+00001E C??? F???      00858         MOVFF   (_eeaddress + 1), r0x02
+000022 010?           00859         BANKSEL _eeaddress
+000024 3F??           00860         INCFSZ  _eeaddress, F, B
+000026 D???           00861         BRA     _70203_DS_
+                      00862 ; removed redundant BANKSEL
+000028 2B??           00863         INCF    (_eeaddress + 1), F, B
+00002A                00864 _70203_DS_:
+00002A 50??           00865         MOVF    r0x00, W
+00002C 6EE5           00866         MOVWF   POSTDEC1
+00002E 50??           00867         MOVF    r0x01, W
+000030 6EE5           00868         MOVWF   POSTDEC1
+000032 EC?? F0??      00869         CALL    _eeWriteByte
+000036 52E6           00870         MOVF    POSTINC1, F
+000038 52E6           00871         MOVF    POSTINC1, F
+                      00872 ;       .line   61; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        }
+00003A CFE4 F000      00873         MOVFF   PREINC1, r0x02
+00003E CFE4 F000      00874         MOVFF   PREINC1, r0x01
+000042 CFE4 F000      00875         MOVFF   PREINC1, r0x00
+000046 CFE4 FFD9      00876         MOVFF   PREINC1, FSR2L
+00004A 0012           00877         RETURN  
+                      00878 
+                      00879 ; ; Starting pCode block
+                      00880 S_eeparams__EELoadLong  code
+000000                00881 _EELoadLong:
+                      00882 ;       .line   50; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        long EELoadLong() //unte
+                            sted
+000000 C??? F???      00883         MOVFF   r0x00, POSTDEC1
+000004 C??? F???      00884         MOVFF   r0x01, POSTDEC1
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 18
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+000008 C??? F???      00885         MOVFF   r0x03, POSTDEC1
+00000C C??? F???      00886         MOVFF   r0x04, POSTDEC1
+000010 C??? F???      00887         MOVFF   r0x05, POSTDEC1
+000014 C??? F???      00888         MOVFF   r0x06, POSTDEC1
+000018 C??? F???      00889         MOVFF   r0x07, POSTDEC1
+00001C C??? F???      00890         MOVFF   r0x08, POSTDEC1
+000020 C??? F???      00891         MOVFF   r0x09, POSTDEC1
+000024 C??? F???      00892         MOVFF   r0x0a, POSTDEC1
+000028 C??? F???      00893         MOVFF   r0x0b, POSTDEC1
+                      00894 ;       .line   52; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        return ((unsigned long)E
+                            E_READBYTE_NEXT()<<24)|((unsigned long)EE_READBYTE_NEXT()<<16)|(EE_READBYTE_NEXT()<<8)|EE_READBYTE_NEXT(
+                            );
+00002C C??? F???      00895         MOVFF   _eeaddress, r0x00
+000030 C??? F???      00896         MOVFF   (_eeaddress + 1), r0x01
+000034 010?           00897         BANKSEL _eeaddress
+000036 3F??           00898         INCFSZ  _eeaddress, F, B
+000038 D???           00899         BRA     _80204_DS_
+                      00900 ; removed redundant BANKSEL
+00003A 2B??           00901         INCF    (_eeaddress + 1), F, B
+00003C                00902 _80204_DS_:
+00003C 50??           00903         MOVF    r0x00, W
+00003E 6EE5           00904         MOVWF   POSTDEC1
+000040 EC?? F0??      00905         CALL    _eeReadByte
+000044 52E6           00906         MOVF    POSTINC1, F
+000046 6E??           00907         MOVWF   r0x07
+000048 6A??           00908         CLRF    r0x04
+00004A 6A??           00909         CLRF    r0x05
+00004C 6A??           00910         CLRF    r0x06
+00004E C??? F???      00911         MOVFF   _eeaddress, r0x00
+000052 C??? F???      00912         MOVFF   (_eeaddress + 1), r0x01
+000056 010?           00913         BANKSEL _eeaddress
+000058 3F??           00914         INCFSZ  _eeaddress, F, B
+00005A D???           00915         BRA     _90205_DS_
+                      00916 ; removed redundant BANKSEL
+00005C 2B??           00917         INCF    (_eeaddress + 1), F, B
+00005E                00918 _90205_DS_:
+00005E 50??           00919         MOVF    r0x00, W
+000060 6EE5           00920         MOVWF   POSTDEC1
+000062 EC?? F0??      00921         CALL    _eeReadByte
+000066 52E6           00922         MOVF    POSTINC1, F
+000068 6A??           00923         CLRF    r0x0b
+00006A 6E??           00924         MOVWF   r0x0a
+00006C 6A??           00925         CLRF    r0x08
+00006E 50??           00926         MOVF    r0x08, W
+000070 12??           00927         IORWF   r0x04, F
+000072 12??           00928         IORWF   r0x05, F
+000074 50??           00929         MOVF    r0x0a, W
+000076 12??           00930         IORWF   r0x06, F
+000078 50??           00931         MOVF    r0x0b, W
+00007A 12??           00932         IORWF   r0x07, F
+00007C C??? F???      00933         MOVFF   _eeaddress, r0x00
+000080 C??? F???      00934         MOVFF   (_eeaddress + 1), r0x01
+000084 010?           00935         BANKSEL _eeaddress
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 19
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+000086 3F??           00936         INCFSZ  _eeaddress, F, B
+000088 D???           00937         BRA     _100206_DS_
+                      00938 ; removed redundant BANKSEL
+00008A 2B??           00939         INCF    (_eeaddress + 1), F, B
+00008C                00940 _100206_DS_:
+00008C 50??           00941         MOVF    r0x00, W
+00008E 6EE5           00942         MOVWF   POSTDEC1
+000090 EC?? F0??      00943         CALL    _eeReadByte
+000094 52E6           00944         MOVF    POSTINC1, F
+000096 6E??           00945         MOVWF   r0x03
+                      00946 ; =DF= MOVFF: replaced by CRLF/SETF
+000098 6A??           00947         CLRF    r0x00
+00009A C??? F???      00948         MOVFF   r0x03, r0x01
+00009E 6AE8           00949         CLRF    WREG
+0000A0 BE??           00950         BTFSC   r0x03, 7
+0000A2 0EFF           00951         MOVLW   0xff
+0000A4 6E??           00952         MOVWF   r0x08
+0000A6 6E??           00953         MOVWF   r0x09
+0000A8 50??           00954         MOVF    r0x00, W
+0000AA 12??           00955         IORWF   r0x04, F
+0000AC 50??           00956         MOVF    r0x01, W
+0000AE 12??           00957         IORWF   r0x05, F
+0000B0 50??           00958         MOVF    r0x08, W
+0000B2 12??           00959         IORWF   r0x06, F
+0000B4 50??           00960         MOVF    r0x09, W
+0000B6 12??           00961         IORWF   r0x07, F
+0000B8 C??? F???      00962         MOVFF   _eeaddress, r0x00
+0000BC C??? F???      00963         MOVFF   (_eeaddress + 1), r0x01
+0000C0 010?           00964         BANKSEL _eeaddress
+0000C2 3F??           00965         INCFSZ  _eeaddress, F, B
+0000C4 D???           00966         BRA     _110207_DS_
+                      00967 ; removed redundant BANKSEL
+0000C6 2B??           00968         INCF    (_eeaddress + 1), F, B
+0000C8                00969 _110207_DS_:
+0000C8 50??           00970         MOVF    r0x00, W
+0000CA 6EE5           00971         MOVWF   POSTDEC1
+0000CC EC?? F0??      00972         CALL    _eeReadByte
+0000D0 52E6           00973         MOVF    POSTINC1, F
+0000D2 6A??           00974         CLRF    r0x01
+0000D4 12??           00975         IORWF   r0x04, F
+0000D6 50??           00976         MOVF    r0x01, W
+0000D8 12??           00977         IORWF   r0x05, F
+0000DA 12??           00978         IORWF   r0x06, F
+0000DC 12??           00979         IORWF   r0x07, F
+0000DE C??? F???      00980         MOVFF   r0x07, FSR0L
+0000E2 C??? F???      00981         MOVFF   r0x06, PRODH
+0000E6 C??? F???      00982         MOVFF   r0x05, PRODL
+0000EA 50??           00983         MOVF    r0x04, W
+                      00984 ;       .line   53; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        }
+0000EC CFE4 F000      00985         MOVFF   PREINC1, r0x0b
+0000F0 CFE4 F000      00986         MOVFF   PREINC1, r0x0a
+0000F4 CFE4 F000      00987         MOVFF   PREINC1, r0x09
+0000F8 CFE4 F000      00988         MOVFF   PREINC1, r0x08
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 20
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+0000FC CFE4 F000      00989         MOVFF   PREINC1, r0x07
+000100 CFE4 F000      00990         MOVFF   PREINC1, r0x06
+000104 CFE4 F000      00991         MOVFF   PREINC1, r0x05
+000108 CFE4 F000      00992         MOVFF   PREINC1, r0x04
+00010C CFE4 F000      00993         MOVFF   PREINC1, r0x03
+000110 CFE4 F000      00994         MOVFF   PREINC1, r0x01
+000114 CFE4 F000      00995         MOVFF   PREINC1, r0x00
+000118 0012           00996         RETURN  
+                      00997 
+                      00998 ; ; Starting pCode block
+                      00999 S_eeparams__EELoadInt   code
+000000                01000 _EELoadInt:
+                      01001 ;       .line   45; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        int EELoadInt()
+000000 C??? F???      01002         MOVFF   r0x00, POSTDEC1
+000004 C??? F???      01003         MOVFF   r0x01, POSTDEC1
+000008 C??? F???      01004         MOVFF   r0x02, POSTDEC1
+00000C C??? F???      01005         MOVFF   r0x03, POSTDEC1
+                      01006 ;       .line   47; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        return (EE_READBYTE_NEXT
+                            ()<<8)|EE_READBYTE_NEXT();
+000010 C??? F???      01007         MOVFF   _eeaddress, r0x00
+000014 C??? F???      01008         MOVFF   (_eeaddress + 1), r0x01
+000018 010?           01009         BANKSEL _eeaddress
+00001A 3F??           01010         INCFSZ  _eeaddress, F, B
+00001C D???           01011         BRA     _120208_DS_
+                      01012 ; removed redundant BANKSEL
+00001E 2B??           01013         INCF    (_eeaddress + 1), F, B
+000020                01014 _120208_DS_:
+000020 50??           01015         MOVF    r0x00, W
+000022 6EE5           01016         MOVWF   POSTDEC1
+000024 EC?? F0??      01017         CALL    _eeReadByte
+000028 52E6           01018         MOVF    POSTINC1, F
+00002A 6E??           01019         MOVWF   r0x03
+00002C 6A??           01020         CLRF    r0x02
+00002E C??? F???      01021         MOVFF   _eeaddress, r0x00
+000032 C??? F???      01022         MOVFF   (_eeaddress + 1), r0x01
+000036 010?           01023         BANKSEL _eeaddress
+000038 3F??           01024         INCFSZ  _eeaddress, F, B
+00003A D???           01025         BRA     _130209_DS_
+                      01026 ; removed redundant BANKSEL
+00003C 2B??           01027         INCF    (_eeaddress + 1), F, B
+00003E                01028 _130209_DS_:
+00003E 50??           01029         MOVF    r0x00, W
+000040 6EE5           01030         MOVWF   POSTDEC1
+000042 EC?? F0??      01031         CALL    _eeReadByte
+000046 52E6           01032         MOVF    POSTINC1, F
+000048 6A??           01033         CLRF    r0x01
+00004A 12??           01034         IORWF   r0x02, F
+00004C 50??           01035         MOVF    r0x01, W
+00004E 12??           01036         IORWF   r0x03, F
+000050 C??? F???      01037         MOVFF   r0x03, PRODL
+000054 50??           01038         MOVF    r0x02, W
+                      01039 ;       .line   48; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        }
+000056 CFE4 F000      01040         MOVFF   PREINC1, r0x03
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 21
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+00005A CFE4 F000      01041         MOVFF   PREINC1, r0x02
+00005E CFE4 F000      01042         MOVFF   PREINC1, r0x01
+000062 CFE4 F000      01043         MOVFF   PREINC1, r0x00
+000066 0012           01044         RETURN  
+                      01045 
+                      01046 ; ; Starting pCode block
+                      01047 S_eeparams__EELoadChar  code
+000000                01048 _EELoadChar:
+                      01049 ;       .line   40; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        char EELoadChar()
+000000 C??? F???      01050         MOVFF   r0x00, POSTDEC1
+000004 C??? F???      01051         MOVFF   r0x01, POSTDEC1
+                      01052 ;       .line   42; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        return EE_READBYTE_NEXT(
+                            );
+000008 C??? F???      01053         MOVFF   _eeaddress, r0x00
+00000C C??? F???      01054         MOVFF   (_eeaddress + 1), r0x01
+000010 010?           01055         BANKSEL _eeaddress
+000012 3F??           01056         INCFSZ  _eeaddress, F, B
+000014 D???           01057         BRA     _140210_DS_
+                      01058 ; removed redundant BANKSEL
+000016 2B??           01059         INCF    (_eeaddress + 1), F, B
+000018                01060 _140210_DS_:
+000018 50??           01061         MOVF    r0x00, W
+00001A 6EE5           01062         MOVWF   POSTDEC1
+00001C EC?? F0??      01063         CALL    _eeReadByte
+000020 52E6           01064         MOVF    POSTINC1, F
+                      01065 ;       .line   43; /home/arsene/pd-externals/Fraise/eeparams/eeparams.c        }
+000022 CFE4 F000      01066         MOVFF   PREINC1, r0x01
+000026 CFE4 F000      01067         MOVFF   PREINC1, r0x00
+00002A 0012           01068         RETURN  
+                      01069 
+                      01070 
+                      01071 
+                      01072 ; Statistics:
+                      01073 ; code size:     1360 (0x0550) bytes ( 1.04%)
+                      01074 ;                 680 (0x02a8) words
+                      01075 ; udata size:       3 (0x0003) bytes ( 0.08%)
+                      01076 ; access size:     12 (0x000c) bytes
+                      01077 
+                      01078 
+                      01079         end
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 22
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+FSR0L                             CONSTANT      00000FE9           4073
+FSR1L                             CONSTANT      00000FE1           4065
+FSR2L                             CONSTANT      00000FD9           4057
+PLUSW2                            CONSTANT      00000FDB           4059
+POSTDEC1                          CONSTANT      00000FE5           4069
+POSTINC1                          CONSTANT      00000FE6           4070
+PREINC1                           CONSTANT      00000FE4           4068
+PRODH                             CONSTANT      00000FF4           4084
+PRODL                             CONSTANT      00000FF3           4083
+STATUS                            CONSTANT      00000FD8           4056
+TBLPTRH                           CONSTANT      00000FF7           4087
+TBLPTRL                           CONSTANT      00000FF6           4086
+WREG                              CONSTANT      00000FE8           4072
+_00138_DS_                        ADDRESS       0000004A             74
+_00140_DS_                        ADDRESS       00000068            104
+_00157_DS_                        ADDRESS       00000056             86
+_00159_DS_                        ADDRESS       00000082            130
+_00176_DS_                        ADDRESS       0000006E            110
+_00178_DS_                        ADDRESS       000000AA            170
+_10197_DS_                        ADDRESS       00000048             72
+_20198_DS_                        ADDRESS       00000068            104
+_30199_DS_                        ADDRESS       0000008A            138
+_40200_DS_                        ADDRESS       000000AA            170
+_50201_DS_                        ADDRESS       00000034             52
+_60202_DS_                        ADDRESS       00000054             84
+_70203_DS_                        ADDRESS       0000002A             42
+_80204_DS_                        ADDRESS       0000003C             60
+_90205_DS_                        ADDRESS       0000005E             94
+_100206_DS_                       ADDRESS       0000008C            140
+_110207_DS_                       ADDRESS       000000C8            200
+_120208_DS_                       ADDRESS       00000020             32
+_130209_DS_                       ADDRESS       0000003E             62
+_140210_DS_                       ADDRESS       00000018             24
+_ADCON0                           EXTERNAL      00000000              0
+_ADCON0bits                       EXTERNAL      00000000              0
+_ADCON1                           EXTERNAL      00000000              0
+_ADCON1bits                       EXTERNAL      00000000              0
+_ADCON2                           EXTERNAL      00000000              0
+_ADCON2bits                       EXTERNAL      00000000              0
+_ADRES                            EXTERNAL      00000000              0
+_ADRESH                           EXTERNAL      00000000              0
+_ADRESL                           EXTERNAL      00000000              0
+_ANSELA                           EXTERNAL      00000000              0
+_ANSELAbits                       EXTERNAL      00000000              0
+_ANSELB                           EXTERNAL      00000000              0
+_ANSELBbits                       EXTERNAL      00000000              0
+_ANSELC                           EXTERNAL      00000000              0
+_ANSELCbits                       EXTERNAL      00000000              0
+_ANSELZ                           EXTERNAL      00000000              0
+_ANSELZbits                       EXTERNAL      00000000              0
+_BAUD1CON                         EXTERNAL      00000000              0
+_BAUD1CONbits                     EXTERNAL      00000000              0
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 23
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+_BAUD2CON                         EXTERNAL      00000000              0
+_BAUD2CONbits                     EXTERNAL      00000000              0
+_BAUDCON                          EXTERNAL      00000000              0
+_BAUDCON1                         EXTERNAL      00000000              0
+_BAUDCON1bits                     EXTERNAL      00000000              0
+_BAUDCON2                         EXTERNAL      00000000              0
+_BAUDCON2bits                     EXTERNAL      00000000              0
+_BAUDCONbits                      EXTERNAL      00000000              0
+_BAUDCTL                          EXTERNAL      00000000              0
+_BAUDCTLbits                      EXTERNAL      00000000              0
+_BSR                              EXTERNAL      00000000              0
+_CCP1CON                          EXTERNAL      00000000              0
+_CCP1CONbits                      EXTERNAL      00000000              0
+_CCP2AS                           EXTERNAL      00000000              0
+_CCP2ASbits                       EXTERNAL      00000000              0
+_CCP2CON                          EXTERNAL      00000000              0
+_CCP2CONbits                      EXTERNAL      00000000              0
+_CCP3AS                           EXTERNAL      00000000              0
+_CCP3ASbits                       EXTERNAL      00000000              0
+_CCP3CON                          EXTERNAL      00000000              0
+_CCP3CONbits                      EXTERNAL      00000000              0
+_CCP4CON                          EXTERNAL      00000000              0
+_CCP4CONbits                      EXTERNAL      00000000              0
+_CCP5CON                          EXTERNAL      00000000              0
+_CCP5CONbits                      EXTERNAL      00000000              0
+_CCPR1                            EXTERNAL      00000000              0
+_CCPR1H                           EXTERNAL      00000000              0
+_CCPR1L                           EXTERNAL      00000000              0
+_CCPR2                            EXTERNAL      00000000              0
+_CCPR2H                           EXTERNAL      00000000              0
+_CCPR2L                           EXTERNAL      00000000              0
+_CCPR3                            EXTERNAL      00000000              0
+_CCPR3H                           EXTERNAL      00000000              0
+_CCPR3L                           EXTERNAL      00000000              0
+_CCPR4                            EXTERNAL      00000000              0
+_CCPR4H                           EXTERNAL      00000000              0
+_CCPR4L                           EXTERNAL      00000000              0
+_CCPR5                            EXTERNAL      00000000              0
+_CCPR5H                           EXTERNAL      00000000              0
+_CCPR5L                           EXTERNAL      00000000              0
+_CCPTMRS0                         EXTERNAL      00000000              0
+_CCPTMRS0bits                     EXTERNAL      00000000              0
+_CCPTMRS1                         EXTERNAL      00000000              0
+_CCPTMRS1bits                     EXTERNAL      00000000              0
+_CM1CON                           EXTERNAL      00000000              0
+_CM1CON0                          EXTERNAL      00000000              0
+_CM1CON0bits                      EXTERNAL      00000000              0
+_CM1CONbits                       EXTERNAL      00000000              0
+_CM2CON                           EXTERNAL      00000000              0
+_CM2CON0                          EXTERNAL      00000000              0
+_CM2CON0bits                      EXTERNAL      00000000              0
+_CM2CON1                          EXTERNAL      00000000              0
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 24
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+_CM2CON1bits                      EXTERNAL      00000000              0
+_CM2CONbits                       EXTERNAL      00000000              0
+_CM12CON                          EXTERNAL      00000000              0
+_CM12CONbits                      EXTERNAL      00000000              0
+_CTMUCON0                         EXTERNAL      00000000              0
+_CTMUCON0bits                     EXTERNAL      00000000              0
+_CTMUCON1                         EXTERNAL      00000000              0
+_CTMUCON1bits                     EXTERNAL      00000000              0
+_CTMUCONH                         EXTERNAL      00000000              0
+_CTMUCONHbits                     EXTERNAL      00000000              0
+_CTMUCONL                         EXTERNAL      00000000              0
+_CTMUCONLbits                     EXTERNAL      00000000              0
+_CTMUICON                         EXTERNAL      00000000              0
+_CTMUICONH                        EXTERNAL      00000000              0
+_CTMUICONHbits                    EXTERNAL      00000000              0
+_CTMUICONbits                     EXTERNAL      00000000              0
+_DACCON0                          EXTERNAL      00000000              0
+_DACCON0bits                      EXTERNAL      00000000              0
+_DACCON1                          EXTERNAL      00000000              0
+_DACCON1bits                      EXTERNAL      00000000              0
+_DDRA                             EXTERNAL      00000000              0
+_DDRAbits                         EXTERNAL      00000000              0
+_DDRB                             EXTERNAL      00000000              0
+_DDRBbits                         EXTERNAL      00000000              0
+_DDRC                             EXTERNAL      00000000              0
+_DDRCbits                         EXTERNAL      00000000              0
+_ECCP1AS                          EXTERNAL      00000000              0
+_ECCP1ASbits                      EXTERNAL      00000000              0
+_ECCP2AS                          EXTERNAL      00000000              0
+_ECCP2ASbits                      EXTERNAL      00000000              0
+_ECCP3AS                          EXTERNAL      00000000              0
+_ECCP3ASbits                      EXTERNAL      00000000              0
+_ECCPAS                           EXTERNAL      00000000              0
+_ECCPASbits                       EXTERNAL      00000000              0
+_EEADR                            EXTERNAL      00000000              0
+_EEADRH                           EXTERNAL      00000000              0
+_EEADRHbits                       EXTERNAL      00000000              0
+_EEADRbits                        EXTERNAL      00000000              0
+_EECON1                           EXTERNAL      00000000              0
+_EECON1bits                       EXTERNAL      00000000              0
+_EECON2                           EXTERNAL      00000000              0
+_EEDATA                           EXTERNAL      00000000              0
+_EELoadChar                       GLOBAL        00000000              0
+_EELoadInt                        GLOBAL        00000000              0
+_EELoadLong                       GLOBAL        00000000              0
+_EESaveChar                       GLOBAL        00000000              0
+_EESaveInt                        GLOBAL        00000000              0
+_EESaveLong                       GLOBAL        00000000              0
+_EEdeclareChar                    GLOBAL        00000000              0
+_EEdeclareInt                     GLOBAL        00000000              0
+_EEdeclareLong                    GLOBAL        00000000              0
+_EEreadMain                       GLOBAL        00000000              0
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 25
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+_EEwriteMain                      GLOBAL        00000000              0
+_FSR0H                            EXTERNAL      00000000              0
+_FSR0L                            EXTERNAL      00000000              0
+_FSR1H                            EXTERNAL      00000000              0
+_FSR1L                            EXTERNAL      00000000              0
+_FSR2H                            EXTERNAL      00000000              0
+_FSR2L                            EXTERNAL      00000000              0
+_FVRCON                           EXTERNAL      00000000              0
+_FVRCONbits                       EXTERNAL      00000000              0
+_HLVDCON                          EXTERNAL      00000000              0
+_HLVDCONbits                      EXTERNAL      00000000              0
+_INDF0                            EXTERNAL      00000000              0
+_INDF1                            EXTERNAL      00000000              0
+_INDF2                            EXTERNAL      00000000              0
+_INTCON                           EXTERNAL      00000000              0
+_INTCON2                          EXTERNAL      00000000              0
+_INTCON2bits                      EXTERNAL      00000000              0
+_INTCON3                          EXTERNAL      00000000              0
+_INTCON3bits                      EXTERNAL      00000000              0
+_INTCONbits                       EXTERNAL      00000000              0
+_IOCB                             EXTERNAL      00000000              0
+_IOCBbits                         EXTERNAL      00000000              0
+_IPR1                             EXTERNAL      00000000              0
+_IPR1bits                         EXTERNAL      00000000              0
+_IPR2                             EXTERNAL      00000000              0
+_IPR2bits                         EXTERNAL      00000000              0
+_IPR3                             EXTERNAL      00000000              0
+_IPR3bits                         EXTERNAL      00000000              0
+_IPR4                             EXTERNAL      00000000              0
+_IPR4bits                         EXTERNAL      00000000              0
+_IPR5                             EXTERNAL      00000000              0
+_IPR5bits                         EXTERNAL      00000000              0
+_LATA                             EXTERNAL      00000000              0
+_LATAbits                         EXTERNAL      00000000              0
+_LATB                             EXTERNAL      00000000              0
+_LATBbits                         EXTERNAL      00000000              0
+_LATC                             EXTERNAL      00000000              0
+_LATCbits                         EXTERNAL      00000000              0
+_LATZ                             EXTERNAL      00000000              0
+_LATZbits                         EXTERNAL      00000000              0
+_LVDCON                           EXTERNAL      00000000              0
+_LVDCONbits                       EXTERNAL      00000000              0
+_Now                              EXTERNAL      00000000              0
+_OSCCON                           EXTERNAL      00000000              0
+_OSCCON2                          EXTERNAL      00000000              0
+_OSCCON2bits                      EXTERNAL      00000000              0
+_OSCCONbits                       EXTERNAL      00000000              0
+_OSCTUNE                          EXTERNAL      00000000              0
+_OSCTUNEbits                      EXTERNAL      00000000              0
+_PC                               EXTERNAL      00000000              0
+_PCL                              EXTERNAL      00000000              0
+_PCLATH                           EXTERNAL      00000000              0
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 26
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+_PCLATU                           EXTERNAL      00000000              0
+_PIE1                             EXTERNAL      00000000              0
+_PIE1bits                         EXTERNAL      00000000              0
+_PIE2                             EXTERNAL      00000000              0
+_PIE2bits                         EXTERNAL      00000000              0
+_PIE3                             EXTERNAL      00000000              0
+_PIE3bits                         EXTERNAL      00000000              0
+_PIE4                             EXTERNAL      00000000              0
+_PIE4bits                         EXTERNAL      00000000              0
+_PIE5                             EXTERNAL      00000000              0
+_PIE5bits                         EXTERNAL      00000000              0
+_PIR1                             EXTERNAL      00000000              0
+_PIR1bits                         EXTERNAL      00000000              0
+_PIR2                             EXTERNAL      00000000              0
+_PIR2bits                         EXTERNAL      00000000              0
+_PIR3                             EXTERNAL      00000000              0
+_PIR3bits                         EXTERNAL      00000000              0
+_PIR4                             EXTERNAL      00000000              0
+_PIR4bits                         EXTERNAL      00000000              0
+_PIR5                             EXTERNAL      00000000              0
+_PIR5bits                         EXTERNAL      00000000              0
+_PLUSW0                           EXTERNAL      00000000              0
+_PLUSW1                           EXTERNAL      00000000              0
+_PLUSW2                           EXTERNAL      00000000              0
+_PMD0                             EXTERNAL      00000000              0
+_PMD0bits                         EXTERNAL      00000000              0
+_PMD1                             EXTERNAL      00000000              0
+_PMD1bits                         EXTERNAL      00000000              0
+_PMD2                             EXTERNAL      00000000              0
+_PMD2bits                         EXTERNAL      00000000              0
+_PORTA                            EXTERNAL      00000000              0
+_PORTAbits                        EXTERNAL      00000000              0
+_PORTB                            EXTERNAL      00000000              0
+_PORTBbits                        EXTERNAL      00000000              0
+_PORTC                            EXTERNAL      00000000              0
+_PORTCbits                        EXTERNAL      00000000              0
+_PORTE                            EXTERNAL      00000000              0
+_PORTEbits                        EXTERNAL      00000000              0
+_PORTZ                            EXTERNAL      00000000              0
+_PORTZbits                        EXTERNAL      00000000              0
+_POSTDEC0                         EXTERNAL      00000000              0
+_POSTDEC1                         EXTERNAL      00000000              0
+_POSTDEC2                         EXTERNAL      00000000              0
+_POSTINC0                         EXTERNAL      00000000              0
+_POSTINC1                         EXTERNAL      00000000              0
+_POSTINC2                         EXTERNAL      00000000              0
+_PR2                              EXTERNAL      00000000              0
+_PR4                              EXTERNAL      00000000              0
+_PR6                              EXTERNAL      00000000              0
+_PREINC0                          EXTERNAL      00000000              0
+_PREINC1                          EXTERNAL      00000000              0
+_PREINC2                          EXTERNAL      00000000              0
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 27
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+_PROD                             EXTERNAL      00000000              0
+_PRODH                            EXTERNAL      00000000              0
+_PRODL                            EXTERNAL      00000000              0
+_PSTR1CON                         EXTERNAL      00000000              0
+_PSTR1CONbits                     EXTERNAL      00000000              0
+_PSTR2CON                         EXTERNAL      00000000              0
+_PSTR2CONbits                     EXTERNAL      00000000              0
+_PSTR3CON                         EXTERNAL      00000000              0
+_PSTR3CONbits                     EXTERNAL      00000000              0
+_PSTRCON                          EXTERNAL      00000000              0
+_PSTRCONbits                      EXTERNAL      00000000              0
+_PWM1CON                          EXTERNAL      00000000              0
+_PWM1CONbits                      EXTERNAL      00000000              0
+_PWM2CON                          EXTERNAL      00000000              0
+_PWM2CONbits                      EXTERNAL      00000000              0
+_PWM3CON                          EXTERNAL      00000000              0
+_PWM3CONbits                      EXTERNAL      00000000              0
+_PWMCON                           EXTERNAL      00000000              0
+_PWMCONbits                       EXTERNAL      00000000              0
+_RC1REG                           EXTERNAL      00000000              0
+_RC1STA                           EXTERNAL      00000000              0
+_RC1STAbits                       EXTERNAL      00000000              0
+_RC2REG                           EXTERNAL      00000000              0
+_RC2STA                           EXTERNAL      00000000              0
+_RC2STAbits                       EXTERNAL      00000000              0
+_RCON                             EXTERNAL      00000000              0
+_RCONbits                         EXTERNAL      00000000              0
+_RCREG                            EXTERNAL      00000000              0
+_RCREG1                           EXTERNAL      00000000              0
+_RCREG2                           EXTERNAL      00000000              0
+_RCSTA                            EXTERNAL      00000000              0
+_RCSTA1                           EXTERNAL      00000000              0
+_RCSTA1bits                       EXTERNAL      00000000              0
+_RCSTA2                           EXTERNAL      00000000              0
+_RCSTA2bits                       EXTERNAL      00000000              0
+_RCSTAbits                        EXTERNAL      00000000              0
+_SLRCON                           EXTERNAL      00000000              0
+_SLRCONbits                       EXTERNAL      00000000              0
+_SP1BRG                           EXTERNAL      00000000              0
+_SP1BRGH                          EXTERNAL      00000000              0
+_SP2BRG                           EXTERNAL      00000000              0
+_SP2BRGH                          EXTERNAL      00000000              0
+_SPBRG                            EXTERNAL      00000000              0
+_SPBRG1                           EXTERNAL      00000000              0
+_SPBRG2                           EXTERNAL      00000000              0
+_SPBRGH                           EXTERNAL      00000000              0
+_SPBRGH1                          EXTERNAL      00000000              0
+_SPBRGH2                          EXTERNAL      00000000              0
+_SRCON0                           EXTERNAL      00000000              0
+_SRCON0bits                       EXTERNAL      00000000              0
+_SRCON1                           EXTERNAL      00000000              0
+_SRCON1bits                       EXTERNAL      00000000              0
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 28
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+_SSP1ADD                          EXTERNAL      00000000              0
+_SSP1BUF                          EXTERNAL      00000000              0
+_SSP1CON1                         EXTERNAL      00000000              0
+_SSP1CON1bits                     EXTERNAL      00000000              0
+_SSP1CON2                         EXTERNAL      00000000              0
+_SSP1CON2bits                     EXTERNAL      00000000              0
+_SSP1CON3                         EXTERNAL      00000000              0
+_SSP1CON3bits                     EXTERNAL      00000000              0
+_SSP1MSK                          EXTERNAL      00000000              0
+_SSP1MSKbits                      EXTERNAL      00000000              0
+_SSP1STAT                         EXTERNAL      00000000              0
+_SSP1STATbits                     EXTERNAL      00000000              0
+_SSP2ADD                          EXTERNAL      00000000              0
+_SSP2BUF                          EXTERNAL      00000000              0
+_SSP2CON1                         EXTERNAL      00000000              0
+_SSP2CON1bits                     EXTERNAL      00000000              0
+_SSP2CON2                         EXTERNAL      00000000              0
+_SSP2CON2bits                     EXTERNAL      00000000              0
+_SSP2CON3                         EXTERNAL      00000000              0
+_SSP2CON3bits                     EXTERNAL      00000000              0
+_SSP2MSK                          EXTERNAL      00000000              0
+_SSP2MSKbits                      EXTERNAL      00000000              0
+_SSP2STAT                         EXTERNAL      00000000              0
+_SSP2STATbits                     EXTERNAL      00000000              0
+_SSPADD                           EXTERNAL      00000000              0
+_SSPBUF                           EXTERNAL      00000000              0
+_SSPCON1                          EXTERNAL      00000000              0
+_SSPCON1bits                      EXTERNAL      00000000              0
+_SSPCON2                          EXTERNAL      00000000              0
+_SSPCON2bits                      EXTERNAL      00000000              0
+_SSPCON3                          EXTERNAL      00000000              0
+_SSPCON3bits                      EXTERNAL      00000000              0
+_SSPMSK                           EXTERNAL      00000000              0
+_SSPMSKbits                       EXTERNAL      00000000              0
+_SSPSTAT                          EXTERNAL      00000000              0
+_SSPSTATbits                      EXTERNAL      00000000              0
+_STATUS                           EXTERNAL      00000000              0
+_STATUSbits                       EXTERNAL      00000000              0
+_STKPTR                           EXTERNAL      00000000              0
+_STKPTRbits                       EXTERNAL      00000000              0
+_T0CON                            EXTERNAL      00000000              0
+_T0CONbits                        EXTERNAL      00000000              0
+_T1CON                            EXTERNAL      00000000              0
+_T1CONbits                        EXTERNAL      00000000              0
+_T1GCON                           EXTERNAL      00000000              0
+_T1GCONbits                       EXTERNAL      00000000              0
+_T2CON                            EXTERNAL      00000000              0
+_T2CONbits                        EXTERNAL      00000000              0
+_T3CON                            EXTERNAL      00000000              0
+_T3CONbits                        EXTERNAL      00000000              0
+_T3GCON                           EXTERNAL      00000000              0
+_T3GCONbits                       EXTERNAL      00000000              0
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 29
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+_T4CON                            EXTERNAL      00000000              0
+_T4CONbits                        EXTERNAL      00000000              0
+_T5CON                            EXTERNAL      00000000              0
+_T5CONbits                        EXTERNAL      00000000              0
+_T5GCON                           EXTERNAL      00000000              0
+_T5GCONbits                       EXTERNAL      00000000              0
+_T6CON                            EXTERNAL      00000000              0
+_T6CONbits                        EXTERNAL      00000000              0
+_TABLAT                           EXTERNAL      00000000              0
+_TBLPTR                           EXTERNAL      00000000              0
+_TBLPTRH                          EXTERNAL      00000000              0
+_TBLPTRL                          EXTERNAL      00000000              0
+_TBLPTRU                          EXTERNAL      00000000              0
+_TMR0                             EXTERNAL      00000000              0
+_TMR0H                            EXTERNAL      00000000              0
+_TMR0L                            EXTERNAL      00000000              0
+_TMR1                             EXTERNAL      00000000              0
+_TMR1H                            EXTERNAL      00000000              0
+_TMR1L                            EXTERNAL      00000000              0
+_TMR2                             EXTERNAL      00000000              0
+_TMR3                             EXTERNAL      00000000              0
+_TMR3H                            EXTERNAL      00000000              0
+_TMR3L                            EXTERNAL      00000000              0
+_TMR4                             EXTERNAL      00000000              0
+_TMR5                             EXTERNAL      00000000              0
+_TMR5H                            EXTERNAL      00000000              0
+_TMR5L                            EXTERNAL      00000000              0
+_TMR6                             EXTERNAL      00000000              0
+_TOS                              EXTERNAL      00000000              0
+_TOSH                             EXTERNAL      00000000              0
+_TOSL                             EXTERNAL      00000000              0
+_TOSU                             EXTERNAL      00000000              0
+_TRICZ                            EXTERNAL      00000000              0
+_TRISA                            EXTERNAL      00000000              0
+_TRISAbits                        EXTERNAL      00000000              0
+_TRISB                            EXTERNAL      00000000              0
+_TRISBbits                        EXTERNAL      00000000              0
+_TRISC                            EXTERNAL      00000000              0
+_TRISCbits                        EXTERNAL      00000000              0
+_TRISE                            EXTERNAL      00000000              0
+_TRISEbits                        EXTERNAL      00000000              0
+_TRISZbits                        EXTERNAL      00000000              0
+_TX1REG                           EXTERNAL      00000000              0
+_TX1STA                           EXTERNAL      00000000              0
+_TX1STAbits                       EXTERNAL      00000000              0
+_TX2REG                           EXTERNAL      00000000              0
+_TX2STA                           EXTERNAL      00000000              0
+_TX2STAbits                       EXTERNAL      00000000              0
+_TXREG                            EXTERNAL      00000000              0
+_TXREG1                           EXTERNAL      00000000              0
+_TXREG2                           EXTERNAL      00000000              0
+_TXSTA                            EXTERNAL      00000000              0
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 30
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+_TXSTA1                           EXTERNAL      00000000              0
+_TXSTA1bits                       EXTERNAL      00000000              0
+_TXSTA2                           EXTERNAL      00000000              0
+_TXSTA2bits                       EXTERNAL      00000000              0
+_TXSTAbits                        EXTERNAL      00000000              0
+_VREFCON0                         EXTERNAL      00000000              0
+_VREFCON0bits                     EXTERNAL      00000000              0
+_VREFCON1                         EXTERNAL      00000000              0
+_VREFCON1bits                     EXTERNAL      00000000              0
+_VREFCON2                         EXTERNAL      00000000              0
+_VREFCON2bits                     EXTERNAL      00000000              0
+_WDTCON                           EXTERNAL      00000000              0
+_WDTCONbits                       EXTERNAL      00000000              0
+_WPUB                             EXTERNAL      00000000              0
+_WPUBbits                         EXTERNAL      00000000              0
+_WREG                             EXTERNAL      00000000              0
+__16_BIT                          CONSTANT      00000001              1
+__18F26K22                        CONSTANT      00000001              1
+__ACC_RAM_LOW_END                 CONSTANT      0000005F             95
+__ACC_RAM_LOW_START               CONSTANT      00000000              0
+__ACTIVE_BANK_ADDR                VARIABLE      FFFFFFFF             -1
+__ASSUMED_BANK_ADDR               VARIABLE      FFFFFFFF             -1
+__BANK_0                          CONSTANT      00000000              0
+__BANK_1                          CONSTANT      00000100            256
+__BANK_2                          CONSTANT      00000200            512
+__BANK_3                          CONSTANT      00000300            768
+__BANK_4                          CONSTANT      00000400           1024
+__BANK_5                          CONSTANT      00000500           1280
+__BANK_6                          CONSTANT      00000600           1536
+__BANK_7                          CONSTANT      00000700           1792
+__BANK_8                          CONSTANT      00000800           2048
+__BANK_9                          CONSTANT      00000900           2304
+__BANK_10                         CONSTANT      00000A00           2560
+__BANK_11                         CONSTANT      00000B00           2816
+__BANK_12                         CONSTANT      00000C00           3072
+__BANK_13                         CONSTANT      00000D00           3328
+__BANK_14                         CONSTANT      00000E00           3584
+__BANK_15                         CONSTANT      00000F00           3840
+__BANK_BITS                       CONSTANT      00000F00           3840
+__BANK_FIRST                      CONSTANT      00000000              0
+__BANK_INV                        CONSTANT      FFFFFFFF             -1
+__BANK_LAST                       CONSTANT      00000F00           3840
+__BANK_MASK                       CONSTANT      000000FF            255
+__BANK_SHIFT                      CONSTANT      00000008              8
+__BANK_SIZE                       CONSTANT      00000100            256
+__CODE_END                        CONSTANT      0000FFFF          65535
+__CODE_START                      CONSTANT      00000000              0
+__COMMON_RAM_END                  CONSTANT      0000005F             95
+__COMMON_RAM_START                CONSTANT      00000000              0
+__CONFIG_END                      CONSTANT      0030000D        3145741
+__CONFIG_START                    CONSTANT      00300000        3145728
+__EEPROM_END                      CONSTANT      00F003FF       15729663
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE 31
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+__EEPROM_START                    CONSTANT      00F00000       15728640
+__EXTENDED                        CONSTANT      00000001              1
+__GPUTILS_SVN_VERSION             CONSTANT      00000505           1285
+__GPUTILS_VERSION_MAJOR           CONSTANT      00000001              1
+__GPUTILS_VERSION_MICRO           CONSTANT      00000000              0
+__GPUTILS_VERSION_MINOR           CONSTANT      00000005              5
+__IDLOCS_END                      CONSTANT      00200007        2097159
+__IDLOCS_START                    CONSTANT      00200000        2097152
+__NUM_BANKS                       CONSTANT      00000010             16
+__VECTOR_INT_HIGH                 CONSTANT      00000008              8
+__VECTOR_INT_LOW                  CONSTANT      00000018             24
+__VECTOR_RESET                    CONSTANT      00000000              0
+__WHILE_LOOP_COUNT_MAX            CONSTANT      000000FF            255
+__gptrget1                        EXTERNAL      00000000              0
+__gptrget2                        EXTERNAL      00000000              0
+__gptrget4                        EXTERNAL      00000000              0
+__gptrput1                        EXTERNAL      00000000              0
+__gptrput2                        EXTERNAL      00000000              0
+__gptrput4                        EXTERNAL      00000000              0
+_eeReadByte                       EXTERNAL      00000000              0
+_eeWriteByte                      EXTERNAL      00000000              0
+_eeaddress                        GLOBAL        00000000              0
+_eeoperation                      GLOBAL        00000000              0
+_stdin                            EXTERNAL      00000000              0
+_stdout                           EXTERNAL      00000000              0
+r0x00                             STATIC        00000000              0
+r0x01                             STATIC        00000001              1
+r0x02                             STATIC        00000002              2
+r0x03                             STATIC        00000003              3
+r0x04                             STATIC        00000004              4
+r0x05                             STATIC        00000005              5
+r0x06                             STATIC        00000006              6
+r0x07                             STATIC        00000007              7
+r0x08                             STATIC        00000008              8
+r0x09                             STATIC        00000009              9
+r0x0a                             STATIC        0000000A             10
+r0x0b                             STATIC        0000000B             11
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

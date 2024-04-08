@@ -1,0 +1,17 @@
+#N canvas 479 355 655 300 10;
+#X obj 174 191 print;
+#X text 281 107 floats and symbols should come out right;
+#X obj 115 213 realtime;
+#X obj 143 178 b;
+#X obj 163 283 print time;
+#X obj 119 137 t a b;
+#X msg 174 47 symbol /12345678/90abcdefg/hijklmnop/qrstuvw/xyzABCDEF/GHIJKLMN/OPQRSTUVW/XYZ!@#$&*()_/+~`./?>/<[]|
+;
+#X obj 174 131 array-symbol2list /;
+#X connect 2 0 4 0;
+#X connect 3 0 2 1;
+#X connect 5 0 7 0;
+#X connect 5 1 2 0;
+#X connect 6 0 5 0;
+#X connect 7 0 0 0;
+#X connect 7 0 3 0;

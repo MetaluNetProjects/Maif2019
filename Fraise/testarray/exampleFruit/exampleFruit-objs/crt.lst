@@ -1,0 +1,323 @@
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE  1
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00001 ;--------------------------------------------------------
+                      00002 ; File Created by SDCC : free open source ANSI-C Compiler
+                      00003 ; Version 3.6.9 #10186 (Linux)
+                      00004 ;--------------------------------------------------------
+                      00005 ; PIC16 port for the Microchip 16-bit core micros
+                      00006 ;--------------------------------------------------------
+                      00007         list    p=18f26k22
+                      00008         radix   dec
+                      00009 
+                      00010 
+                      00011 ;--------------------------------------------------------
+                      00012 ; public variables in this module
+                      00013 ;--------------------------------------------------------
+  0000                00014         global  ___uflags
+  0000                00015         global  __entry
+  0000                00016         global  __startup
+  0000                00017         global  __do_cinit
+                      00018 
+                      00019 ;--------------------------------------------------------
+                      00020 ; extern variables in this module
+                      00021 ;--------------------------------------------------------
+  0000                00022         extern  _stack
+  0000                00023         extern  _stack_end
+  0000                00024         extern  _TBLPTRU
+  0000                00025         extern  _TBLPTRH
+  0000                00026         extern  _TBLPTRL
+  0000                00027         extern  _FSR0L
+  0000                00028         extern  _FSR0H
+  0000                00029         extern  _TABLAT
+  0000                00030         extern  _POSTINC0
+  0000                00031         extern  _POSTDEC0
+  0000                00032         extern  _main
+  0000                00033         extern  _cinit
+                      00034 
+                      00035 
+                      00036         idata
+000000 00             00037 ___uflags       db      0x00
+                      00038 
+                      00039 ;--------------------------------------------------------
+                      00040 ; global & static initialisations
+                      00041 ;--------------------------------------------------------
+                      00042 ; ; Starting pCode block
+                      00043 S_crt0iz_rloc___entry   code    0X000000
+000000                00044 __entry:
+000000 EF?? F0??      00045         goto    __startup 
+                      00046 ;       .line   66; /home/arsene/pd-externals/Fraise/core/crt0iz-rloc.c }
+                      00047 ; I code from now on!
+                      00048 ; ; Starting pCode block
+                      00049 S_crt0iz_rloc___do_cinit        code
+000000                00050 __do_cinit:
+                      00051         ;       TBLPTR = &cinit
+000000 0E??           00052         movlw   low(_cinit)
+000002 6E??           00053         movwf   _TBLPTRL
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE  2
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+000004 0E??           00054         movlw   high(_cinit)
+000006 6E??           00055         movwf   _TBLPTRH
+000008 0E??           00056         movlw   upper(_cinit)
+00000A 6E??           00057         movwf   _TBLPTRU
+                      00058         ;       0x05 = cinit.num_init
+                      00059         ;       movlb 0x07
+00000C 0009           00060         tblrd*+
+00000E 50??           00061         movf    _TABLAT, w
+000010 6E05           00062         movwf   0x05
+000012 0009           00063         tblrd*+
+000014 50??           00064         movf    _TABLAT, w
+000016 6E06           00065         movwf   0x05 +1
+                      00066         ;       while (0x05) {
+000018                00067 test:
+000018 E1??           00068         bnz     cont1 ;;done1
+00001A 6705           00069         tstfsz  0x05, 1
+00001C D???           00070         bra     cont1
+00001E                00071 done1:
+00001E EF?? F0??      00072         goto    done
+000022                00073 cont1:
+                      00074         ;       Count down so we only have to look up the data in _cinit once.
+                      00075         ;       At this point we know that TBLPTR points to the top of the current
+                      00076         ;       entry in _cinit, so we can just start reading the from, to, and
+                      00077         ;       size values.
+                      00078         ;       read the source address low
+000022 0009           00079         tblrd*+
+000024 50??           00080         movf    _TABLAT, w
+000026 6E00           00081         movwf   0x00
+                      00082         ;       source address high
+000028 0009           00083         tblrd*+
+00002A 50??           00084         movf    _TABLAT, w
+00002C 6E01           00085         movwf   0x00 + 1
+                      00086         ;       source address upper
+00002E 0009           00087         tblrd*+
+000030 50??           00088         movf    _TABLAT, w
+000032 6E02           00089         movwf   0x00 + 2
+                      00090         ;       skip a byte since it is stored as a 32bit int
+000034 0009           00091         tblrd*+
+                      00092         ;       read the destination address directly into FSR0
+                      00093         ;       destination address low
+000036 0009           00094         tblrd*+
+000038 50??           00095         movf    _TABLAT, w
+00003A 6E??           00096         movwf   _FSR0L
+                      00097         ;       destination address high
+00003C 0009           00098         tblrd*+
+00003E 50??           00099         movf    _TABLAT, w
+000040 6E??           00100         movwf   _FSR0H
+                      00101         ;       skip two bytes since it is stored as a 32bit int
+000042 0009           00102         tblrd*+
+000044 0009           00103         tblrd*+
+                      00104         ;       read the size of data to transfer to destination address
+000046 0009           00105         tblrd*+
+000048 50??           00106         movf    _TABLAT, w
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE  3
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+00004A 6E03           00107         movwf   0x03
+00004C 0009           00108         tblrd*+
+00004E 50??           00109         movf    _TABLAT, w
+000050 6E04           00110         movwf   0x03 +1
+                      00111         ;       skip two bytes since it is stored as a 32bit int
+000052 0009           00112         tblrd*+
+000054 0009           00113         tblrd*+
+                      00114         ;       0x00 = 0x07 ->from;
+                      00115         ;       FSR0 = 0x07 ->to;
+                      00116         ;       0x03 = (unsigned short) 0x07 ->size;
+                      00117         ;       the table pointer now points to the next entry. Save it
+                      00118         ;       off since we will be using the table pointer to do the copying
+                      00119         ;       for the entry
+                      00120         ;       0x07 = TBLPTR
+000056 C??? F???      00121         movff   _TBLPTRL, 0x07
+00005A C??? F???      00122         movff   _TBLPTRH, 0x07 + 1
+00005E C??? F???      00123         movff   _TBLPTRU, 0x07 + 2
+                      00124         ;       now assign the source address to the table pointer
+                      00125         ;       TBLPTR = 0x00
+000062 C000 F000      00126         movff   0x00, _TBLPTRL
+000066 C001 F000      00127         movff   0x00 + 1, _TBLPTRH
+00006A C002 F000      00128         movff   0x00 + 2, _TBLPTRU
+                      00129         ;       do the copy loop
+                      00130         ;       determine if we have any more bytes to copy
+                      00131         ;       movlb 0x03
+00006E 5003           00132         movf    0x03, w
+000070                00133 copy_loop:
+000070 E1??           00134         bnz     copy_one_byte ; copy_one_byte
+000072 5004           00135         movf    0x03 + 1, w
+000074 E0??           00136         bz      done_copying
+000076                00137 copy_one_byte:
+000076 0009           00138         tblrd*+
+000078 50??           00139         movf    _TABLAT, w
+00007A 6E??           00140         movwf   _POSTINC0
+                      00141         ;       decrement byte counter
+00007C 0603           00142         decf    0x03, f
+00007E E2??           00143         bc      copy_loop ; copy_loop
+000080 0604           00144         decf    0x03 + 1, f
+000082 D???           00145         bra     copy_one_byte
+000084                00146 done_copying:
+                      00147         ;       restore the table pointer for the next entry
+                      00148         ;       TBLPTR = 0x07
+000084 C007 F000      00149         movff   0x07, _TBLPTRL
+000088 C008 F000      00150         movff   0x07 + 1, _TBLPTRH
+00008C C009 F000      00151         movff   0x07 + 2, _TBLPTRU
+000090 0605           00152         decf    0x05, f
+000092 E2??           00153         bc      do_next
+000094 0606           00154         decf    0x05 + 1, f
+000096                00155 do_next:
+                      00156         ;       next entry...
+                      00157         ;       _do_cinit_curr_entry--;
+000096 EF?? F0??      00158         goto    test;
+                      00159         ;       emit done label
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE  4
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+00009A                00160 done:
+00009A 0012           00161         return
+                      00162         
+                      00163 ;       .line   301; /home/arsene/pd-externals/Fraise/core/crt0iz-rloc.c        }
+                      00164 ; ; Starting pCode block
+                      00165 S_crt0iz_rloc___startup code
+000000                00166 __startup:
+000000 EE?? F0??      00167         lfsr    1, _stack_end
+000004 EE?? F0??      00168         lfsr    2, _stack_end
+000008 6A??           00169         clrf    _TBLPTRU, 0
+00000A 8EA6           00170         bsf     0xa6, 7, 0
+00000C 9CA6           00171         bcf     0xa6, 6, 0
+                      00172         
+                      00173         ;       movlw 0xff
+                      00174         ;       movwf _FSR0L, 0
+00000E 68??           00175         setf    _FSR0L
+000010 0E0E           00176         movlw   0x0e
+000012 6E??           00177         movwf   _FSR0H, 0
+                      00178         ;       movlw 1
+                      00179         ;       movwf 0x00, 0
+000014 6800           00180         setf    0x00
+000016 0E00           00181         movlw   0x00
+000018                00182 clear_loop:
+000018 6A??           00183         clrf    _POSTDEC0
+00001A 5000           00184         movf    0x00, w
+00001C E1??           00185         bnz     clear_loop
+                      00186         
+                      00187 ;       .line   107; /home/arsene/pd-externals/Fraise/core/crt0iz-rloc.c        _do_cinit();
+00001E EC?? F0??      00188         CALL    __do_cinit
+                      00189 ;       .line   110; /home/arsene/pd-externals/Fraise/core/crt0iz-rloc.c        main();
+000022 EC?? F0??      00190         CALL    _main
+000026                00191 _00110_DS_:
+                      00192 ;       .line   114; /home/arsene/pd-externals/Fraise/core/crt0iz-rloc.c        goto loop;
+000026 D???           00193         BRA     _00110_DS_
+                      00194 ;       .line   115; /home/arsene/pd-externals/Fraise/core/crt0iz-rloc.c        }
+                      00195 
+                      00196 
+                      00197 ; Statistics:
+                      00198 ; code size:      276 (0x0114) bytes ( 0.21%)
+                      00199 ;                 138 (0x008a) words
+                      00200 ; udata size:       0 (0x0000) bytes ( 0.00%)
+                      00201 ; access size:      0 (0x0000) bytes
+                      00202 
+                      00203 
+                      00204         end
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+_00110_DS_                        ADDRESS       00000026             38
+_FSR0H                            EXTERNAL      00000000              0
+_FSR0L                            EXTERNAL      00000000              0
+_POSTDEC0                         EXTERNAL      00000000              0
+_POSTINC0                         EXTERNAL      00000000              0
+_TABLAT                           EXTERNAL      00000000              0
+_TBLPTRH                          EXTERNAL      00000000              0
+_TBLPTRL                          EXTERNAL      00000000              0
+_TBLPTRU                          EXTERNAL      00000000              0
+__16_BIT                          CONSTANT      00000001              1
+__18F26K22                        CONSTANT      00000001              1
+__ACC_RAM_LOW_END                 CONSTANT      0000005F             95
+__ACC_RAM_LOW_START               CONSTANT      00000000              0
+__ACTIVE_BANK_ADDR                VARIABLE      FFFFFFFF             -1
+__ASSUMED_BANK_ADDR               VARIABLE      FFFFFFFF             -1
+__BANK_0                          CONSTANT      00000000              0
+__BANK_1                          CONSTANT      00000100            256
+__BANK_2                          CONSTANT      00000200            512
+__BANK_3                          CONSTANT      00000300            768
+__BANK_4                          CONSTANT      00000400           1024
+__BANK_5                          CONSTANT      00000500           1280
+__BANK_6                          CONSTANT      00000600           1536
+__BANK_7                          CONSTANT      00000700           1792
+__BANK_8                          CONSTANT      00000800           2048
+__BANK_9                          CONSTANT      00000900           2304
+__BANK_10                         CONSTANT      00000A00           2560
+__BANK_11                         CONSTANT      00000B00           2816
+__BANK_12                         CONSTANT      00000C00           3072
+__BANK_13                         CONSTANT      00000D00           3328
+__BANK_14                         CONSTANT      00000E00           3584
+__BANK_15                         CONSTANT      00000F00           3840
+__BANK_BITS                       CONSTANT      00000F00           3840
+__BANK_FIRST                      CONSTANT      00000000              0
+__BANK_INV                        CONSTANT      FFFFFFFF             -1
+__BANK_LAST                       CONSTANT      00000F00           3840
+__BANK_MASK                       CONSTANT      000000FF            255
+__BANK_SHIFT                      CONSTANT      00000008              8
+__BANK_SIZE                       CONSTANT      00000100            256
+__CODE_END                        CONSTANT      0000FFFF          65535
+__CODE_START                      CONSTANT      00000000              0
+__COMMON_RAM_END                  CONSTANT      0000005F             95
+__COMMON_RAM_START                CONSTANT      00000000              0
+__CONFIG_END                      CONSTANT      0030000D        3145741
+__CONFIG_START                    CONSTANT      00300000        3145728
+__EEPROM_END                      CONSTANT      00F003FF       15729663
+__EEPROM_START                    CONSTANT      00F00000       15728640
+__EXTENDED                        CONSTANT      00000001              1
+__GPUTILS_SVN_VERSION             CONSTANT      00000505           1285
+__GPUTILS_VERSION_MAJOR           CONSTANT      00000001              1
+__GPUTILS_VERSION_MICRO           CONSTANT      00000000              0
+__GPUTILS_VERSION_MINOR           CONSTANT      00000005              5
+__IDLOCS_END                      CONSTANT      00200007        2097159
+gpasm-1.5.0 #1285 (Dec 29 2017) exampleFruit-   27/01/2020  11:10:57        PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                              TYPE        VALUE         VALUE          VALUE
+                                                 (hex)         (dec)          (text)
+
+__IDLOCS_START                    CONSTANT      00200000        2097152
+__NUM_BANKS                       CONSTANT      00000010             16
+__VECTOR_INT_HIGH                 CONSTANT      00000008              8
+__VECTOR_INT_LOW                  CONSTANT      00000018             24
+__VECTOR_RESET                    CONSTANT      00000000              0
+__WHILE_LOOP_COUNT_MAX            CONSTANT      000000FF            255
+___uflags                         GLOBAL        00000000              0
+__do_cinit                        GLOBAL        00000000              0
+__entry                           GLOBAL        00000000              0
+__startup                         GLOBAL        00000000              0
+_cinit                            EXTERNAL      00000000              0
+_main                             EXTERNAL      00000000              0
+_stack                            EXTERNAL      00000000              0
+_stack_end                        EXTERNAL      00000000              0
+clear_loop                        ADDRESS       00000018             24
+cont1                             ADDRESS       00000022             34
+copy_loop                         ADDRESS       00000070            112
+copy_one_byte                     ADDRESS       00000076            118
+do_next                           ADDRESS       00000096            150
+done                              ADDRESS       0000009A            154
+done1                             ADDRESS       0000001E             30
+done_copying                      ADDRESS       00000084            132
+test                              ADDRESS       00000018             24
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

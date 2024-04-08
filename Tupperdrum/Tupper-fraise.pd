@@ -1,8 +1,8 @@
-#N canvas 635 105 635 513 10;
-#N canvas 1208 197 543 593 AXL 0;
+#N canvas 625 95 635 513 10;
+#N canvas 255 110 543 633 AXL 0;
 #X msg 396 390 R;
 #X text 422 389 reset i2c/axl;
-#N canvas 472 92 495 705 attacks 0;
+#N canvas 472 79 495 664 attacks 0;
 #X obj 20 13 inlet;
 #X obj 20 57 unpack f f f;
 #X obj 20 34 t a a, f 26;
@@ -130,7 +130,7 @@
 #X msg 165 41 5;
 #X obj 303 413 fruit/send TUPPER\$1;
 #X obj 17 84 axlprocess axltupper-\$1;
-#X obj 22 476 s TUPPER\$1_ASSIETTE;
+#X obj 22 578 s TUPPER\$1_ASSIETTE;
 #X obj 17 45 route 1;
 #X obj 23 169 s TUPPER\$1_ASSIETTE_ATTACK;
 #X obj 23 127 r AXLRAWaxltupper-\$1;
@@ -145,6 +145,12 @@
 #X msg 276 313 set -1000;
 #X obj 345 378 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
+#X obj 22 479 t a a;
+#X obj 22 513 spigot 1;
+#X obj 22 536 t a b;
+#X msg 86 514 0;
+#X obj 143 517 del 30;
+#X msg 143 538 1;
 #X connect 0 0 31 1;
 #X connect 2 0 35 0;
 #X connect 3 0 10 0;
@@ -177,7 +183,7 @@
 #X connect 22 0 24 0;
 #X connect 23 0 38 0;
 #X connect 23 1 3 0;
-#X connect 24 0 33 0;
+#X connect 24 0 47 0;
 #X connect 25 0 0 0;
 #X connect 26 0 25 0;
 #X connect 27 0 34 0;
@@ -196,6 +202,14 @@
 #X connect 44 1 0 0;
 #X connect 44 1 46 0;
 #X connect 45 0 41 0;
+#X connect 47 0 48 0;
+#X connect 48 0 49 0;
+#X connect 49 0 33 0;
+#X connect 49 1 50 0;
+#X connect 49 1 51 0;
+#X connect 50 0 48 1;
+#X connect 51 0 52 0;
+#X connect 52 0 48 1;
 #X restore 18 94 pd AXL;
 #X text 209 66 BoutonRouge: K11 / LED:K12(LED sur Vdd);
 #X text 210 31 AXL: K5:SCK K7:SDA (I2C 1);

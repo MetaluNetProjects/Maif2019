@@ -257,7 +257,7 @@
 #X obj 244 264 Tupper-fraise 2;
 #X obj 246 319 Tupper-fraise 3;
 #X obj 244 357 Tupper-fraise 4;
-#N canvas 203 300 602 573 Bouilloire 1;
+#N canvas 203 300 602 573 Bouilloire 0;
 #X text 210 109 BoutonRouge: K11 / LED:K12(LED sur Vdd);
 #X text 210 93 Pots: K1 K2 K3;
 #X obj 19 198 route s;
@@ -324,3 +324,4 @@
 #X connect 28 0 2 0;
 #X restore 285 430 pd Bouilloire;
 #X obj 25 412 fruit/fruit 1 BOUILLOIRE 15 fwBouilloire;
+#X obj 220 63 moonlib/numsymbols-help;

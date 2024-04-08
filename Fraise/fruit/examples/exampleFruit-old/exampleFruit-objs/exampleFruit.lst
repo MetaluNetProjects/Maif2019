@@ -1,0 +1,1337 @@
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;--------------------------------------------------------
+                      00002 ; File Created by SDCC : free open source ANSI-C Compiler
+                      00003 ; Version 3.2.1 #8447 (Jul 12 2013) (Linux)
+                      00004 ; This file was generated Fri Jan 13 11:36:09 2017
+                      00005 ;--------------------------------------------------------
+                      00006 ; PIC16 port for the Microchip 16-bit core micros
+                      00007 ;--------------------------------------------------------
+                      00008         list    p=18f26k22
+                      00009         radix   dec
+                      00010 
+                      00011 
+                      00012 ;--------------------------------------------------------
+                      00013 ; public variables in this module
+                      00014 ;--------------------------------------------------------
+                      00015         global  _setup
+                      00016         global  _loop
+                      00017         global  _fraiseReceiveChar
+                      00018         global  _fraiseReceive
+                      00019         global  _period
+                      00020         global  _t
+                      00021         global  _t2
+                      00022         global  _mainDelay
+                      00023 
+                      00024 ;--------------------------------------------------------
+                      00025 ; extern variables in this module
+                      00026 ;--------------------------------------------------------
+                      00027         extern  _ANSELAbits
+                      00028         extern  _ANSELBbits
+                      00029         extern  _ANSELCbits
+                      00030         extern  _PMD2bits
+                      00031         extern  _PMD1bits
+                      00032         extern  _PMD0bits
+                      00033         extern  _DACCON1bits
+                      00034         extern  _VREFCON2bits
+                      00035         extern  _DACCON0bits
+                      00036         extern  _VREFCON1bits
+                      00037         extern  _FVRCONbits
+                      00038         extern  _VREFCON0bits
+                      00039         extern  _CTMUICONbits
+                      00040         extern  _CTMUICONHbits
+                      00041         extern  _CTMUCON1bits
+                      00042         extern  _CTMUCONLbits
+                      00043         extern  _CTMUCON0bits
+                      00044         extern  _CTMUCONHbits
+                      00045         extern  _SRCON1bits
+                      00046         extern  _SRCON0bits
+                      00047         extern  _CCPTMRS1bits
+                      00048         extern  _CCPTMRS0bits
+                      00049         extern  _T6CONbits
+                      00050         extern  _T5GCONbits
+                      00051         extern  _T5CONbits
+                      00052         extern  _T4CONbits
+                      00053         extern  _CCP5CONbits
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00054         extern  _CCP4CONbits
+                      00055         extern  _PSTR3CONbits
+                      00056         extern  _CCP3ASbits
+                      00057         extern  _ECCP3ASbits
+                      00058         extern  _PWM3CONbits
+                      00059         extern  _CCP3CONbits
+                      00060         extern  _SLRCONbits
+                      00061         extern  _WPUBbits
+                      00062         extern  _IOCBbits
+                      00063         extern  _PSTR2CONbits
+                      00064         extern  _CCP2ASbits
+                      00065         extern  _ECCP2ASbits
+                      00066         extern  _PWM2CONbits
+                      00067         extern  _CCP2CONbits
+                      00068         extern  _SSP2CON3bits
+                      00069         extern  _SSP2MSKbits
+                      00070         extern  _SSP2CON2bits
+                      00071         extern  _SSP2CON1bits
+                      00072         extern  _SSP2STATbits
+                      00073         extern  _BAUD2CONbits
+                      00074         extern  _BAUDCON2bits
+                      00075         extern  _RC2STAbits
+                      00076         extern  _RCSTA2bits
+                      00077         extern  _TX2STAbits
+                      00078         extern  _TXSTA2bits
+                      00079         extern  _CM12CONbits
+                      00080         extern  _CM2CON1bits
+                      00081         extern  _CM2CONbits
+                      00082         extern  _CM2CON0bits
+                      00083         extern  _CM1CONbits
+                      00084         extern  _CM1CON0bits
+                      00085         extern  _PIE4bits
+                      00086         extern  _PIR4bits
+                      00087         extern  _IPR4bits
+                      00088         extern  _PIE5bits
+                      00089         extern  _PIR5bits
+                      00090         extern  _IPR5bits
+                      00091         extern  _PORTAbits
+                      00092         extern  _PORTBbits
+                      00093         extern  _PORTCbits
+                      00094         extern  _PORTEbits
+                      00095         extern  _LATAbits
+                      00096         extern  _LATBbits
+                      00097         extern  _LATCbits
+                      00098         extern  _DDRAbits
+                      00099         extern  _TRISAbits
+                      00100         extern  _DDRBbits
+                      00101         extern  _TRISBbits
+                      00102         extern  _DDRCbits
+                      00103         extern  _TRISCbits
+                      00104         extern  _TRISEbits
+                      00105         extern  _OSCTUNEbits
+                      00106         extern  _HLVDCONbits
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00107         extern  _LVDCONbits
+                      00108         extern  _PIE1bits
+                      00109         extern  _PIR1bits
+                      00110         extern  _IPR1bits
+                      00111         extern  _PIE2bits
+                      00112         extern  _PIR2bits
+                      00113         extern  _IPR2bits
+                      00114         extern  _PIE3bits
+                      00115         extern  _PIR3bits
+                      00116         extern  _IPR3bits
+                      00117         extern  _EECON1bits
+                      00118         extern  _EEADRbits
+                      00119         extern  _EEADRHbits
+                      00120         extern  _RC1STAbits
+                      00121         extern  _RCSTAbits
+                      00122         extern  _RCSTA1bits
+                      00123         extern  _TX1STAbits
+                      00124         extern  _TXSTAbits
+                      00125         extern  _TXSTA1bits
+                      00126         extern  _T3CONbits
+                      00127         extern  _T3GCONbits
+                      00128         extern  _ECCP1ASbits
+                      00129         extern  _ECCPASbits
+                      00130         extern  _PWM1CONbits
+                      00131         extern  _PWMCONbits
+                      00132         extern  _BAUD1CONbits
+                      00133         extern  _BAUDCONbits
+                      00134         extern  _BAUDCON1bits
+                      00135         extern  _BAUDCTLbits
+                      00136         extern  _PSTR1CONbits
+                      00137         extern  _PSTRCONbits
+                      00138         extern  _T2CONbits
+                      00139         extern  _CCP1CONbits
+                      00140         extern  _ADCON2bits
+                      00141         extern  _ADCON1bits
+                      00142         extern  _ADCON0bits
+                      00143         extern  _SSP1CON2bits
+                      00144         extern  _SSPCON2bits
+                      00145         extern  _SSP1CON1bits
+                      00146         extern  _SSPCON1bits
+                      00147         extern  _SSP1STATbits
+                      00148         extern  _SSPSTATbits
+                      00149         extern  _SSP1MSKbits
+                      00150         extern  _SSPMSKbits
+                      00151         extern  _SSP1CON3bits
+                      00152         extern  _SSPCON3bits
+                      00153         extern  _T1GCONbits
+                      00154         extern  _T1CONbits
+                      00155         extern  _RCONbits
+                      00156         extern  _WDTCONbits
+                      00157         extern  _OSCCON2bits
+                      00158         extern  _OSCCONbits
+                      00159         extern  _T0CONbits
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00160         extern  _STATUSbits
+                      00161         extern  _INTCON3bits
+                      00162         extern  _INTCON2bits
+                      00163         extern  _INTCONbits
+                      00164         extern  _STKPTRbits
+                      00165         extern  _stdin
+                      00166         extern  _stdout
+                      00167         extern  _Now
+                      00168         extern  _PORTZ
+                      00169         extern  _PORTZbits
+                      00170         extern  _LATZ
+                      00171         extern  _LATZbits
+                      00172         extern  _TRICZ
+                      00173         extern  _TRISZbits
+                      00174         extern  _ANSELZ
+                      00175         extern  _ANSELZbits
+                      00176         extern  _ANSELA
+                      00177         extern  _ANSELB
+                      00178         extern  _ANSELC
+                      00179         extern  _PMD2
+                      00180         extern  _PMD1
+                      00181         extern  _PMD0
+                      00182         extern  _DACCON1
+                      00183         extern  _VREFCON2
+                      00184         extern  _DACCON0
+                      00185         extern  _VREFCON1
+                      00186         extern  _FVRCON
+                      00187         extern  _VREFCON0
+                      00188         extern  _CTMUICON
+                      00189         extern  _CTMUICONH
+                      00190         extern  _CTMUCON1
+                      00191         extern  _CTMUCONL
+                      00192         extern  _CTMUCON0
+                      00193         extern  _CTMUCONH
+                      00194         extern  _SRCON1
+                      00195         extern  _SRCON0
+                      00196         extern  _CCPTMRS1
+                      00197         extern  _CCPTMRS0
+                      00198         extern  _T6CON
+                      00199         extern  _PR6
+                      00200         extern  _TMR6
+                      00201         extern  _T5GCON
+                      00202         extern  _T5CON
+                      00203         extern  _TMR5
+                      00204         extern  _TMR5L
+                      00205         extern  _TMR5H
+                      00206         extern  _T4CON
+                      00207         extern  _PR4
+                      00208         extern  _TMR4
+                      00209         extern  _CCP5CON
+                      00210         extern  _CCPR5
+                      00211         extern  _CCPR5L
+                      00212         extern  _CCPR5H
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00213         extern  _CCP4CON
+                      00214         extern  _CCPR4
+                      00215         extern  _CCPR4L
+                      00216         extern  _CCPR4H
+                      00217         extern  _PSTR3CON
+                      00218         extern  _CCP3AS
+                      00219         extern  _ECCP3AS
+                      00220         extern  _PWM3CON
+                      00221         extern  _CCP3CON
+                      00222         extern  _CCPR3
+                      00223         extern  _CCPR3L
+                      00224         extern  _CCPR3H
+                      00225         extern  _SLRCON
+                      00226         extern  _WPUB
+                      00227         extern  _IOCB
+                      00228         extern  _PSTR2CON
+                      00229         extern  _CCP2AS
+                      00230         extern  _ECCP2AS
+                      00231         extern  _PWM2CON
+                      00232         extern  _CCP2CON
+                      00233         extern  _CCPR2
+                      00234         extern  _CCPR2L
+                      00235         extern  _CCPR2H
+                      00236         extern  _SSP2CON3
+                      00237         extern  _SSP2MSK
+                      00238         extern  _SSP2CON2
+                      00239         extern  _SSP2CON1
+                      00240         extern  _SSP2STAT
+                      00241         extern  _SSP2ADD
+                      00242         extern  _SSP2BUF
+                      00243         extern  _BAUD2CON
+                      00244         extern  _BAUDCON2
+                      00245         extern  _RC2STA
+                      00246         extern  _RCSTA2
+                      00247         extern  _TX2STA
+                      00248         extern  _TXSTA2
+                      00249         extern  _TX2REG
+                      00250         extern  _TXREG2
+                      00251         extern  _RC2REG
+                      00252         extern  _RCREG2
+                      00253         extern  _SP2BRG
+                      00254         extern  _SPBRG2
+                      00255         extern  _SP2BRGH
+                      00256         extern  _SPBRGH2
+                      00257         extern  _CM12CON
+                      00258         extern  _CM2CON1
+                      00259         extern  _CM2CON
+                      00260         extern  _CM2CON0
+                      00261         extern  _CM1CON
+                      00262         extern  _CM1CON0
+                      00263         extern  _PIE4
+                      00264         extern  _PIR4
+                      00265         extern  _IPR4
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00266         extern  _PIE5
+                      00267         extern  _PIR5
+                      00268         extern  _IPR5
+                      00269         extern  _PORTA
+                      00270         extern  _PORTB
+                      00271         extern  _PORTC
+                      00272         extern  _PORTE
+                      00273         extern  _LATA
+                      00274         extern  _LATB
+                      00275         extern  _LATC
+                      00276         extern  _DDRA
+                      00277         extern  _TRISA
+                      00278         extern  _DDRB
+                      00279         extern  _TRISB
+                      00280         extern  _DDRC
+                      00281         extern  _TRISC
+                      00282         extern  _TRISE
+                      00283         extern  _OSCTUNE
+                      00284         extern  _HLVDCON
+                      00285         extern  _LVDCON
+                      00286         extern  _PIE1
+                      00287         extern  _PIR1
+                      00288         extern  _IPR1
+                      00289         extern  _PIE2
+                      00290         extern  _PIR2
+                      00291         extern  _IPR2
+                      00292         extern  _PIE3
+                      00293         extern  _PIR3
+                      00294         extern  _IPR3
+                      00295         extern  _EECON1
+                      00296         extern  _EECON2
+                      00297         extern  _EEDATA
+                      00298         extern  _EEADR
+                      00299         extern  _EEADRH
+                      00300         extern  _RC1STA
+                      00301         extern  _RCSTA
+                      00302         extern  _RCSTA1
+                      00303         extern  _TX1STA
+                      00304         extern  _TXSTA
+                      00305         extern  _TXSTA1
+                      00306         extern  _TX1REG
+                      00307         extern  _TXREG
+                      00308         extern  _TXREG1
+                      00309         extern  _RC1REG
+                      00310         extern  _RCREG
+                      00311         extern  _RCREG1
+                      00312         extern  _SP1BRG
+                      00313         extern  _SPBRG
+                      00314         extern  _SPBRG1
+                      00315         extern  _SP1BRGH
+                      00316         extern  _SPBRGH
+                      00317         extern  _SPBRGH1
+                      00318         extern  _T3CON
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00319         extern  _TMR3
+                      00320         extern  _TMR3L
+                      00321         extern  _TMR3H
+                      00322         extern  _T3GCON
+                      00323         extern  _ECCP1AS
+                      00324         extern  _ECCPAS
+                      00325         extern  _PWM1CON
+                      00326         extern  _PWMCON
+                      00327         extern  _BAUD1CON
+                      00328         extern  _BAUDCON
+                      00329         extern  _BAUDCON1
+                      00330         extern  _BAUDCTL
+                      00331         extern  _PSTR1CON
+                      00332         extern  _PSTRCON
+                      00333         extern  _T2CON
+                      00334         extern  _PR2
+                      00335         extern  _TMR2
+                      00336         extern  _CCP1CON
+                      00337         extern  _CCPR1
+                      00338         extern  _CCPR1L
+                      00339         extern  _CCPR1H
+                      00340         extern  _ADCON2
+                      00341         extern  _ADCON1
+                      00342         extern  _ADCON0
+                      00343         extern  _ADRES
+                      00344         extern  _ADRESL
+                      00345         extern  _ADRESH
+                      00346         extern  _SSP1CON2
+                      00347         extern  _SSPCON2
+                      00348         extern  _SSP1CON1
+                      00349         extern  _SSPCON1
+                      00350         extern  _SSP1STAT
+                      00351         extern  _SSPSTAT
+                      00352         extern  _SSP1ADD
+                      00353         extern  _SSPADD
+                      00354         extern  _SSP1BUF
+                      00355         extern  _SSPBUF
+                      00356         extern  _SSP1MSK
+                      00357         extern  _SSPMSK
+                      00358         extern  _SSP1CON3
+                      00359         extern  _SSPCON3
+                      00360         extern  _T1GCON
+                      00361         extern  _T1CON
+                      00362         extern  _TMR1
+                      00363         extern  _TMR1L
+                      00364         extern  _TMR1H
+                      00365         extern  _RCON
+                      00366         extern  _WDTCON
+                      00367         extern  _OSCCON2
+                      00368         extern  _OSCCON
+                      00369         extern  _T0CON
+                      00370         extern  _TMR0
+                      00371         extern  _TMR0L
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00372         extern  _TMR0H
+                      00373         extern  _STATUS
+                      00374         extern  _FSR2L
+                      00375         extern  _FSR2H
+                      00376         extern  _PLUSW2
+                      00377         extern  _PREINC2
+                      00378         extern  _POSTDEC2
+                      00379         extern  _POSTINC2
+                      00380         extern  _INDF2
+                      00381         extern  _BSR
+                      00382         extern  _FSR1L
+                      00383         extern  _FSR1H
+                      00384         extern  _PLUSW1
+                      00385         extern  _PREINC1
+                      00386         extern  _POSTDEC1
+                      00387         extern  _POSTINC1
+                      00388         extern  _INDF1
+                      00389         extern  _WREG
+                      00390         extern  _FSR0L
+                      00391         extern  _FSR0H
+                      00392         extern  _PLUSW0
+                      00393         extern  _PREINC0
+                      00394         extern  _POSTDEC0
+                      00395         extern  _POSTINC0
+                      00396         extern  _INDF0
+                      00397         extern  _INTCON3
+                      00398         extern  _INTCON2
+                      00399         extern  _INTCON
+                      00400         extern  _PROD
+                      00401         extern  _PRODL
+                      00402         extern  _PRODH
+                      00403         extern  _TABLAT
+                      00404         extern  _TBLPTR
+                      00405         extern  _TBLPTRL
+                      00406         extern  _TBLPTRH
+                      00407         extern  _TBLPTRU
+                      00408         extern  _PC
+                      00409         extern  _PCL
+                      00410         extern  _PCLATH
+                      00411         extern  _PCLATU
+                      00412         extern  _STKPTR
+                      00413         extern  _TOS
+                      00414         extern  _TOSL
+                      00415         extern  _TOSH
+                      00416         extern  _TOSU
+                      00417         extern  _printf
+                      00418         extern  _putchar
+                      00419         extern  _time
+                      00420         extern  _fraiseService
+                      00421         extern  _fraiseGetChar
+                      00422         extern  _fraiseGetLen
+                      00423         extern  _fruitInit
+                      00424 
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00425 ;--------------------------------------------------------
+                      00426 ;       Equates to used internal registers
+                      00427 ;--------------------------------------------------------
+  00000FD8            00428 STATUS  equ     0xfd8
+  00000FE9            00429 FSR0L   equ     0xfe9
+  00000FEA            00430 FSR0H   equ     0xfea
+  00000FE1            00431 FSR1L   equ     0xfe1
+  00000FEF            00432 INDF0   equ     0xfef
+  00000FE5            00433 POSTDEC1        equ     0xfe5
+  00000FE4            00434 PREINC1 equ     0xfe4
+  00000FF3            00435 PRODL   equ     0xff3
+  00000FF4            00436 PRODH   equ     0xff4
+                      00437 
+                      00438 
+                      00439         idata
+000000                00440 _period db      0xc8
+000001                00441 _t      db      0x00
+000002                00442 _t2     db      0x00
+                      00443 
+                      00444 
+                      00445 ; Internal registers
+                      00446 .registers      udata_ovr       0x0000
+000000                00447 r0x00   res     1
+000001                00448 r0x01   res     1
+000002                00449 r0x02   res     1
+000003                00450 r0x03   res     1
+000004                00451 r0x05   res     1
+                      00452 
+                      00453 udata_main_0    udata
+000000                00454 _mainDelay      res     4
+                      00455 
+                      00456 ;--------------------------------------------------------
+                      00457 ; global & static initialisations
+                      00458 ;--------------------------------------------------------
+                      00459 ; I code from now on!
+                      00460 ; ; Starting pCode block
+                      00461 S_main__fraiseReceive   code
+000000                00462 _fraiseReceive:
+                      00463 ;       .line   63; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c c=fraiseGetChar();      // get the first byte
+000000 EC00 F000      00464         CALL    _fraiseGetChar
+                      00465 ; #     MOVWF   r0x00
+                      00466 ; #     MOVF    r0x00, W
+                      00467 ;       .line   65; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c switch(c) {
+000004 0A01           00468         XORLW   0x01
+000006 E100           00469         BNZ     _00182_DS_
+                      00470 ;       .line   66; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c PARAM_CHAR(1,period); break;    // if the first byte is 1 then set period 
+000008 EC00 F000      00471         CALL    _fraiseGetChar
+00000C 0100           00472         BANKSEL _period
+00000E 6F00           00473         MOVWF   _period, B
+000010                00474 _00182_DS_:
+                      00475 ;       .line   68; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c }
+000010 0012           00476         RETURN  
+                      00477 
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE 10
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00478 ; ; Starting pCode block
+                      00479 S_main__fraiseReceiveChar       code
+000000                00480 _fraiseReceiveChar:
+                      00481 ;       .line   42; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c void fraiseReceiveChar() // receive text
+000000 C000 FFE5      00482         MOVFF   r0x00, POSTDEC1
+000004 C000 FFE5      00483         MOVFF   r0x01, POSTDEC1
+                      00484 ;       .line   46; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c c=fraiseGetChar();
+000008 EC00 F000      00485         CALL    _fraiseGetChar
+                      00486 ; #     MOVWF   r0x00
+                      00487 ; #     MOVF    r0x00, W
+                      00488 ;       .line   47; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c if(c=='L'){             //switch LED on/off 
+00000C 6E00           00489         MOVWF   r0x00
+00000E 0A4C           00490         XORLW   0x4c
+000010 E100           00491         BNZ     _00150_DS_
+                      00492 ;       .line   48; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c c=fraiseGetChar();
+000012 EC00 F000      00493         CALL    _fraiseGetChar
+                      00494 ; #     MOVWF   r0x00
+                      00495 ; #     MOVF    r0x00, W
+                      00496 ;       .line   49; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c digitalWrite(LED, c!='0');              
+000016 0A30           00497         XORLW   0x30
+000018 E000           00498         BZ      _00139_DS_
+00001A 8200           00499         BSF     _LATCbits, 1
+00001C D000           00500         BRA     _00152_DS_
+00001E                00501 _00139_DS_:
+00001E 9200           00502         BCF     _LATCbits, 1
+000020 D000           00503         BRA     _00152_DS_
+000022                00504 _00150_DS_:
+                      00505 ;       .line   51; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c else if(c=='E') {       // echo text (send it back to host)
+000022 5000           00506         MOVF    r0x00, W
+000024 0A45           00507         XORLW   0x45
+000026 E100           00508         BNZ     _00152_DS_
+                      00509 ;       .line   52; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c printf("C");
+000028 0E00           00510         MOVLW   UPPER(__str_1)
+00002A 6EE5           00511         MOVWF   POSTDEC1
+00002C 0E00           00512         MOVLW   HIGH(__str_1)
+00002E 6EE5           00513         MOVWF   POSTDEC1
+000030 0E00           00514         MOVLW   LOW(__str_1)
+000032 6EE5           00515         MOVWF   POSTDEC1
+000034 EC00 F000      00516         CALL    _printf
+000038 0E03           00517         MOVLW   0x03
+00003A 26E1           00518         ADDWF   FSR1L, F
+                      00519 ;       .line   53; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c c = fraiseGetLen();                     // get length of current packet
+00003C EC00 F000      00520         CALL    _fraiseGetLen
+000040 6E00           00521         MOVWF   r0x00
+000042                00522 _00144_DS_:
+                      00523 ;       .line   54; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c while(c--) printf("%c",fraiseGetChar());// send each received byte
+000042 C000 F000      00524         MOVFF   r0x00, r0x01
+000046 0600           00525         DECF    r0x00, F
+000048 5000           00526         MOVF    r0x01, W
+00004A E000           00527         BZ      _00146_DS_
+00004C EC00 F000      00528         CALL    _fraiseGetChar
+000050 6AE5           00529         CLRF    POSTDEC1
+000052 6EE5           00530         MOVWF   POSTDEC1
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE 11
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000054 0E00           00531         MOVLW   UPPER(__str_2)
+000056 6EE5           00532         MOVWF   POSTDEC1
+000058 0E00           00533         MOVLW   HIGH(__str_2)
+00005A 6EE5           00534         MOVWF   POSTDEC1
+00005C 0E00           00535         MOVLW   LOW(__str_2)
+00005E 6EE5           00536         MOVWF   POSTDEC1
+000060 EC00 F000      00537         CALL    _printf
+000064 0E05           00538         MOVLW   0x05
+000066 26E1           00539         ADDWF   FSR1L, F
+000068 D000           00540         BRA     _00144_DS_
+00006A                00541 _00146_DS_:
+                      00542 ;       .line   55; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c putchar('\n');                          // end of line
+00006A 0E0A           00543         MOVLW   0x0a
+00006C EC00 F000      00544         CALL    _putchar
+000070                00545 _00152_DS_:
+000070 CFE4 F000      00546         MOVFF   PREINC1, r0x01
+000074 CFE4 F000      00547         MOVFF   PREINC1, r0x00
+000078 0012           00548         RETURN  
+                      00549 
+                      00550 ; ; Starting pCode block
+                      00551 S_main__loop    code
+000000                00552 _loop:
+                      00553 ;       .line   24; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c void loop() {
+000000 C000 FFE5      00554         MOVFF   r0x00, POSTDEC1
+000004 C000 FFE5      00555         MOVFF   r0x01, POSTDEC1
+000008 C000 FFE5      00556         MOVFF   r0x02, POSTDEC1
+00000C C000 FFE5      00557         MOVFF   r0x03, POSTDEC1
+                      00558 ;       .line   26; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c fraiseService();        // listen to Fraise events
+000010 EC00 F000      00559         CALL    _fraiseService
+                      00560 ;       .line   28; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c if(delayFinished(mainDelay)) // when mainDelay triggers :
+000014 EC00 F000      00561         CALL    _time
+000018 6E00           00562         MOVWF   r0x00
+00001A CFF3 F000      00563         MOVFF   PRODL, r0x01
+00001E CFF4 F000      00564         MOVFF   PRODH, r0x02
+000022 CFE9 F000      00565         MOVFF   FSR0L, r0x03
+000026 0100           00566         BANKSEL _mainDelay
+000028 5100           00567         MOVF    _mainDelay, W, B
+00002A 5E00           00568         SUBWF   r0x00, F
+                      00569 ; removed redundant BANKSEL
+00002C 5100           00570         MOVF    (_mainDelay + 1), W, B
+00002E 5A00           00571         SUBWFB  r0x01, F
+                      00572 ; removed redundant BANKSEL
+000030 5100           00573         MOVF    (_mainDelay + 2), W, B
+000032 5A00           00574         SUBWFB  r0x02, F
+                      00575 ; removed redundant BANKSEL
+000034 5100           00576         MOVF    (_mainDelay + 3), W, B
+000036 5A00           00577         SUBWFB  r0x03, F
+000038 9E00           00578         BCF     r0x03, 7
+00003A 0E3F           00579         MOVLW   0x3f
+00003C 5C00           00580         SUBWF   r0x03, W
+00003E E100           00581         BNZ     _00132_DS_
+000040 0EFF           00582         MOVLW   0xff
+000042 5C00           00583         SUBWF   r0x02, W
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE 12
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000044 E100           00584         BNZ     _00132_DS_
+000046 0EFF           00585         MOVLW   0xff
+000048 5C00           00586         SUBWF   r0x01, W
+00004A E100           00587         BNZ     _00132_DS_
+00004C 0EFF           00588         MOVLW   0xff
+00004E 5C00           00589         SUBWF   r0x00, W
+000050                00590 _00132_DS_:
+000050 E200           00591         BC      _00123_DS_
+                      00592 ;       .line   30; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c delayStart(mainDelay, 5000);    // re-init mainDelay
+000052 EC00 F000      00593         CALL    _time
+000056 CFF3 F000      00594         MOVFF   PRODL, r0x01
+00005A CFF4 F000      00595         MOVFF   PRODH, r0x02
+00005E CFE9 F000      00596         MOVFF   FSR0L, r0x03
+000062 0F88           00597         ADDLW   0x88
+000064 0100           00598         BANKSEL _mainDelay
+000066 6F00           00599         MOVWF   _mainDelay, B
+000068 0E13           00600         MOVLW   0x13
+00006A 2000           00601         ADDWFC  r0x01, W
+                      00602 ; removed redundant BANKSEL
+00006C 6F00           00603         MOVWF   (_mainDelay + 1), B
+00006E 0E00           00604         MOVLW   0x00
+000070 2000           00605         ADDWFC  r0x02, W
+                      00606 ; removed redundant BANKSEL
+000072 6F00           00607         MOVWF   (_mainDelay + 2), B
+000074 0E00           00608         MOVLW   0x00
+000076 2000           00609         ADDWFC  r0x03, W
+                      00610 ; removed redundant BANKSEL
+000078 6F00           00611         MOVWF   (_mainDelay + 3), B
+00007A 0100           00612         BANKSEL _t
+                      00613 ;       .line   31; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c t = t + 1;                      // increment period counter     
+00007C 2B00           00614         INCF    _t, F, B
+00007E 0100           00615         BANKSEL _period
+                      00616 ;       .line   32; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c if(t >= period){                // if counter overflows :
+000080 5100           00617         MOVF    _period, W, B
+000082 0100           00618         BANKSEL _t
+000084 5D00           00619         SUBWF   _t, W, B
+000086 E300           00620         BNC     _00123_DS_
+                      00621 ; removed redundant BANKSEL
+                      00622 ;       .line   33; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c t = 0;                           // clear counter
+000088 6B00           00623         CLRF    _t, B
+00008A 0100           00624         BANKSEL _t2
+                      00625 ;       .line   34; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c t2 = t2 + 1;                     // increment aux counter 
+00008C 2B00           00626         INCF    _t2, F, B
+                      00627 ;       .line   35; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c printf("CHello! t2= %d K1= %d\n", t2, digitalRead(K1));// print Hello + aux counter value
+00008E 6A00           00628         CLRF    r0x00
+000090 B000           00629         BTFSC   _PORTAbits, 0
+000092 2A00           00630         INCF    r0x00, F
+000094 C000 F000      00631         MOVFF   _t2, r0x02
+000098 6AE5           00632         CLRF    POSTDEC1
+00009A 5000           00633         MOVF    r0x00, W
+00009C 6EE5           00634         MOVWF   POSTDEC1
+00009E 6AE5           00635         CLRF    POSTDEC1
+0000A0 5000           00636         MOVF    r0x02, W
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE 13
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0000A2 6EE5           00637         MOVWF   POSTDEC1
+0000A4 0E00           00638         MOVLW   UPPER(__str_0)
+0000A6 6EE5           00639         MOVWF   POSTDEC1
+0000A8 0E00           00640         MOVLW   HIGH(__str_0)
+0000AA 6EE5           00641         MOVWF   POSTDEC1
+0000AC 0E00           00642         MOVLW   LOW(__str_0)
+0000AE 6EE5           00643         MOVWF   POSTDEC1
+0000B0 EC00 F000      00644         CALL    _printf
+0000B4 0E07           00645         MOVLW   0x07
+0000B6 26E1           00646         ADDWF   FSR1L, F
+0000B8                00647 _00123_DS_:
+0000B8 CFE4 F000      00648         MOVFF   PREINC1, r0x03
+0000BC CFE4 F000      00649         MOVFF   PREINC1, r0x02
+0000C0 CFE4 F000      00650         MOVFF   PREINC1, r0x01
+0000C4 CFE4 F000      00651         MOVFF   PREINC1, r0x00
+0000C8 0012           00652         RETURN  
+                      00653 
+                      00654 ; ; Starting pCode block
+                      00655 S_main__setup   code
+000000                00656 _setup:
+                      00657 ;       .line   13; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c void setup(void) {              
+000000 C000 FFE5      00658         MOVFF   r0x00, POSTDEC1
+000004 C000 FFE5      00659         MOVFF   r0x01, POSTDEC1
+000008 C000 FFE5      00660         MOVFF   r0x02, POSTDEC1
+00000C C000 FFE5      00661         MOVFF   r0x03, POSTDEC1
+000010 C000 FFE5      00662         MOVFF   r0x05, POSTDEC1
+                      00663 ;       .line   15; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c fruitInit();
+000014 EC00 F000      00664         CALL    _fruitInit
+                      00665 ;       .line   17; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c pinModeDigitalOut(LED);         // set the LED pin mode to digital out
+000018 9200           00666         BCF     _TRISCbits, 1
+                      00667 ;       .line   18; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c digitalClear(LED);              // clear the LED
+00001A 9200           00668         BCF     _LATCbits, 1
+                      00669 ;       .line   19; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c delayStart(mainDelay, 5000);    // init the mainDelay to 5 ms
+00001C EC00 F000      00670         CALL    _time
+000020 CFF3 F000      00671         MOVFF   PRODL, r0x01
+000024 CFF4 F000      00672         MOVFF   PRODH, r0x02
+000028 CFE9 F000      00673         MOVFF   FSR0L, r0x03
+00002C 0F88           00674         ADDLW   0x88
+00002E 0100           00675         BANKSEL _mainDelay
+000030 6F00           00676         MOVWF   _mainDelay, B
+000032 0E13           00677         MOVLW   0x13
+000034 2000           00678         ADDWFC  r0x01, W
+                      00679 ; removed redundant BANKSEL
+000036 6F00           00680         MOVWF   (_mainDelay + 1), B
+000038 0E00           00681         MOVLW   0x00
+00003A 2000           00682         ADDWFC  r0x02, W
+                      00683 ; removed redundant BANKSEL
+00003C 6F00           00684         MOVWF   (_mainDelay + 2), B
+00003E 0E00           00685         MOVLW   0x00
+000040 2000           00686         ADDWFC  r0x03, W
+                      00687 ; removed redundant BANKSEL
+000042 6F00           00688         MOVWF   (_mainDelay + 3), B
+                      00689 ;       .line   21; /home/arsene/pd-externals/Fraise/fruit/examples/exampleFruit/main.c pinModeDigitalIn(K1);
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE 14
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000044 8000           00690         BSF     _TRISAbits, 0
+000046 0E00           00691         MOVLW   LOW(_PORTA)
+000048 6E00           00692         MOVWF   r0x00
+00004A 0E00           00693         MOVLW   HIGH(_PORTA)
+00004C 6E00           00694         MOVWF   r0x01
+00004E 0E00           00695         MOVLW   HIGH(_ANSELA)
+000050 6E00           00696         MOVWF   r0x03
+000052 0E00           00697         MOVLW   LOW(_ANSELA)
+000054 2600           00698         ADDWF   r0x00, F
+000056 5000           00699         MOVF    r0x03, W
+000058 2200           00700         ADDWFC  r0x01, F
+00005A 0E00           00701         MOVLW   LOW(_PORTA)
+00005C 6E00           00702         MOVWF   r0x02
+00005E 0E00           00703         MOVLW   HIGH(_PORTA)
+000060 6E00           00704         MOVWF   r0x03
+000062 0E00           00705         MOVLW   LOW(_PORTA)
+000064 5E00           00706         SUBWF   r0x00, F
+000066 5000           00707         MOVF    r0x03, W
+000068 5A00           00708         SUBWFB  r0x01, F
+00006A 0E00           00709         MOVLW   HIGH(_ANSELA)
+00006C 6E00           00710         MOVWF   r0x05
+00006E 0E00           00711         MOVLW   LOW(_ANSELA)
+000070 2600           00712         ADDWF   r0x02, F
+000072 5000           00713         MOVF    r0x05, W
+000074 2200           00714         ADDWFC  r0x03, F
+000076 0E00           00715         MOVLW   HIGH(_PORTA)
+000078 6E00           00716         MOVWF   r0x05
+00007A 0E00           00717         MOVLW   LOW(_PORTA)
+00007C 5E00           00718         SUBWF   r0x02, F
+00007E 5000           00719         MOVF    r0x05, W
+000080 5A00           00720         SUBWFB  r0x03, F
+000082 C000 FFE9      00721         MOVFF   r0x02, FSR0L
+000086 C000 FFEA      00722         MOVFF   r0x03, FSR0H
+00008A CFEF F000      00723         MOVFF   INDF0, r0x02
+00008E 9000           00724         BCF     r0x02, 0
+000090 C000 FFE9      00725         MOVFF   r0x00, FSR0L
+000094 C000 FFEA      00726         MOVFF   r0x01, FSR0H
+000098 C000 FFEF      00727         MOVFF   r0x02, INDF0
+00009C CFE4 F000      00728         MOVFF   PREINC1, r0x05
+0000A0 CFE4 F000      00729         MOVFF   PREINC1, r0x03
+0000A4 CFE4 F000      00730         MOVFF   PREINC1, r0x02
+0000A8 CFE4 F000      00731         MOVFF   PREINC1, r0x01
+0000AC CFE4 F000      00732         MOVFF   PREINC1, r0x00
+0000B0 0012           00733         RETURN  
+                      00734 
+                      00735 ; ; Starting pCode block
+0000B2                00736 __str_0:
+0000B2 4843 6C65 6F6C 00737         DB      0x43, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x21, 0x20, 0x74, 0x32, 0x3d, 0x20
+       2021 3274 203D 
+0000BE 6425 4B20 3D31 00738         DB      0x25, 0x64, 0x20, 0x4b, 0x31, 0x3d, 0x20, 0x25, 0x64, 0x0a, 0x00
+       2520 0A64 0000 
+                      00739 ; ; Starting pCode block
+0000CA                00740 __str_1:
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE 15
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0000CA 0043           00741         DB      0x43, 0x00
+                      00742 ; ; Starting pCode block
+0000CC                00743 __str_2:
+0000CC 6325 0000      00744         DB      0x25, 0x63, 0x00
+                      00745 
+                      00746 
+                      00747 ; Statistics:
+                      00748 ; code size:      528 (0x0210) bytes ( 0.40%)
+                      00749 ;                 264 (0x0108) words
+                      00750 ; udata size:       4 (0x0004) bytes ( 0.11%)
+                      00751 ; access size:      5 (0x0005) bytes
+                      00752 
+                      00753 
+                      00754         end
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE 16
+
+
+SYMBOL TABLE
+  LABEL                             VALUE
+
+FSR0H                             00000FEA
+FSR0L                             00000FE9
+FSR1L                             00000FE1
+INDF0                             00000FEF
+POSTDEC1                          00000FE5
+PREINC1                           00000FE4
+PRODH                             00000FF4
+PRODL                             00000FF3
+STATUS                            00000FD8
+_00123_DS_                        000000B8
+_00132_DS_                        00000050
+_00139_DS_                        0000001E
+_00144_DS_                        00000042
+_00146_DS_                        0000006A
+_00150_DS_                        00000022
+_00152_DS_                        00000070
+_00182_DS_                        00000010
+_ADCON0                           00000000
+_ADCON0bits                       00000000
+_ADCON1                           00000000
+_ADCON1bits                       00000000
+_ADCON2                           00000000
+_ADCON2bits                       00000000
+_ADRES                            00000000
+_ADRESH                           00000000
+_ADRESL                           00000000
+_ANSELA                           00000000
+_ANSELAbits                       00000000
+_ANSELB                           00000000
+_ANSELBbits                       00000000
+_ANSELC                           00000000
+_ANSELCbits                       00000000
+_ANSELZ                           00000000
+_ANSELZbits                       00000000
+_BAUD1CON                         00000000
+_BAUD1CONbits                     00000000
+_BAUD2CON                         00000000
+_BAUD2CONbits                     00000000
+_BAUDCON                          00000000
+_BAUDCON1                         00000000
+_BAUDCON1bits                     00000000
+_BAUDCON2                         00000000
+_BAUDCON2bits                     00000000
+_BAUDCONbits                      00000000
+_BAUDCTL                          00000000
+_BAUDCTLbits                      00000000
+_BSR                              00000000
+_CCP1CON                          00000000
+_CCP1CONbits                      00000000
+_CCP2AS                           00000000
+_CCP2ASbits                       00000000
+_CCP2CON                          00000000
+_CCP2CONbits                      00000000
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE 17
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_CCP3AS                           00000000
+_CCP3ASbits                       00000000
+_CCP3CON                          00000000
+_CCP3CONbits                      00000000
+_CCP4CON                          00000000
+_CCP4CONbits                      00000000
+_CCP5CON                          00000000
+_CCP5CONbits                      00000000
+_CCPR1                            00000000
+_CCPR1H                           00000000
+_CCPR1L                           00000000
+_CCPR2                            00000000
+_CCPR2H                           00000000
+_CCPR2L                           00000000
+_CCPR3                            00000000
+_CCPR3H                           00000000
+_CCPR3L                           00000000
+_CCPR4                            00000000
+_CCPR4H                           00000000
+_CCPR4L                           00000000
+_CCPR5                            00000000
+_CCPR5H                           00000000
+_CCPR5L                           00000000
+_CCPTMRS0                         00000000
+_CCPTMRS0bits                     00000000
+_CCPTMRS1                         00000000
+_CCPTMRS1bits                     00000000
+_CM12CON                          00000000
+_CM12CONbits                      00000000
+_CM1CON                           00000000
+_CM1CON0                          00000000
+_CM1CON0bits                      00000000
+_CM1CONbits                       00000000
+_CM2CON                           00000000
+_CM2CON0                          00000000
+_CM2CON0bits                      00000000
+_CM2CON1                          00000000
+_CM2CON1bits                      00000000
+_CM2CONbits                       00000000
+_CTMUCON0                         00000000
+_CTMUCON0bits                     00000000
+_CTMUCON1                         00000000
+_CTMUCON1bits                     00000000
+_CTMUCONH                         00000000
+_CTMUCONHbits                     00000000
+_CTMUCONL                         00000000
+_CTMUCONLbits                     00000000
+_CTMUICON                         00000000
+_CTMUICONH                        00000000
+_CTMUICONHbits                    00000000
+_CTMUICONbits                     00000000
+_DACCON0                          00000000
+_DACCON0bits                      00000000
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE 18
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_DACCON1                          00000000
+_DACCON1bits                      00000000
+_DDRA                             00000000
+_DDRAbits                         00000000
+_DDRB                             00000000
+_DDRBbits                         00000000
+_DDRC                             00000000
+_DDRCbits                         00000000
+_ECCP1AS                          00000000
+_ECCP1ASbits                      00000000
+_ECCP2AS                          00000000
+_ECCP2ASbits                      00000000
+_ECCP3AS                          00000000
+_ECCP3ASbits                      00000000
+_ECCPAS                           00000000
+_ECCPASbits                       00000000
+_EEADR                            00000000
+_EEADRH                           00000000
+_EEADRHbits                       00000000
+_EEADRbits                        00000000
+_EECON1                           00000000
+_EECON1bits                       00000000
+_EECON2                           00000000
+_EEDATA                           00000000
+_FSR0H                            00000000
+_FSR0L                            00000000
+_FSR1H                            00000000
+_FSR1L                            00000000
+_FSR2H                            00000000
+_FSR2L                            00000000
+_FVRCON                           00000000
+_FVRCONbits                       00000000
+_HLVDCON                          00000000
+_HLVDCONbits                      00000000
+_INDF0                            00000000
+_INDF1                            00000000
+_INDF2                            00000000
+_INTCON                           00000000
+_INTCON2                          00000000
+_INTCON2bits                      00000000
+_INTCON3                          00000000
+_INTCON3bits                      00000000
+_INTCONbits                       00000000
+_IOCB                             00000000
+_IOCBbits                         00000000
+_IPR1                             00000000
+_IPR1bits                         00000000
+_IPR2                             00000000
+_IPR2bits                         00000000
+_IPR3                             00000000
+_IPR3bits                         00000000
+_IPR4                             00000000
+_IPR4bits                         00000000
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE 19
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_IPR5                             00000000
+_IPR5bits                         00000000
+_LATA                             00000000
+_LATAbits                         00000000
+_LATB                             00000000
+_LATBbits                         00000000
+_LATC                             00000000
+_LATCbits                         00000000
+_LATZ                             00000000
+_LATZbits                         00000000
+_LVDCON                           00000000
+_LVDCONbits                       00000000
+_Now                              00000000
+_OSCCON                           00000000
+_OSCCON2                          00000000
+_OSCCON2bits                      00000000
+_OSCCONbits                       00000000
+_OSCTUNE                          00000000
+_OSCTUNEbits                      00000000
+_PC                               00000000
+_PCL                              00000000
+_PCLATH                           00000000
+_PCLATU                           00000000
+_PIE1                             00000000
+_PIE1bits                         00000000
+_PIE2                             00000000
+_PIE2bits                         00000000
+_PIE3                             00000000
+_PIE3bits                         00000000
+_PIE4                             00000000
+_PIE4bits                         00000000
+_PIE5                             00000000
+_PIE5bits                         00000000
+_PIR1                             00000000
+_PIR1bits                         00000000
+_PIR2                             00000000
+_PIR2bits                         00000000
+_PIR3                             00000000
+_PIR3bits                         00000000
+_PIR4                             00000000
+_PIR4bits                         00000000
+_PIR5                             00000000
+_PIR5bits                         00000000
+_PLUSW0                           00000000
+_PLUSW1                           00000000
+_PLUSW2                           00000000
+_PMD0                             00000000
+_PMD0bits                         00000000
+_PMD1                             00000000
+_PMD1bits                         00000000
+_PMD2                             00000000
+_PMD2bits                         00000000
+_PORTA                            00000000
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE 20
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_PORTAbits                        00000000
+_PORTB                            00000000
+_PORTBbits                        00000000
+_PORTC                            00000000
+_PORTCbits                        00000000
+_PORTE                            00000000
+_PORTEbits                        00000000
+_PORTZ                            00000000
+_PORTZbits                        00000000
+_POSTDEC0                         00000000
+_POSTDEC1                         00000000
+_POSTDEC2                         00000000
+_POSTINC0                         00000000
+_POSTINC1                         00000000
+_POSTINC2                         00000000
+_PR2                              00000000
+_PR4                              00000000
+_PR6                              00000000
+_PREINC0                          00000000
+_PREINC1                          00000000
+_PREINC2                          00000000
+_PROD                             00000000
+_PRODH                            00000000
+_PRODL                            00000000
+_PSTR1CON                         00000000
+_PSTR1CONbits                     00000000
+_PSTR2CON                         00000000
+_PSTR2CONbits                     00000000
+_PSTR3CON                         00000000
+_PSTR3CONbits                     00000000
+_PSTRCON                          00000000
+_PSTRCONbits                      00000000
+_PWM1CON                          00000000
+_PWM1CONbits                      00000000
+_PWM2CON                          00000000
+_PWM2CONbits                      00000000
+_PWM3CON                          00000000
+_PWM3CONbits                      00000000
+_PWMCON                           00000000
+_PWMCONbits                       00000000
+_RC1REG                           00000000
+_RC1STA                           00000000
+_RC1STAbits                       00000000
+_RC2REG                           00000000
+_RC2STA                           00000000
+_RC2STAbits                       00000000
+_RCON                             00000000
+_RCONbits                         00000000
+_RCREG                            00000000
+_RCREG1                           00000000
+_RCREG2                           00000000
+_RCSTA                            00000000
+_RCSTA1                           00000000
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE 21
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_RCSTA1bits                       00000000
+_RCSTA2                           00000000
+_RCSTA2bits                       00000000
+_RCSTAbits                        00000000
+_SLRCON                           00000000
+_SLRCONbits                       00000000
+_SP1BRG                           00000000
+_SP1BRGH                          00000000
+_SP2BRG                           00000000
+_SP2BRGH                          00000000
+_SPBRG                            00000000
+_SPBRG1                           00000000
+_SPBRG2                           00000000
+_SPBRGH                           00000000
+_SPBRGH1                          00000000
+_SPBRGH2                          00000000
+_SRCON0                           00000000
+_SRCON0bits                       00000000
+_SRCON1                           00000000
+_SRCON1bits                       00000000
+_SSP1ADD                          00000000
+_SSP1BUF                          00000000
+_SSP1CON1                         00000000
+_SSP1CON1bits                     00000000
+_SSP1CON2                         00000000
+_SSP1CON2bits                     00000000
+_SSP1CON3                         00000000
+_SSP1CON3bits                     00000000
+_SSP1MSK                          00000000
+_SSP1MSKbits                      00000000
+_SSP1STAT                         00000000
+_SSP1STATbits                     00000000
+_SSP2ADD                          00000000
+_SSP2BUF                          00000000
+_SSP2CON1                         00000000
+_SSP2CON1bits                     00000000
+_SSP2CON2                         00000000
+_SSP2CON2bits                     00000000
+_SSP2CON3                         00000000
+_SSP2CON3bits                     00000000
+_SSP2MSK                          00000000
+_SSP2MSKbits                      00000000
+_SSP2STAT                         00000000
+_SSP2STATbits                     00000000
+_SSPADD                           00000000
+_SSPBUF                           00000000
+_SSPCON1                          00000000
+_SSPCON1bits                      00000000
+_SSPCON2                          00000000
+_SSPCON2bits                      00000000
+_SSPCON3                          00000000
+_SSPCON3bits                      00000000
+_SSPMSK                           00000000
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE 22
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_SSPMSKbits                       00000000
+_SSPSTAT                          00000000
+_SSPSTATbits                      00000000
+_STATUS                           00000000
+_STATUSbits                       00000000
+_STKPTR                           00000000
+_STKPTRbits                       00000000
+_T0CON                            00000000
+_T0CONbits                        00000000
+_T1CON                            00000000
+_T1CONbits                        00000000
+_T1GCON                           00000000
+_T1GCONbits                       00000000
+_T2CON                            00000000
+_T2CONbits                        00000000
+_T3CON                            00000000
+_T3CONbits                        00000000
+_T3GCON                           00000000
+_T3GCONbits                       00000000
+_T4CON                            00000000
+_T4CONbits                        00000000
+_T5CON                            00000000
+_T5CONbits                        00000000
+_T5GCON                           00000000
+_T5GCONbits                       00000000
+_T6CON                            00000000
+_T6CONbits                        00000000
+_TABLAT                           00000000
+_TBLPTR                           00000000
+_TBLPTRH                          00000000
+_TBLPTRL                          00000000
+_TBLPTRU                          00000000
+_TMR0                             00000000
+_TMR0H                            00000000
+_TMR0L                            00000000
+_TMR1                             00000000
+_TMR1H                            00000000
+_TMR1L                            00000000
+_TMR2                             00000000
+_TMR3                             00000000
+_TMR3H                            00000000
+_TMR3L                            00000000
+_TMR4                             00000000
+_TMR5                             00000000
+_TMR5H                            00000000
+_TMR5L                            00000000
+_TMR6                             00000000
+_TOS                              00000000
+_TOSH                             00000000
+_TOSL                             00000000
+_TOSU                             00000000
+_TRICZ                            00000000
+_TRISA                            00000000
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE 23
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_TRISAbits                        00000000
+_TRISB                            00000000
+_TRISBbits                        00000000
+_TRISC                            00000000
+_TRISCbits                        00000000
+_TRISE                            00000000
+_TRISEbits                        00000000
+_TRISZbits                        00000000
+_TX1REG                           00000000
+_TX1STA                           00000000
+_TX1STAbits                       00000000
+_TX2REG                           00000000
+_TX2STA                           00000000
+_TX2STAbits                       00000000
+_TXREG                            00000000
+_TXREG1                           00000000
+_TXREG2                           00000000
+_TXSTA                            00000000
+_TXSTA1                           00000000
+_TXSTA1bits                       00000000
+_TXSTA2                           00000000
+_TXSTA2bits                       00000000
+_TXSTAbits                        00000000
+_VREFCON0                         00000000
+_VREFCON0bits                     00000000
+_VREFCON1                         00000000
+_VREFCON1bits                     00000000
+_VREFCON2                         00000000
+_VREFCON2bits                     00000000
+_WDTCON                           00000000
+_WDTCONbits                       00000000
+_WPUB                             00000000
+_WPUBbits                         00000000
+_WREG                             00000000
+__18F26K22                        00000001
+__str_0                           000000B2
+__str_1                           000000CA
+__str_2                           000000CC
+_fraiseGetChar                    00000000
+_fraiseGetLen                     00000000
+_fraiseReceive                    00000000
+_fraiseReceiveChar                00000000
+_fraiseService                    00000000
+_fruitInit                        00000000
+_loop                             00000000
+_mainDelay                        00000000
+_period                           00000000
+_printf                           00000000
+_putchar                          00000000
+_setup                            00000000
+_stdin                            00000000
+_stdout                           00000000
+_t                                00000001
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/exampleFruit.asm1-13-2017  11:36:09          PAGE 24
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_t2                               00000002
+_time                             00000000
+r0x00                             00000000
+r0x01                             00000001
+r0x02                             00000002
+r0x03                             00000003
+r0x05                             00000004
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

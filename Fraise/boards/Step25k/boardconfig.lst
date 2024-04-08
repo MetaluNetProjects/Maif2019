@@ -1,0 +1,960 @@
+gpasm-0.14.1 (Aug 21 2013)   ../../boards/Step25k/boardconfig.asm12-17-2018  16:01:24         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;--------------------------------------------------------
+                      00002 ; File Created by SDCC : free open source ANSI-C Compiler
+                      00003 ; Version 3.6.5 #9830 (Linux)
+                      00004 ;--------------------------------------------------------
+                      00005 ; PIC16 port for the Microchip 16-bit core micros
+                      00006 ;--------------------------------------------------------
+                      00007         list    p=18f25k22
+                      00008         radix   dec
+Warning[212]: __CONFIG has been deprecated for PIC18 devices. Use directive CONFIG.
+300000 0000           00009         __config 0x300001, 0x38
+Warning[212]: __CONFIG has been deprecated for PIC18 devices. Use directive CONFIG.
+                      00010         __config 0x300002, 0xfa
+Warning[212]: __CONFIG has been deprecated for PIC18 devices. Use directive CONFIG.
+300002 0000           00011         __config 0x300003, 0xe2
+Warning[212]: __CONFIG has been deprecated for PIC18 devices. Use directive CONFIG.
+300004 0000           00012         __config 0x300005, 0x6f
+Warning[212]: __CONFIG has been deprecated for PIC18 devices. Use directive CONFIG.
+300006 0000           00013         __config 0x300006, 0xbb
+Warning[212]: __CONFIG has been deprecated for PIC18 devices. Use directive CONFIG.
+                      00014         __config 0x300008, 0xff
+Warning[212]: __CONFIG has been deprecated for PIC18 devices. Use directive CONFIG.
+300008 0000           00015         __config 0x300009, 0xff
+Warning[212]: __CONFIG has been deprecated for PIC18 devices. Use directive CONFIG.
+                      00016         __config 0x30000a, 0xff
+Warning[212]: __CONFIG has been deprecated for PIC18 devices. Use directive CONFIG.
+30000A 0000           00017         __config 0x30000b, 0xff
+Warning[212]: __CONFIG has been deprecated for PIC18 devices. Use directive CONFIG.
+                      00018         __config 0x30000c, 0xff
+Warning[212]: __CONFIG has been deprecated for PIC18 devices. Use directive CONFIG.
+30000C 0000           00019         __config 0x30000d, 0xff
+                      00020 
+                      00021 
+                      00022 ;--------------------------------------------------------
+                      00023 ; public variables in this module
+                      00024 ;--------------------------------------------------------
+                      00025         global  _Generic26kSetup
+                      00026         global  _Setup
+                      00027 
+                      00028 ;--------------------------------------------------------
+                      00029 ; extern variables in this module
+                      00030 ;--------------------------------------------------------
+                      00031         extern  _ANSELAbits
+                      00032         extern  _ANSELBbits
+                      00033         extern  _ANSELCbits
+                      00034         extern  _PMD2bits
+                      00035         extern  _PMD1bits
+                      00036         extern  _PMD0bits
+                      00037         extern  _DACCON1bits
+                      00038         extern  _VREFCON2bits
+                      00039         extern  _DACCON0bits
+                      00040         extern  _VREFCON1bits
+                      00041         extern  _FVRCONbits
+                      00042         extern  _VREFCON0bits
+gpasm-0.14.1 (Aug 21 2013)   ../../boards/Step25k/boardconfig.asm12-17-2018  16:01:24         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00043         extern  _CTMUICONbits
+                      00044         extern  _CTMUICONHbits
+                      00045         extern  _CTMUCON1bits
+                      00046         extern  _CTMUCONLbits
+                      00047         extern  _CTMUCON0bits
+                      00048         extern  _CTMUCONHbits
+                      00049         extern  _SRCON1bits
+                      00050         extern  _SRCON0bits
+                      00051         extern  _CCPTMRS1bits
+                      00052         extern  _CCPTMRS0bits
+                      00053         extern  _T6CONbits
+                      00054         extern  _T5GCONbits
+                      00055         extern  _T5CONbits
+                      00056         extern  _T4CONbits
+                      00057         extern  _CCP5CONbits
+                      00058         extern  _CCP4CONbits
+                      00059         extern  _PSTR3CONbits
+                      00060         extern  _CCP3ASbits
+                      00061         extern  _ECCP3ASbits
+                      00062         extern  _PWM3CONbits
+                      00063         extern  _CCP3CONbits
+                      00064         extern  _SLRCONbits
+                      00065         extern  _WPUBbits
+                      00066         extern  _IOCBbits
+                      00067         extern  _PSTR2CONbits
+                      00068         extern  _CCP2ASbits
+                      00069         extern  _ECCP2ASbits
+                      00070         extern  _PWM2CONbits
+                      00071         extern  _CCP2CONbits
+                      00072         extern  _SSP2CON3bits
+                      00073         extern  _SSP2MSKbits
+                      00074         extern  _SSP2CON2bits
+                      00075         extern  _SSP2CON1bits
+                      00076         extern  _SSP2STATbits
+                      00077         extern  _BAUD2CONbits
+                      00078         extern  _BAUDCON2bits
+                      00079         extern  _RC2STAbits
+                      00080         extern  _RCSTA2bits
+                      00081         extern  _TX2STAbits
+                      00082         extern  _TXSTA2bits
+                      00083         extern  _CM12CONbits
+                      00084         extern  _CM2CON1bits
+                      00085         extern  _CM2CONbits
+                      00086         extern  _CM2CON0bits
+                      00087         extern  _CM1CONbits
+                      00088         extern  _CM1CON0bits
+                      00089         extern  _PIE4bits
+                      00090         extern  _PIR4bits
+                      00091         extern  _IPR4bits
+                      00092         extern  _PIE5bits
+                      00093         extern  _PIR5bits
+                      00094         extern  _IPR5bits
+                      00095         extern  _PORTAbits
+gpasm-0.14.1 (Aug 21 2013)   ../../boards/Step25k/boardconfig.asm12-17-2018  16:01:24         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00096         extern  _PORTBbits
+                      00097         extern  _PORTCbits
+                      00098         extern  _PORTEbits
+                      00099         extern  _LATAbits
+                      00100         extern  _LATBbits
+                      00101         extern  _LATCbits
+                      00102         extern  _DDRAbits
+                      00103         extern  _TRISAbits
+                      00104         extern  _DDRBbits
+                      00105         extern  _TRISBbits
+                      00106         extern  _DDRCbits
+                      00107         extern  _TRISCbits
+                      00108         extern  _TRISEbits
+                      00109         extern  _OSCTUNEbits
+                      00110         extern  _HLVDCONbits
+                      00111         extern  _LVDCONbits
+                      00112         extern  _PIE1bits
+                      00113         extern  _PIR1bits
+                      00114         extern  _IPR1bits
+                      00115         extern  _PIE2bits
+                      00116         extern  _PIR2bits
+                      00117         extern  _IPR2bits
+                      00118         extern  _PIE3bits
+                      00119         extern  _PIR3bits
+                      00120         extern  _IPR3bits
+                      00121         extern  _EECON1bits
+                      00122         extern  _EEADRbits
+                      00123         extern  _RC1STAbits
+                      00124         extern  _RCSTAbits
+                      00125         extern  _RCSTA1bits
+                      00126         extern  _TX1STAbits
+                      00127         extern  _TXSTAbits
+                      00128         extern  _TXSTA1bits
+                      00129         extern  _T3CONbits
+                      00130         extern  _T3GCONbits
+                      00131         extern  _ECCP1ASbits
+                      00132         extern  _ECCPASbits
+                      00133         extern  _PWM1CONbits
+                      00134         extern  _PWMCONbits
+                      00135         extern  _BAUD1CONbits
+                      00136         extern  _BAUDCONbits
+                      00137         extern  _BAUDCON1bits
+                      00138         extern  _BAUDCTLbits
+                      00139         extern  _PSTR1CONbits
+                      00140         extern  _PSTRCONbits
+                      00141         extern  _T2CONbits
+                      00142         extern  _CCP1CONbits
+                      00143         extern  _ADCON2bits
+                      00144         extern  _ADCON1bits
+                      00145         extern  _ADCON0bits
+                      00146         extern  _SSP1CON2bits
+                      00147         extern  _SSPCON2bits
+                      00148         extern  _SSP1CON1bits
+gpasm-0.14.1 (Aug 21 2013)   ../../boards/Step25k/boardconfig.asm12-17-2018  16:01:24         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00149         extern  _SSPCON1bits
+                      00150         extern  _SSP1STATbits
+                      00151         extern  _SSPSTATbits
+                      00152         extern  _SSP1MSKbits
+                      00153         extern  _SSPMSKbits
+                      00154         extern  _SSP1CON3bits
+                      00155         extern  _SSPCON3bits
+                      00156         extern  _T1GCONbits
+                      00157         extern  _T1CONbits
+                      00158         extern  _RCONbits
+                      00159         extern  _WDTCONbits
+                      00160         extern  _OSCCON2bits
+                      00161         extern  _OSCCONbits
+                      00162         extern  _T0CONbits
+                      00163         extern  _STATUSbits
+                      00164         extern  _INTCON3bits
+                      00165         extern  _INTCON2bits
+                      00166         extern  _INTCONbits
+                      00167         extern  _STKPTRbits
+                      00168         extern  _ANSELA
+                      00169         extern  _ANSELB
+                      00170         extern  _ANSELC
+                      00171         extern  _PMD2
+                      00172         extern  _PMD1
+                      00173         extern  _PMD0
+                      00174         extern  _DACCON1
+                      00175         extern  _VREFCON2
+                      00176         extern  _DACCON0
+                      00177         extern  _VREFCON1
+                      00178         extern  _FVRCON
+                      00179         extern  _VREFCON0
+                      00180         extern  _CTMUICON
+                      00181         extern  _CTMUICONH
+                      00182         extern  _CTMUCON1
+                      00183         extern  _CTMUCONL
+                      00184         extern  _CTMUCON0
+                      00185         extern  _CTMUCONH
+                      00186         extern  _SRCON1
+                      00187         extern  _SRCON0
+                      00188         extern  _CCPTMRS1
+                      00189         extern  _CCPTMRS0
+                      00190         extern  _T6CON
+                      00191         extern  _PR6
+                      00192         extern  _TMR6
+                      00193         extern  _T5GCON
+                      00194         extern  _T5CON
+                      00195         extern  _TMR5
+                      00196         extern  _TMR5L
+                      00197         extern  _TMR5H
+                      00198         extern  _T4CON
+                      00199         extern  _PR4
+                      00200         extern  _TMR4
+                      00201         extern  _CCP5CON
+gpasm-0.14.1 (Aug 21 2013)   ../../boards/Step25k/boardconfig.asm12-17-2018  16:01:24         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00202         extern  _CCPR5
+                      00203         extern  _CCPR5L
+                      00204         extern  _CCPR5H
+                      00205         extern  _CCP4CON
+                      00206         extern  _CCPR4
+                      00207         extern  _CCPR4L
+                      00208         extern  _CCPR4H
+                      00209         extern  _PSTR3CON
+                      00210         extern  _CCP3AS
+                      00211         extern  _ECCP3AS
+                      00212         extern  _PWM3CON
+                      00213         extern  _CCP3CON
+                      00214         extern  _CCPR3
+                      00215         extern  _CCPR3L
+                      00216         extern  _CCPR3H
+                      00217         extern  _SLRCON
+                      00218         extern  _WPUB
+                      00219         extern  _IOCB
+                      00220         extern  _PSTR2CON
+                      00221         extern  _CCP2AS
+                      00222         extern  _ECCP2AS
+                      00223         extern  _PWM2CON
+                      00224         extern  _CCP2CON
+                      00225         extern  _CCPR2
+                      00226         extern  _CCPR2L
+                      00227         extern  _CCPR2H
+                      00228         extern  _SSP2CON3
+                      00229         extern  _SSP2MSK
+                      00230         extern  _SSP2CON2
+                      00231         extern  _SSP2CON1
+                      00232         extern  _SSP2STAT
+                      00233         extern  _SSP2ADD
+                      00234         extern  _SSP2BUF
+                      00235         extern  _BAUD2CON
+                      00236         extern  _BAUDCON2
+                      00237         extern  _RC2STA
+                      00238         extern  _RCSTA2
+                      00239         extern  _TX2STA
+                      00240         extern  _TXSTA2
+                      00241         extern  _TX2REG
+                      00242         extern  _TXREG2
+                      00243         extern  _RC2REG
+                      00244         extern  _RCREG2
+                      00245         extern  _SP2BRG
+                      00246         extern  _SPBRG2
+                      00247         extern  _SP2BRGH
+                      00248         extern  _SPBRGH2
+                      00249         extern  _CM12CON
+                      00250         extern  _CM2CON1
+                      00251         extern  _CM2CON
+                      00252         extern  _CM2CON0
+                      00253         extern  _CM1CON
+                      00254         extern  _CM1CON0
+gpasm-0.14.1 (Aug 21 2013)   ../../boards/Step25k/boardconfig.asm12-17-2018  16:01:24         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00255         extern  _PIE4
+                      00256         extern  _PIR4
+                      00257         extern  _IPR4
+                      00258         extern  _PIE5
+                      00259         extern  _PIR5
+                      00260         extern  _IPR5
+                      00261         extern  _PORTA
+                      00262         extern  _PORTB
+                      00263         extern  _PORTC
+                      00264         extern  _PORTE
+                      00265         extern  _LATA
+                      00266         extern  _LATB
+                      00267         extern  _LATC
+                      00268         extern  _DDRA
+                      00269         extern  _TRISA
+                      00270         extern  _DDRB
+                      00271         extern  _TRISB
+                      00272         extern  _DDRC
+                      00273         extern  _TRISC
+                      00274         extern  _TRISE
+                      00275         extern  _OSCTUNE
+                      00276         extern  _HLVDCON
+                      00277         extern  _LVDCON
+                      00278         extern  _PIE1
+                      00279         extern  _PIR1
+                      00280         extern  _IPR1
+                      00281         extern  _PIE2
+                      00282         extern  _PIR2
+                      00283         extern  _IPR2
+                      00284         extern  _PIE3
+                      00285         extern  _PIR3
+                      00286         extern  _IPR3
+                      00287         extern  _EECON1
+                      00288         extern  _EECON2
+                      00289         extern  _EEDATA
+                      00290         extern  _EEADR
+                      00291         extern  _RC1STA
+                      00292         extern  _RCSTA
+                      00293         extern  _RCSTA1
+                      00294         extern  _TX1STA
+                      00295         extern  _TXSTA
+                      00296         extern  _TXSTA1
+                      00297         extern  _TX1REG
+                      00298         extern  _TXREG
+                      00299         extern  _TXREG1
+                      00300         extern  _RC1REG
+                      00301         extern  _RCREG
+                      00302         extern  _RCREG1
+                      00303         extern  _SP1BRG
+                      00304         extern  _SPBRG
+                      00305         extern  _SPBRG1
+                      00306         extern  _SP1BRGH
+                      00307         extern  _SPBRGH
+gpasm-0.14.1 (Aug 21 2013)   ../../boards/Step25k/boardconfig.asm12-17-2018  16:01:24         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00308         extern  _SPBRGH1
+                      00309         extern  _T3CON
+                      00310         extern  _TMR3
+                      00311         extern  _TMR3L
+                      00312         extern  _TMR3H
+                      00313         extern  _T3GCON
+                      00314         extern  _ECCP1AS
+                      00315         extern  _ECCPAS
+                      00316         extern  _PWM1CON
+                      00317         extern  _PWMCON
+                      00318         extern  _BAUD1CON
+                      00319         extern  _BAUDCON
+                      00320         extern  _BAUDCON1
+                      00321         extern  _BAUDCTL
+                      00322         extern  _PSTR1CON
+                      00323         extern  _PSTRCON
+                      00324         extern  _T2CON
+                      00325         extern  _PR2
+                      00326         extern  _TMR2
+                      00327         extern  _CCP1CON
+                      00328         extern  _CCPR1
+                      00329         extern  _CCPR1L
+                      00330         extern  _CCPR1H
+                      00331         extern  _ADCON2
+                      00332         extern  _ADCON1
+                      00333         extern  _ADCON0
+                      00334         extern  _ADRES
+                      00335         extern  _ADRESL
+                      00336         extern  _ADRESH
+                      00337         extern  _SSP1CON2
+                      00338         extern  _SSPCON2
+                      00339         extern  _SSP1CON1
+                      00340         extern  _SSPCON1
+                      00341         extern  _SSP1STAT
+                      00342         extern  _SSPSTAT
+                      00343         extern  _SSP1ADD
+                      00344         extern  _SSPADD
+                      00345         extern  _SSP1BUF
+                      00346         extern  _SSPBUF
+                      00347         extern  _SSP1MSK
+                      00348         extern  _SSPMSK
+                      00349         extern  _SSP1CON3
+                      00350         extern  _SSPCON3
+                      00351         extern  _T1GCON
+                      00352         extern  _T1CON
+                      00353         extern  _TMR1
+                      00354         extern  _TMR1L
+                      00355         extern  _TMR1H
+                      00356         extern  _RCON
+                      00357         extern  _WDTCON
+                      00358         extern  _OSCCON2
+                      00359         extern  _OSCCON
+                      00360         extern  _T0CON
+gpasm-0.14.1 (Aug 21 2013)   ../../boards/Step25k/boardconfig.asm12-17-2018  16:01:24         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00361         extern  _TMR0
+                      00362         extern  _TMR0L
+                      00363         extern  _TMR0H
+                      00364         extern  _STATUS
+                      00365         extern  _FSR2L
+                      00366         extern  _FSR2H
+                      00367         extern  _PLUSW2
+                      00368         extern  _PREINC2
+                      00369         extern  _POSTDEC2
+                      00370         extern  _POSTINC2
+                      00371         extern  _INDF2
+                      00372         extern  _BSR
+                      00373         extern  _FSR1L
+                      00374         extern  _FSR1H
+                      00375         extern  _PLUSW1
+                      00376         extern  _PREINC1
+                      00377         extern  _POSTDEC1
+                      00378         extern  _POSTINC1
+                      00379         extern  _INDF1
+                      00380         extern  _WREG
+                      00381         extern  _FSR0L
+                      00382         extern  _FSR0H
+                      00383         extern  _PLUSW0
+                      00384         extern  _PREINC0
+                      00385         extern  _POSTDEC0
+                      00386         extern  _POSTINC0
+                      00387         extern  _INDF0
+                      00388         extern  _INTCON3
+                      00389         extern  _INTCON2
+                      00390         extern  _INTCON
+                      00391         extern  _PROD
+                      00392         extern  _PRODL
+                      00393         extern  _PRODH
+                      00394         extern  _TABLAT
+                      00395         extern  _TBLPTR
+                      00396         extern  _TBLPTRL
+                      00397         extern  _TBLPTRH
+                      00398         extern  _TBLPTRU
+                      00399         extern  _PC
+                      00400         extern  _PCL
+                      00401         extern  _PCLATH
+                      00402         extern  _PCLATU
+                      00403         extern  _STKPTR
+                      00404         extern  _TOS
+                      00405         extern  _TOSL
+                      00406         extern  _TOSH
+                      00407         extern  _TOSU
+                      00408 
+                      00409 ;--------------------------------------------------------
+                      00410 ; global & static initialisations
+                      00411 ;--------------------------------------------------------
+                      00412 ; I code from now on!
+                      00413 ; ; Starting pCode block
+gpasm-0.14.1 (Aug 21 2013)   ../../boards/Step25k/boardconfig.asm12-17-2018  16:01:24         PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00414 S_boardconfig__Setup    code
+000000                00415 _Setup:
+                      00416 ;       .line   24; ../../boards/Step25k/boardconfig.c  Generic26kSetup();
+000000 EC00 F000      00417         CALL    _Generic26kSetup
+000004 0012           00418         RETURN  
+                      00419 
+                      00420 ; ; Starting pCode block
+                      00421 S_boardconfig__Generic26kSetup  code
+000000                00422 _Generic26kSetup:
+                      00423 ;       .line   24; ../../boards/Step25k/../generic26kconfig.c  OSCCON=0b01110000;
+000000 0E70           00424         MOVLW   0x70
+000002 6E00           00425         MOVWF   _OSCCON
+                      00426 ;       .line   25; ../../boards/Step25k/../generic26kconfig.c  OSCTUNEbits.PLLEN=1;
+000004 8C00           00427         BSF     _OSCTUNEbits, 6
+000006 0100           00428         BANKSEL _ANSELCbits
+                      00429 ;       .line   27; ../../boards/Step25k/../generic26kconfig.c  ANSELCbits.ANSC7=0; //enable digital input buffer for RX pin
+000008 9F00           00430         BCF     _ANSELCbits, 7, B
+                      00431 ; #     MOVLW   0xff
+                      00432 ; #     MOVWF   _TRISA
+                      00433 ; #     MOVLW   0xff
+                      00434 ;       .line   29; ../../boards/Step25k/../generic26kconfig.c  TRISA=0xff;
+00000A 0EFF           00435         MOVLW   0xff
+                      00436 ;       .line   30; ../../boards/Step25k/../generic26kconfig.c  TRISB=0xff;
+00000C 6800           00437         SETF    _TRISA
+                      00438 ;       .line   31; ../../boards/Step25k/../generic26kconfig.c  TRISC=0xff;
+00000E 6800           00439         SETF    _TRISB
+                      00440 ; #     MOVLW   0xff
+                      00441 ; #     MOVWF   _TRISC
+                      00442 ; #     MOVLW   0xff
+                      00443 ;       .line   32; ../../boards/Step25k/../generic26kconfig.c  TRISE=0xff;
+000010 6800           00444         SETF    _TRISC
+000012 6800           00445         SETF    _TRISE
+                      00446 ;       .line   33; ../../boards/Step25k/../generic26kconfig.c  IOCB=0; //disable all 4 portB "interrupt on change"
+000014 6A00           00447         CLRF    _IOCB
+                      00448 ;       .line   34; ../../boards/Step25k/../generic26kconfig.c  INTCON2bits.RBPU=0; //enable PORTB weak pullups
+000016 9E00           00449         BCF     _INTCON2bits, 7
+000018 0012           00450         RETURN  
+                      00451 
+                      00452 
+                      00453 
+                      00454 ; Statistics:
+                      00455 ; code size:       32 (0x0020) bytes ( 0.02%)
+                      00456 ;                  16 (0x0010) words
+                      00457 ; udata size:       0 (0x0000) bytes ( 0.00%)
+                      00458 ; access size:      0 (0x0000) bytes
+                      00459 
+                      00460 
+                      00461         end
+gpasm-0.14.1 (Aug 21 2013)   ../../boards/Step25k/boardconfig.asm12-17-2018  16:01:24         PAGE 10
+
+
+SYMBOL TABLE
+  LABEL                             VALUE
+
+_ADCON0                           00000000
+_ADCON0bits                       00000000
+_ADCON1                           00000000
+_ADCON1bits                       00000000
+_ADCON2                           00000000
+_ADCON2bits                       00000000
+_ADRES                            00000000
+_ADRESH                           00000000
+_ADRESL                           00000000
+_ANSELA                           00000000
+_ANSELAbits                       00000000
+_ANSELB                           00000000
+_ANSELBbits                       00000000
+_ANSELC                           00000000
+_ANSELCbits                       00000000
+_BAUD1CON                         00000000
+_BAUD1CONbits                     00000000
+_BAUD2CON                         00000000
+_BAUD2CONbits                     00000000
+_BAUDCON                          00000000
+_BAUDCON1                         00000000
+_BAUDCON1bits                     00000000
+_BAUDCON2                         00000000
+_BAUDCON2bits                     00000000
+_BAUDCONbits                      00000000
+_BAUDCTL                          00000000
+_BAUDCTLbits                      00000000
+_BSR                              00000000
+_CCP1CON                          00000000
+_CCP1CONbits                      00000000
+_CCP2AS                           00000000
+_CCP2ASbits                       00000000
+_CCP2CON                          00000000
+_CCP2CONbits                      00000000
+_CCP3AS                           00000000
+_CCP3ASbits                       00000000
+_CCP3CON                          00000000
+_CCP3CONbits                      00000000
+_CCP4CON                          00000000
+_CCP4CONbits                      00000000
+_CCP5CON                          00000000
+_CCP5CONbits                      00000000
+_CCPR1                            00000000
+_CCPR1H                           00000000
+_CCPR1L                           00000000
+_CCPR2                            00000000
+_CCPR2H                           00000000
+_CCPR2L                           00000000
+_CCPR3                            00000000
+_CCPR3H                           00000000
+_CCPR3L                           00000000
+_CCPR4                            00000000
+_CCPR4H                           00000000
+gpasm-0.14.1 (Aug 21 2013)   ../../boards/Step25k/boardconfig.asm12-17-2018  16:01:24         PAGE 11
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_CCPR4L                           00000000
+_CCPR5                            00000000
+_CCPR5H                           00000000
+_CCPR5L                           00000000
+_CCPTMRS0                         00000000
+_CCPTMRS0bits                     00000000
+_CCPTMRS1                         00000000
+_CCPTMRS1bits                     00000000
+_CM12CON                          00000000
+_CM12CONbits                      00000000
+_CM1CON                           00000000
+_CM1CON0                          00000000
+_CM1CON0bits                      00000000
+_CM1CONbits                       00000000
+_CM2CON                           00000000
+_CM2CON0                          00000000
+_CM2CON0bits                      00000000
+_CM2CON1                          00000000
+_CM2CON1bits                      00000000
+_CM2CONbits                       00000000
+_CTMUCON0                         00000000
+_CTMUCON0bits                     00000000
+_CTMUCON1                         00000000
+_CTMUCON1bits                     00000000
+_CTMUCONH                         00000000
+_CTMUCONHbits                     00000000
+_CTMUCONL                         00000000
+_CTMUCONLbits                     00000000
+_CTMUICON                         00000000
+_CTMUICONH                        00000000
+_CTMUICONHbits                    00000000
+_CTMUICONbits                     00000000
+_DACCON0                          00000000
+_DACCON0bits                      00000000
+_DACCON1                          00000000
+_DACCON1bits                      00000000
+_DDRA                             00000000
+_DDRAbits                         00000000
+_DDRB                             00000000
+_DDRBbits                         00000000
+_DDRC                             00000000
+_DDRCbits                         00000000
+_ECCP1AS                          00000000
+_ECCP1ASbits                      00000000
+_ECCP2AS                          00000000
+_ECCP2ASbits                      00000000
+_ECCP3AS                          00000000
+_ECCP3ASbits                      00000000
+_ECCPAS                           00000000
+_ECCPASbits                       00000000
+_EEADR                            00000000
+_EEADRbits                        00000000
+_EECON1                           00000000
+gpasm-0.14.1 (Aug 21 2013)   ../../boards/Step25k/boardconfig.asm12-17-2018  16:01:24         PAGE 12
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_EECON1bits                       00000000
+_EECON2                           00000000
+_EEDATA                           00000000
+_FSR0H                            00000000
+_FSR0L                            00000000
+_FSR1H                            00000000
+_FSR1L                            00000000
+_FSR2H                            00000000
+_FSR2L                            00000000
+_FVRCON                           00000000
+_FVRCONbits                       00000000
+_Generic26kSetup                  00000000
+_HLVDCON                          00000000
+_HLVDCONbits                      00000000
+_INDF0                            00000000
+_INDF1                            00000000
+_INDF2                            00000000
+_INTCON                           00000000
+_INTCON2                          00000000
+_INTCON2bits                      00000000
+_INTCON3                          00000000
+_INTCON3bits                      00000000
+_INTCONbits                       00000000
+_IOCB                             00000000
+_IOCBbits                         00000000
+_IPR1                             00000000
+_IPR1bits                         00000000
+_IPR2                             00000000
+_IPR2bits                         00000000
+_IPR3                             00000000
+_IPR3bits                         00000000
+_IPR4                             00000000
+_IPR4bits                         00000000
+_IPR5                             00000000
+_IPR5bits                         00000000
+_LATA                             00000000
+_LATAbits                         00000000
+_LATB                             00000000
+_LATBbits                         00000000
+_LATC                             00000000
+_LATCbits                         00000000
+_LVDCON                           00000000
+_LVDCONbits                       00000000
+_OSCCON                           00000000
+_OSCCON2                          00000000
+_OSCCON2bits                      00000000
+_OSCCONbits                       00000000
+_OSCTUNE                          00000000
+_OSCTUNEbits                      00000000
+_PC                               00000000
+_PCL                              00000000
+_PCLATH                           00000000
+_PCLATU                           00000000
+gpasm-0.14.1 (Aug 21 2013)   ../../boards/Step25k/boardconfig.asm12-17-2018  16:01:24         PAGE 13
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_PIE1                             00000000
+_PIE1bits                         00000000
+_PIE2                             00000000
+_PIE2bits                         00000000
+_PIE3                             00000000
+_PIE3bits                         00000000
+_PIE4                             00000000
+_PIE4bits                         00000000
+_PIE5                             00000000
+_PIE5bits                         00000000
+_PIR1                             00000000
+_PIR1bits                         00000000
+_PIR2                             00000000
+_PIR2bits                         00000000
+_PIR3                             00000000
+_PIR3bits                         00000000
+_PIR4                             00000000
+_PIR4bits                         00000000
+_PIR5                             00000000
+_PIR5bits                         00000000
+_PLUSW0                           00000000
+_PLUSW1                           00000000
+_PLUSW2                           00000000
+_PMD0                             00000000
+_PMD0bits                         00000000
+_PMD1                             00000000
+_PMD1bits                         00000000
+_PMD2                             00000000
+_PMD2bits                         00000000
+_PORTA                            00000000
+_PORTAbits                        00000000
+_PORTB                            00000000
+_PORTBbits                        00000000
+_PORTC                            00000000
+_PORTCbits                        00000000
+_PORTE                            00000000
+_PORTEbits                        00000000
+_POSTDEC0                         00000000
+_POSTDEC1                         00000000
+_POSTDEC2                         00000000
+_POSTINC0                         00000000
+_POSTINC1                         00000000
+_POSTINC2                         00000000
+_PR2                              00000000
+_PR4                              00000000
+_PR6                              00000000
+_PREINC0                          00000000
+_PREINC1                          00000000
+_PREINC2                          00000000
+_PROD                             00000000
+_PRODH                            00000000
+_PRODL                            00000000
+_PSTR1CON                         00000000
+gpasm-0.14.1 (Aug 21 2013)   ../../boards/Step25k/boardconfig.asm12-17-2018  16:01:24         PAGE 14
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_PSTR1CONbits                     00000000
+_PSTR2CON                         00000000
+_PSTR2CONbits                     00000000
+_PSTR3CON                         00000000
+_PSTR3CONbits                     00000000
+_PSTRCON                          00000000
+_PSTRCONbits                      00000000
+_PWM1CON                          00000000
+_PWM1CONbits                      00000000
+_PWM2CON                          00000000
+_PWM2CONbits                      00000000
+_PWM3CON                          00000000
+_PWM3CONbits                      00000000
+_PWMCON                           00000000
+_PWMCONbits                       00000000
+_RC1REG                           00000000
+_RC1STA                           00000000
+_RC1STAbits                       00000000
+_RC2REG                           00000000
+_RC2STA                           00000000
+_RC2STAbits                       00000000
+_RCON                             00000000
+_RCONbits                         00000000
+_RCREG                            00000000
+_RCREG1                           00000000
+_RCREG2                           00000000
+_RCSTA                            00000000
+_RCSTA1                           00000000
+_RCSTA1bits                       00000000
+_RCSTA2                           00000000
+_RCSTA2bits                       00000000
+_RCSTAbits                        00000000
+_SLRCON                           00000000
+_SLRCONbits                       00000000
+_SP1BRG                           00000000
+_SP1BRGH                          00000000
+_SP2BRG                           00000000
+_SP2BRGH                          00000000
+_SPBRG                            00000000
+_SPBRG1                           00000000
+_SPBRG2                           00000000
+_SPBRGH                           00000000
+_SPBRGH1                          00000000
+_SPBRGH2                          00000000
+_SRCON0                           00000000
+_SRCON0bits                       00000000
+_SRCON1                           00000000
+_SRCON1bits                       00000000
+_SSP1ADD                          00000000
+_SSP1BUF                          00000000
+_SSP1CON1                         00000000
+_SSP1CON1bits                     00000000
+_SSP1CON2                         00000000
+gpasm-0.14.1 (Aug 21 2013)   ../../boards/Step25k/boardconfig.asm12-17-2018  16:01:24         PAGE 15
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_SSP1CON2bits                     00000000
+_SSP1CON3                         00000000
+_SSP1CON3bits                     00000000
+_SSP1MSK                          00000000
+_SSP1MSKbits                      00000000
+_SSP1STAT                         00000000
+_SSP1STATbits                     00000000
+_SSP2ADD                          00000000
+_SSP2BUF                          00000000
+_SSP2CON1                         00000000
+_SSP2CON1bits                     00000000
+_SSP2CON2                         00000000
+_SSP2CON2bits                     00000000
+_SSP2CON3                         00000000
+_SSP2CON3bits                     00000000
+_SSP2MSK                          00000000
+_SSP2MSKbits                      00000000
+_SSP2STAT                         00000000
+_SSP2STATbits                     00000000
+_SSPADD                           00000000
+_SSPBUF                           00000000
+_SSPCON1                          00000000
+_SSPCON1bits                      00000000
+_SSPCON2                          00000000
+_SSPCON2bits                      00000000
+_SSPCON3                          00000000
+_SSPCON3bits                      00000000
+_SSPMSK                           00000000
+_SSPMSKbits                       00000000
+_SSPSTAT                          00000000
+_SSPSTATbits                      00000000
+_STATUS                           00000000
+_STATUSbits                       00000000
+_STKPTR                           00000000
+_STKPTRbits                       00000000
+_Setup                            00000000
+_T0CON                            00000000
+_T0CONbits                        00000000
+_T1CON                            00000000
+_T1CONbits                        00000000
+_T1GCON                           00000000
+_T1GCONbits                       00000000
+_T2CON                            00000000
+_T2CONbits                        00000000
+_T3CON                            00000000
+_T3CONbits                        00000000
+_T3GCON                           00000000
+_T3GCONbits                       00000000
+_T4CON                            00000000
+_T4CONbits                        00000000
+_T5CON                            00000000
+_T5CONbits                        00000000
+_T5GCON                           00000000
+gpasm-0.14.1 (Aug 21 2013)   ../../boards/Step25k/boardconfig.asm12-17-2018  16:01:24         PAGE 16
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_T5GCONbits                       00000000
+_T6CON                            00000000
+_T6CONbits                        00000000
+_TABLAT                           00000000
+_TBLPTR                           00000000
+_TBLPTRH                          00000000
+_TBLPTRL                          00000000
+_TBLPTRU                          00000000
+_TMR0                             00000000
+_TMR0H                            00000000
+_TMR0L                            00000000
+_TMR1                             00000000
+_TMR1H                            00000000
+_TMR1L                            00000000
+_TMR2                             00000000
+_TMR3                             00000000
+_TMR3H                            00000000
+_TMR3L                            00000000
+_TMR4                             00000000
+_TMR5                             00000000
+_TMR5H                            00000000
+_TMR5L                            00000000
+_TMR6                             00000000
+_TOS                              00000000
+_TOSH                             00000000
+_TOSL                             00000000
+_TOSU                             00000000
+_TRISA                            00000000
+_TRISAbits                        00000000
+_TRISB                            00000000
+_TRISBbits                        00000000
+_TRISC                            00000000
+_TRISCbits                        00000000
+_TRISE                            00000000
+_TRISEbits                        00000000
+_TX1REG                           00000000
+_TX1STA                           00000000
+_TX1STAbits                       00000000
+_TX2REG                           00000000
+_TX2STA                           00000000
+_TX2STAbits                       00000000
+_TXREG                            00000000
+_TXREG1                           00000000
+_TXREG2                           00000000
+_TXSTA                            00000000
+_TXSTA1                           00000000
+_TXSTA1bits                       00000000
+_TXSTA2                           00000000
+_TXSTA2bits                       00000000
+_TXSTAbits                        00000000
+_VREFCON0                         00000000
+_VREFCON0bits                     00000000
+_VREFCON1                         00000000
+gpasm-0.14.1 (Aug 21 2013)   ../../boards/Step25k/boardconfig.asm12-17-2018  16:01:24         PAGE 17
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_VREFCON1bits                     00000000
+_VREFCON2                         00000000
+_VREFCON2bits                     00000000
+_WDTCON                           00000000
+_WDTCONbits                       00000000
+_WPUB                             00000000
+_WPUBbits                         00000000
+_WREG                             00000000
+__18F25K22                        00000001
+
+Errors   :     0
+Warnings :    11 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

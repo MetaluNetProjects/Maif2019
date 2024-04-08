@@ -1,0 +1,2977 @@
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;--------------------------------------------------------
+                      00002 ; File Created by SDCC : free open source ANSI-C Compiler
+                      00003 ; Version 3.2.1 #8447 (Jul 12 2013) (Linux)
+                      00004 ; This file was generated Fri Jan 13 11:36:10 2017
+                      00005 ;--------------------------------------------------------
+                      00006 ; PIC16 port for the Microchip 16-bit core micros
+                      00007 ;--------------------------------------------------------
+                      00008         list    p=18f26k22
+                      00009         radix   dec
+                      00010 
+                      00011 
+                      00012 ;--------------------------------------------------------
+                      00013 ; public variables in this module
+                      00014 ;--------------------------------------------------------
+                      00015         global  _FraiseState
+                      00016         global  _FrTXtries
+                      00017         global  _fraiseSetID
+                      00018         global  _fraiseInit
+                      00019         global  _fraiseSetInterruptEnable
+                      00020         global  _fraiseGetInterruptEnable
+                      00021         global  _fraiseSend
+                      00022         global  _fraiseISR
+                      00023         global  _fraiseGetChar
+                      00024         global  _fraisePeekChar
+                      00025         global  _fraiseGetLen
+                      00026         global  _fraiseGetIndex
+                      00027         global  _fraiseGetAt
+                      00028         global  _fraiseSendCopy
+                      00029         global  _fraiseService
+                      00030         global  _putchar
+                      00031         global  _FrTXbuf
+                      00032         global  _FrTXin
+                      00033         global  _FrTXout
+                      00034         global  _FrTXbufFree
+                      00035         global  _FrTXpacket
+                      00036         global  _FrTXpacket_i
+                      00037         global  _FrTXpacket_len
+                      00038         global  _FrTXchksum
+                      00039         global  _FrRXbuf
+                      00040         global  _FrRXchksum
+                      00041         global  _FrRXin
+                      00042         global  _FrRXin_tmp
+                      00043         global  _FrRXin_end
+                      00044         global  _FrRXout
+                      00045         global  _FrRXout_end
+                      00046         global  _FrRXout_len
+                      00047         global  _FrRXout_first
+                      00048         global  _FraiseStatus
+                      00049         global  _FrInterruptEnabled
+                      00050         global  _FrID
+                      00051         global  _txbuf
+                      00052         global  _txlen
+                      00053 
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00054 ;--------------------------------------------------------
+                      00055 ; extern variables in this module
+                      00056 ;--------------------------------------------------------
+                      00057         extern  __gptrget1
+                      00058         extern  _ANSELAbits
+                      00059         extern  _ANSELBbits
+                      00060         extern  _ANSELCbits
+                      00061         extern  _PMD2bits
+                      00062         extern  _PMD1bits
+                      00063         extern  _PMD0bits
+                      00064         extern  _DACCON1bits
+                      00065         extern  _VREFCON2bits
+                      00066         extern  _DACCON0bits
+                      00067         extern  _VREFCON1bits
+                      00068         extern  _FVRCONbits
+                      00069         extern  _VREFCON0bits
+                      00070         extern  _CTMUICONbits
+                      00071         extern  _CTMUICONHbits
+                      00072         extern  _CTMUCON1bits
+                      00073         extern  _CTMUCONLbits
+                      00074         extern  _CTMUCON0bits
+                      00075         extern  _CTMUCONHbits
+                      00076         extern  _SRCON1bits
+                      00077         extern  _SRCON0bits
+                      00078         extern  _CCPTMRS1bits
+                      00079         extern  _CCPTMRS0bits
+                      00080         extern  _T6CONbits
+                      00081         extern  _T5GCONbits
+                      00082         extern  _T5CONbits
+                      00083         extern  _T4CONbits
+                      00084         extern  _CCP5CONbits
+                      00085         extern  _CCP4CONbits
+                      00086         extern  _PSTR3CONbits
+                      00087         extern  _CCP3ASbits
+                      00088         extern  _ECCP3ASbits
+                      00089         extern  _PWM3CONbits
+                      00090         extern  _CCP3CONbits
+                      00091         extern  _SLRCONbits
+                      00092         extern  _WPUBbits
+                      00093         extern  _IOCBbits
+                      00094         extern  _PSTR2CONbits
+                      00095         extern  _CCP2ASbits
+                      00096         extern  _ECCP2ASbits
+                      00097         extern  _PWM2CONbits
+                      00098         extern  _CCP2CONbits
+                      00099         extern  _SSP2CON3bits
+                      00100         extern  _SSP2MSKbits
+                      00101         extern  _SSP2CON2bits
+                      00102         extern  _SSP2CON1bits
+                      00103         extern  _SSP2STATbits
+                      00104         extern  _BAUD2CONbits
+                      00105         extern  _BAUDCON2bits
+                      00106         extern  _RC2STAbits
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00107         extern  _RCSTA2bits
+                      00108         extern  _TX2STAbits
+                      00109         extern  _TXSTA2bits
+                      00110         extern  _CM12CONbits
+                      00111         extern  _CM2CON1bits
+                      00112         extern  _CM2CONbits
+                      00113         extern  _CM2CON0bits
+                      00114         extern  _CM1CONbits
+                      00115         extern  _CM1CON0bits
+                      00116         extern  _PIE4bits
+                      00117         extern  _PIR4bits
+                      00118         extern  _IPR4bits
+                      00119         extern  _PIE5bits
+                      00120         extern  _PIR5bits
+                      00121         extern  _IPR5bits
+                      00122         extern  _PORTAbits
+                      00123         extern  _PORTBbits
+                      00124         extern  _PORTCbits
+                      00125         extern  _PORTEbits
+                      00126         extern  _LATAbits
+                      00127         extern  _LATBbits
+                      00128         extern  _LATCbits
+                      00129         extern  _DDRAbits
+                      00130         extern  _TRISAbits
+                      00131         extern  _DDRBbits
+                      00132         extern  _TRISBbits
+                      00133         extern  _DDRCbits
+                      00134         extern  _TRISCbits
+                      00135         extern  _TRISEbits
+                      00136         extern  _OSCTUNEbits
+                      00137         extern  _HLVDCONbits
+                      00138         extern  _LVDCONbits
+                      00139         extern  _PIE1bits
+                      00140         extern  _PIR1bits
+                      00141         extern  _IPR1bits
+                      00142         extern  _PIE2bits
+                      00143         extern  _PIR2bits
+                      00144         extern  _IPR2bits
+                      00145         extern  _PIE3bits
+                      00146         extern  _PIR3bits
+                      00147         extern  _IPR3bits
+                      00148         extern  _EECON1bits
+                      00149         extern  _EEADRbits
+                      00150         extern  _EEADRHbits
+                      00151         extern  _RC1STAbits
+                      00152         extern  _RCSTAbits
+                      00153         extern  _RCSTA1bits
+                      00154         extern  _TX1STAbits
+                      00155         extern  _TXSTAbits
+                      00156         extern  _TXSTA1bits
+                      00157         extern  _T3CONbits
+                      00158         extern  _T3GCONbits
+                      00159         extern  _ECCP1ASbits
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00160         extern  _ECCPASbits
+                      00161         extern  _PWM1CONbits
+                      00162         extern  _PWMCONbits
+                      00163         extern  _BAUD1CONbits
+                      00164         extern  _BAUDCONbits
+                      00165         extern  _BAUDCON1bits
+                      00166         extern  _BAUDCTLbits
+                      00167         extern  _PSTR1CONbits
+                      00168         extern  _PSTRCONbits
+                      00169         extern  _T2CONbits
+                      00170         extern  _CCP1CONbits
+                      00171         extern  _ADCON2bits
+                      00172         extern  _ADCON1bits
+                      00173         extern  _ADCON0bits
+                      00174         extern  _SSP1CON2bits
+                      00175         extern  _SSPCON2bits
+                      00176         extern  _SSP1CON1bits
+                      00177         extern  _SSPCON1bits
+                      00178         extern  _SSP1STATbits
+                      00179         extern  _SSPSTATbits
+                      00180         extern  _SSP1MSKbits
+                      00181         extern  _SSPMSKbits
+                      00182         extern  _SSP1CON3bits
+                      00183         extern  _SSPCON3bits
+                      00184         extern  _T1GCONbits
+                      00185         extern  _T1CONbits
+                      00186         extern  _RCONbits
+                      00187         extern  _WDTCONbits
+                      00188         extern  _OSCCON2bits
+                      00189         extern  _OSCCONbits
+                      00190         extern  _T0CONbits
+                      00191         extern  _STATUSbits
+                      00192         extern  _INTCON3bits
+                      00193         extern  _INTCON2bits
+                      00194         extern  _INTCONbits
+                      00195         extern  _STKPTRbits
+                      00196         extern  _stdin
+                      00197         extern  _stdout
+                      00198         extern  _Now
+                      00199         extern  _PORTZ
+                      00200         extern  _PORTZbits
+                      00201         extern  _LATZ
+                      00202         extern  _LATZbits
+                      00203         extern  _TRICZ
+                      00204         extern  _TRISZbits
+                      00205         extern  _ANSELZ
+                      00206         extern  _ANSELZbits
+                      00207         extern  _ANSELA
+                      00208         extern  _ANSELB
+                      00209         extern  _ANSELC
+                      00210         extern  _PMD2
+                      00211         extern  _PMD1
+                      00212         extern  _PMD0
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00213         extern  _DACCON1
+                      00214         extern  _VREFCON2
+                      00215         extern  _DACCON0
+                      00216         extern  _VREFCON1
+                      00217         extern  _FVRCON
+                      00218         extern  _VREFCON0
+                      00219         extern  _CTMUICON
+                      00220         extern  _CTMUICONH
+                      00221         extern  _CTMUCON1
+                      00222         extern  _CTMUCONL
+                      00223         extern  _CTMUCON0
+                      00224         extern  _CTMUCONH
+                      00225         extern  _SRCON1
+                      00226         extern  _SRCON0
+                      00227         extern  _CCPTMRS1
+                      00228         extern  _CCPTMRS0
+                      00229         extern  _T6CON
+                      00230         extern  _PR6
+                      00231         extern  _TMR6
+                      00232         extern  _T5GCON
+                      00233         extern  _T5CON
+                      00234         extern  _TMR5
+                      00235         extern  _TMR5L
+                      00236         extern  _TMR5H
+                      00237         extern  _T4CON
+                      00238         extern  _PR4
+                      00239         extern  _TMR4
+                      00240         extern  _CCP5CON
+                      00241         extern  _CCPR5
+                      00242         extern  _CCPR5L
+                      00243         extern  _CCPR5H
+                      00244         extern  _CCP4CON
+                      00245         extern  _CCPR4
+                      00246         extern  _CCPR4L
+                      00247         extern  _CCPR4H
+                      00248         extern  _PSTR3CON
+                      00249         extern  _CCP3AS
+                      00250         extern  _ECCP3AS
+                      00251         extern  _PWM3CON
+                      00252         extern  _CCP3CON
+                      00253         extern  _CCPR3
+                      00254         extern  _CCPR3L
+                      00255         extern  _CCPR3H
+                      00256         extern  _SLRCON
+                      00257         extern  _WPUB
+                      00258         extern  _IOCB
+                      00259         extern  _PSTR2CON
+                      00260         extern  _CCP2AS
+                      00261         extern  _ECCP2AS
+                      00262         extern  _PWM2CON
+                      00263         extern  _CCP2CON
+                      00264         extern  _CCPR2
+                      00265         extern  _CCPR2L
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00266         extern  _CCPR2H
+                      00267         extern  _SSP2CON3
+                      00268         extern  _SSP2MSK
+                      00269         extern  _SSP2CON2
+                      00270         extern  _SSP2CON1
+                      00271         extern  _SSP2STAT
+                      00272         extern  _SSP2ADD
+                      00273         extern  _SSP2BUF
+                      00274         extern  _BAUD2CON
+                      00275         extern  _BAUDCON2
+                      00276         extern  _RC2STA
+                      00277         extern  _RCSTA2
+                      00278         extern  _TX2STA
+                      00279         extern  _TXSTA2
+                      00280         extern  _TX2REG
+                      00281         extern  _TXREG2
+                      00282         extern  _RC2REG
+                      00283         extern  _RCREG2
+                      00284         extern  _SP2BRG
+                      00285         extern  _SPBRG2
+                      00286         extern  _SP2BRGH
+                      00287         extern  _SPBRGH2
+                      00288         extern  _CM12CON
+                      00289         extern  _CM2CON1
+                      00290         extern  _CM2CON
+                      00291         extern  _CM2CON0
+                      00292         extern  _CM1CON
+                      00293         extern  _CM1CON0
+                      00294         extern  _PIE4
+                      00295         extern  _PIR4
+                      00296         extern  _IPR4
+                      00297         extern  _PIE5
+                      00298         extern  _PIR5
+                      00299         extern  _IPR5
+                      00300         extern  _PORTA
+                      00301         extern  _PORTB
+                      00302         extern  _PORTC
+                      00303         extern  _PORTE
+                      00304         extern  _LATA
+                      00305         extern  _LATB
+                      00306         extern  _LATC
+                      00307         extern  _DDRA
+                      00308         extern  _TRISA
+                      00309         extern  _DDRB
+                      00310         extern  _TRISB
+                      00311         extern  _DDRC
+                      00312         extern  _TRISC
+                      00313         extern  _TRISE
+                      00314         extern  _OSCTUNE
+                      00315         extern  _HLVDCON
+                      00316         extern  _LVDCON
+                      00317         extern  _PIE1
+                      00318         extern  _PIR1
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00319         extern  _IPR1
+                      00320         extern  _PIE2
+                      00321         extern  _PIR2
+                      00322         extern  _IPR2
+                      00323         extern  _PIE3
+                      00324         extern  _PIR3
+                      00325         extern  _IPR3
+                      00326         extern  _EECON1
+                      00327         extern  _EECON2
+                      00328         extern  _EEDATA
+                      00329         extern  _EEADR
+                      00330         extern  _EEADRH
+                      00331         extern  _RC1STA
+                      00332         extern  _RCSTA
+                      00333         extern  _RCSTA1
+                      00334         extern  _TX1STA
+                      00335         extern  _TXSTA
+                      00336         extern  _TXSTA1
+                      00337         extern  _TX1REG
+                      00338         extern  _TXREG
+                      00339         extern  _TXREG1
+                      00340         extern  _RC1REG
+                      00341         extern  _RCREG
+                      00342         extern  _RCREG1
+                      00343         extern  _SP1BRG
+                      00344         extern  _SPBRG
+                      00345         extern  _SPBRG1
+                      00346         extern  _SP1BRGH
+                      00347         extern  _SPBRGH
+                      00348         extern  _SPBRGH1
+                      00349         extern  _T3CON
+                      00350         extern  _TMR3
+                      00351         extern  _TMR3L
+                      00352         extern  _TMR3H
+                      00353         extern  _T3GCON
+                      00354         extern  _ECCP1AS
+                      00355         extern  _ECCPAS
+                      00356         extern  _PWM1CON
+                      00357         extern  _PWMCON
+                      00358         extern  _BAUD1CON
+                      00359         extern  _BAUDCON
+                      00360         extern  _BAUDCON1
+                      00361         extern  _BAUDCTL
+                      00362         extern  _PSTR1CON
+                      00363         extern  _PSTRCON
+                      00364         extern  _T2CON
+                      00365         extern  _PR2
+                      00366         extern  _TMR2
+                      00367         extern  _CCP1CON
+                      00368         extern  _CCPR1
+                      00369         extern  _CCPR1L
+                      00370         extern  _CCPR1H
+                      00371         extern  _ADCON2
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00372         extern  _ADCON1
+                      00373         extern  _ADCON0
+                      00374         extern  _ADRES
+                      00375         extern  _ADRESL
+                      00376         extern  _ADRESH
+                      00377         extern  _SSP1CON2
+                      00378         extern  _SSPCON2
+                      00379         extern  _SSP1CON1
+                      00380         extern  _SSPCON1
+                      00381         extern  _SSP1STAT
+                      00382         extern  _SSPSTAT
+                      00383         extern  _SSP1ADD
+                      00384         extern  _SSPADD
+                      00385         extern  _SSP1BUF
+                      00386         extern  _SSPBUF
+                      00387         extern  _SSP1MSK
+                      00388         extern  _SSPMSK
+                      00389         extern  _SSP1CON3
+                      00390         extern  _SSPCON3
+                      00391         extern  _T1GCON
+                      00392         extern  _T1CON
+                      00393         extern  _TMR1
+                      00394         extern  _TMR1L
+                      00395         extern  _TMR1H
+                      00396         extern  _RCON
+                      00397         extern  _WDTCON
+                      00398         extern  _OSCCON2
+                      00399         extern  _OSCCON
+                      00400         extern  _T0CON
+                      00401         extern  _TMR0
+                      00402         extern  _TMR0L
+                      00403         extern  _TMR0H
+                      00404         extern  _STATUS
+                      00405         extern  _FSR2L
+                      00406         extern  _FSR2H
+                      00407         extern  _PLUSW2
+                      00408         extern  _PREINC2
+                      00409         extern  _POSTDEC2
+                      00410         extern  _POSTINC2
+                      00411         extern  _INDF2
+                      00412         extern  _BSR
+                      00413         extern  _FSR1L
+                      00414         extern  _FSR1H
+                      00415         extern  _PLUSW1
+                      00416         extern  _PREINC1
+                      00417         extern  _POSTDEC1
+                      00418         extern  _POSTINC1
+                      00419         extern  _INDF1
+                      00420         extern  _WREG
+                      00421         extern  _FSR0L
+                      00422         extern  _FSR0H
+                      00423         extern  _PLUSW0
+                      00424         extern  _PREINC0
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00425         extern  _POSTDEC0
+                      00426         extern  _POSTINC0
+                      00427         extern  _INDF0
+                      00428         extern  _INTCON3
+                      00429         extern  _INTCON2
+                      00430         extern  _INTCON
+                      00431         extern  _PROD
+                      00432         extern  _PRODL
+                      00433         extern  _PRODH
+                      00434         extern  _TABLAT
+                      00435         extern  _TBLPTR
+                      00436         extern  _TBLPTRL
+                      00437         extern  _TBLPTRH
+                      00438         extern  _TBLPTRU
+                      00439         extern  _PC
+                      00440         extern  _PCL
+                      00441         extern  _PCLATH
+                      00442         extern  _PCLATU
+                      00443         extern  _STKPTR
+                      00444         extern  _TOS
+                      00445         extern  _TOSL
+                      00446         extern  _TOSH
+                      00447         extern  _TOSU
+                      00448         extern  _printf
+                      00449         extern  _eeWriteByte
+                      00450         extern  _eeReadByte
+                      00451         extern  _fraiseReceiveChar
+                      00452         extern  _fraiseReceive
+                      00453         extern  __modsint
+                      00454 
+                      00455 ;--------------------------------------------------------
+                      00456 ;       Equates to used internal registers
+                      00457 ;--------------------------------------------------------
+  00000FD8            00458 STATUS  equ     0xfd8
+  00000FE8            00459 WREG    equ     0xfe8
+  00000FE9            00460 FSR0L   equ     0xfe9
+  00000FEA            00461 FSR0H   equ     0xfea
+  00000FE1            00462 FSR1L   equ     0xfe1
+  00000FD9            00463 FSR2L   equ     0xfd9
+  00000FEF            00464 INDF0   equ     0xfef
+  00000FE6            00465 POSTINC1        equ     0xfe6
+  00000FE5            00466 POSTDEC1        equ     0xfe5
+  00000FE4            00467 PREINC1 equ     0xfe4
+  00000FDB            00468 PLUSW2  equ     0xfdb
+  00000FF3            00469 PRODL   equ     0xff3
+                      00470 
+                      00471 
+                      00472         idata
+000000                00473 _FrTXin db      0x00
+000001                00474 _FrTXout        db      0x00
+000002                00475 _FrTXbufFree    db      0xff
+000003                00476 _FrInterruptEnabled     db      0x00
+000004                00477 _FrID   db      0x00
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 10
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000005                00478 _txlen  db      0x00
+                      00479 
+                      00480 
+                      00481 ; Internal registers
+                      00482 .registers      udata_ovr       0x0000
+000000                00483 r0x00   res     1
+000001                00484 r0x01   res     1
+000002                00485 r0x02   res     1
+000003                00486 r0x03   res     1
+000004                00487 r0x04   res     1
+000005                00488 r0x05   res     1
+000006                00489 r0x06   res     1
+000007                00490 r0x07   res     1
+                      00491 
+                      00492 udata_fraisedevice_0    udata
+000000                00493 _FrTXtries      res     1
+                      00494 
+                      00495 udata_fraisedevice_1    udata
+000000                00496 _FraiseState    res     1
+                      00497 
+                      00498 udata_fraisedevice_2    udata
+000000                00499 _fraiseISR_c_1_105      res     1
+                      00500 
+                      00501 udata_fraisedevice_3    udata
+000000                00502 _fraiseISR_c2_1_105     res     1
+                      00503 
+                      00504 udata_fraisedevice_4    udata
+000000                00505 _FrRXin res     1
+                      00506 
+                      00507 udata_fraisedevice_5    udata
+000000                00508 _FrRXout        res     1
+                      00509 
+                      00510 udata_fraisedevice_6    udata
+000000                00511 _FrTXpacket_len res     1
+                      00512 
+                      00513 udata_fraisedevice_7    udata
+000000                00514 _FraiseStatus   res     1
+                      00515 
+                      00516 udata_fraisedevice_8    udata
+000000                00517 _FrTXbuf        res     256
+                      00518 
+                      00519 udata_fraisedevice_9    udata
+000000                00520 _FrTXchksum     res     1
+                      00521 
+                      00522 udata_fraisedevice_10   udata
+000000                00523 _FrTXpacket_i   res     1
+                      00524 
+                      00525 udata_fraisedevice_11   udata
+000000                00526 _fraiseDecodeNextTXPacket_ischar_1_91   res     1
+                      00527 
+                      00528 udata_fraisedevice_12   udata
+000000                00529 _FrTXpacket     res     35
+                      00530 
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 11
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00531 udata_fraisedevice_13   udata
+000000                00532 _FrRXchksum     res     1
+                      00533 
+                      00534 udata_fraisedevice_14   udata
+000000                00535 _FrRXin_tmp     res     1
+                      00536 
+                      00537 udata_fraisedevice_15   udata
+000000                00538 _FrRXin_end     res     1
+                      00539 
+                      00540 udata_fraisedevice_16   udata
+000000                00541 _FrRXbuf        res     128
+                      00542 
+                      00543 udata_fraisedevice_17   udata
+000000                00544 _FrRXout_end    res     1
+                      00545 
+                      00546 udata_fraisedevice_18   udata
+000000                00547 _FrRXout_len    res     1
+                      00548 
+                      00549 udata_fraisedevice_19   udata
+000000                00550 _FrRXout_first  res     1
+                      00551 
+                      00552 udata_fraisedevice_20   udata
+000000                00553 _txbuf  res     35
+                      00554 
+                      00555 ;--------------------------------------------------------
+                      00556 ; global & static initialisations
+                      00557 ;--------------------------------------------------------
+                      00558 ; I code from now on!
+                      00559 ; ; Starting pCode block
+                      00560 S_fraisedevice__putchar code
+000000                00561 _putchar:
+                      00562 ;       .line   722; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       PUTCHAR (c) {
+000000 C000 FFE5      00563         MOVFF   r0x00, POSTDEC1
+000004 C000 FFE5      00564         MOVFF   r0x01, POSTDEC1
+000008 C000 FFE5      00565         MOVFF   r0x02, POSTDEC1
+00000C 6E00           00566         MOVWF   r0x00
+                      00567 ;       .line   723; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       txbuf[txlen] = c;
+00000E 0E00           00568         MOVLW   LOW(_txbuf)
+000010 0100           00569         BANKSEL _txlen
+000012 2500           00570         ADDWF   _txlen, W, B
+000014 6E00           00571         MOVWF   r0x01
+000016 6A00           00572         CLRF    r0x02
+000018 0E00           00573         MOVLW   HIGH(_txbuf)
+00001A 2200           00574         ADDWFC  r0x02, F
+00001C C000 FFE9      00575         MOVFF   r0x01, FSR0L
+000020 C000 FFEA      00576         MOVFF   r0x02, FSR0H
+000024 C000 FFEF      00577         MOVFF   r0x00, INDF0
+                      00578 ;       .line   724; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(txlen < (sizeof(txbuf) - 1)) txlen++;
+000028 0E22           00579         MOVLW   0x22
+                      00580 ; #     SUBWF   _txlen, W, B
+                      00581 ; #     BTFSC   STATUS, 0
+                      00582 ; #     GOTO    _00708_DS_
+                      00583 ; #     INCF    _txlen, F, B
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 12
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00584 ; #     MOVF    r0x00, W
+                      00585 ; removed redundant BANKSEL
+                      00586 ;       .line   725; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(c == '\n') {
+00002A 5D00           00587         SUBWF   _txlen, W, B
+00002C E200           00588         BC      _10707_DS_
+                      00589 ; removed redundant BANKSEL
+00002E 2B00           00590         INCF    _txlen, F, B
+000030                00591 _10707_DS_:
+000030 5000           00592         MOVF    r0x00, W
+000032 0A0A           00593         XORLW   0x0a
+000034 E100           00594         BNZ     _00711_DS_
+000036                00595 _00721_DS_:
+000036 0100           00596         BANKSEL _txlen
+                      00597 ;       .line   726; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       fraiseSend(txbuf, txlen);
+000038 5100           00598         MOVF    _txlen, W, B
+00003A 6EE5           00599         MOVWF   POSTDEC1
+00003C 0E80           00600         MOVLW   0x80
+00003E 6EE5           00601         MOVWF   POSTDEC1
+000040 0E00           00602         MOVLW   HIGH(_txbuf)
+000042 6EE5           00603         MOVWF   POSTDEC1
+000044 0E00           00604         MOVLW   LOW(_txbuf)
+000046 6EE5           00605         MOVWF   POSTDEC1
+000048 EC00 F000      00606         CALL    _fraiseSend
+00004C 0E04           00607         MOVLW   0x04
+00004E 26E1           00608         ADDWF   FSR1L, F
+000050 0100           00609         BANKSEL _txlen
+                      00610 ;       .line   727; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       txlen = 0;
+000052 6B00           00611         CLRF    _txlen, B
+000054                00612 _00711_DS_:
+000054 CFE4 F000      00613         MOVFF   PREINC1, r0x02
+000058 CFE4 F000      00614         MOVFF   PREINC1, r0x01
+00005C CFE4 F000      00615         MOVFF   PREINC1, r0x00
+000060 0012           00616         RETURN  
+                      00617 
+                      00618 ; ; Starting pCode block
+                      00619 S_fraisedevice__fraiseService   code
+000000                00620 _fraiseService:
+                      00621 ;       .line   642; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       void fraiseService(void)
+000000 C000 FFE5      00622         MOVFF   r0x00, POSTDEC1
+000004 C000 FFE5      00623         MOVFF   r0x01, POSTDEC1
+000008 C000 FFE5      00624         MOVFF   r0x02, POSTDEC1
+00000C C000 FFE5      00625         MOVFF   r0x03, POSTDEC1
+000010 C000 FFE5      00626         MOVFF   r0x04, POSTDEC1
+000014 0100           00627         BANKSEL _FrRXout
+                      00628 ;       .line   646; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(FrRXout != FrRXin) //FraiseStatus.RX_FULL
+000016 5100           00629         MOVF    _FrRXout, W, B
+000018 0100           00630         BANKSEL _FrRXin
+00001A 1900           00631         XORWF   _FrRXin, W, B
+00001C E100           00632         BNZ     _00685_DS_
+00001E D000           00633         BRA     _00631_DS_
+000020                00634 _00685_DS_:
+                      00635 ;       .line   648; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c = FrRXout;
+000020 C000 F000      00636         MOVFF   _FrRXout, r0x00
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 13
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00637 ;       .line   649; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c += 1;
+000024 2A00           00638         INCF    r0x00, F
+                      00639 ;       .line   650; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c %= sizeof(FrRXbuf);
+000026 9E00           00640         BCF     r0x00, 7
+                      00641 ;       .line   651; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXout_len = FrRXbuf[c];
+000028 0E00           00642         MOVLW   LOW(_FrRXbuf)
+00002A 2400           00643         ADDWF   r0x00, W
+00002C 6E00           00644         MOVWF   r0x01
+00002E 6A00           00645         CLRF    r0x02
+000030 0E00           00646         MOVLW   HIGH(_FrRXbuf)
+000032 2200           00647         ADDWFC  r0x02, F
+000034 C000 FFE9      00648         MOVFF   r0x01, FSR0L
+000038 C000 FFEA      00649         MOVFF   r0x02, FSR0H
+00003C CFEF F000      00650         MOVFF   INDF0, _FrRXout_len
+                      00651 ;       .line   652; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXout_len &= 31;
+000040 0E1F           00652         MOVLW   0x1f
+000042 0100           00653         BANKSEL _FrRXout_len
+000044 1700           00654         ANDWF   _FrRXout_len, F, B
+                      00655 ;       .line   654; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXout_end = FrRXout;
+000046 C000 F000      00656         MOVFF   _FrRXout, _FrRXout_end
+                      00657 ; removed redundant BANKSEL
+                      00658 ;       .line   655; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXout_end += FrRXout_len;
+00004A 5100           00659         MOVF    _FrRXout_len, W, B
+00004C 0100           00660         BANKSEL _FrRXout_end
+00004E 2700           00661         ADDWF   _FrRXout_end, F, B
+                      00662 ;       .line   656; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXout_end += 2;
+000050 2B00           00663         INCF    _FrRXout_end, F, B
+000052 2B00           00664         INCF    _FrRXout_end, F, B
+                      00665 ;       .line   657; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXout_end %= sizeof(FrRXbuf);
+000054 9F00           00666         BCF     _FrRXout_end, 7, B
+                      00667 ;       .line   659; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       isbroadcast = (fraiseGetChar() == 0);
+000056 EC00 F000      00668         CALL    _fraiseGetChar
+00005A 6E00           00669         MOVWF   r0x01
+00005C 5000           00670         MOVF    r0x01, W
+00005E E100           00671         BNZ     _00689_DS_
+000060 6A00           00672         CLRF    r0x01
+000062 2A00           00673         INCF    r0x01, F
+000064 D000           00674         BRA     _00690_DS_
+000066                00675 _00689_DS_:
+000066 6A00           00676         CLRF    r0x01
+000068                00677 _00690_DS_:
+                      00678 ;       .line   660; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXout_len = fraiseGetChar();
+000068 EC00 F000      00679         CALL    _fraiseGetChar
+00006C 0100           00680         BANKSEL _FrRXout_len
+00006E 6F00           00681         MOVWF   _FrRXout_len, B
+                      00682 ;       .line   661; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       ischar = FrRXout_len & 128;
+000070 0E80           00683         MOVLW   0x80
+                      00684 ; removed redundant BANKSEL
+000072 1500           00685         ANDWF   _FrRXout_len, W, B
+000074 6E00           00686         MOVWF   r0x02
+                      00687 ;       .line   663; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(!(FrRXout_len &= 31)){ //packet error
+000076 0E1F           00688         MOVLW   0x1f
+                      00689 ; removed redundant BANKSEL
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 14
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000078 1500           00690         ANDWF   _FrRXout_len, W, B
+00007A 6E00           00691         MOVWF   r0x03
+00007C C000 F000      00692         MOVFF   r0x03, r0x04
+000080 C000 F000      00693         MOVFF   r0x03, _FrRXout_len
+000084 5000           00694         MOVF    r0x04, W
+000086 E100           00695         BNZ     _00609_DS_
+                      00696 ;       .line   664; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXout = FrRXin;
+000088 C000 F000      00697         MOVFF   _FrRXin, _FrRXout
+                      00698 ;       .line   665; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return;
+00008C D000           00699         BRA     _00640_DS_
+00008E                00700 _00609_DS_:
+                      00701 ;       .line   668; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(isbroadcast) //Broadcast packet
+00008E 5000           00702         MOVF    r0x01, W
+000090 E000           00703         BZ      _00627_DS_
+                      00704 ;       .line   670; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(ischar){
+000092 5000           00705         MOVF    r0x02, W
+000094 E000           00706         BZ      _00629_DS_
+                      00707 ;       .line   671; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c = fraiseGetChar();
+000096 EC00 F000      00708         CALL    _fraiseGetChar
+00009A 6E00           00709         MOVWF   r0x00
+00009C 0100           00710         BANKSEL _FrRXout_len
+                      00711 ;       .line   672; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXout_len -= 1;
+00009E 0700           00712         DECF    _FrRXout_len, F, B
+                      00713 ;       .line   673; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if     (c == 'B') {
+0000A0 5000           00714         MOVF    r0x00, W
+0000A2 0A42           00715         XORLW   0x42
+0000A4 E000           00716         BZ      _00629_DS_
+                      00717 ;       .line   678; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       else if(c == 'N') Assign();             /* assign to id if name matchs */
+0000A6 5000           00718         MOVF    r0x00, W
+0000A8 0A4E           00719         XORLW   0x4e
+0000AA E100           00720         BNZ     _00616_DS_
+0000AC EC00 F000      00721         CALL    _Assign
+0000B0 D000           00722         BRA     _00629_DS_
+0000B2                00723 _00616_DS_:
+                      00724 ;       .line   679; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       else if(c == 'F') ResetToBld(); /* goto Fraisebootloader if name matchs */
+0000B2 5000           00725         MOVF    r0x00, W
+0000B4 0A46           00726         XORLW   0x46
+0000B6 E100           00727         BNZ     _00613_DS_
+0000B8 EC00 F000      00728         CALL    _ResetToBld
+0000BC D000           00729         BRA     _00629_DS_
+0000BE                00730 _00613_DS_:
+                      00731 ;       .line   680; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       else if(c == 'I') __asm reset __endasm; //init
+0000BE 5000           00732         MOVF    r0x00, W
+0000C0 0A49           00733         XORLW   0x49
+0000C2 E100           00734         BNZ     _00629_DS_
+0000C4                00735 _00700_DS_:
+0000C4 00FF           00736         reset 
+0000C6 D000           00737         BRA     _00629_DS_
+0000C8                00738 _00627_DS_:
+                      00739 ;       .line   688; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXout_first = FrRXout;
+0000C8 C000 F000      00740         MOVFF   _FrRXout, _FrRXout_first
+                      00741 ;       .line   689; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(ischar) {
+0000CC 5000           00742         MOVF    r0x02, W
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 15
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0000CE E000           00743         BZ      _00624_DS_
+                      00744 ;       .line   691; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       fraiseReceiveChar();
+0000D0 EC00 F000      00745         CALL    _fraiseReceiveChar
+0000D4 D000           00746         BRA     _00629_DS_
+0000D6                00747 _00624_DS_:
+                      00748 ;       .line   695; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       else fraiseReceive();
+0000D6 EC00 F000      00749         CALL    _fraiseReceive
+0000DA                00750 _00629_DS_:
+                      00751 ;       .line   702; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXout = FrRXout_end;
+0000DA C000 F000      00752         MOVFF   _FrRXout_end, _FrRXout
+0000DE                00753 _00631_DS_:
+0000DE 0100           00754         BANKSEL _FrTXin
+                      00755 ;       .line   705; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if((!FrTXempty) && (!FrTXpacket_len)) { // if there is sth to send to master and nothing in TXpacket :
+0000E0 5100           00756         MOVF    _FrTXin, W, B
+0000E2 0100           00757         BANKSEL _FrTXout
+0000E4 1900           00758         XORWF   _FrTXout, W, B
+0000E6 E000           00759         BZ      _00637_DS_
+0000E8                00760 _00702_DS_:
+0000E8 0100           00761         BANKSEL _FrTXpacket_len
+0000EA 5100           00762         MOVF    _FrTXpacket_len, W, B
+0000EC E100           00763         BNZ     _00637_DS_
+                      00764 ;       .line   706; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       fraiseDecodeNextTXPacket();
+0000EE EC00 F000      00765         CALL    _fraiseDecodeNextTXPacket
+0000F2 D000           00766         BRA     _00640_DS_
+0000F4                00767 _00637_DS_:
+                      00768 ;       .line   708; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       else if(Serial_Is_Driver() && (!FrTXpacket_len) && TXSTAxbits.TRMT)// security:
+0000F4 B000           00769         BTFSC   _LATCbits, 0
+0000F6 D000           00770         BRA     _00640_DS_
+0000F8 0100           00771         BANKSEL _FrTXpacket_len
+0000FA 5100           00772         MOVF    _FrTXpacket_len, W, B
+                      00773 ;       .line   709; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       Serial_Init_Receiver();
+0000FC E100           00774         BNZ     _00640_DS_
+                      00775 ; #     GOTO    _00640_DS_
+                      00776 ; #     BTFSS   _TXSTAbits, 1
+                      00777 ; #     GOTO    _00640_DS_
+                      00778 ; #     CALL    _Serial_Init_Receiver
+                      00779 ; #; info ==> [localregs] exit begin
+                      00780 
+                      00781 ; #     MOVFF   PREINC1, r0x04
+                      00782 ;       .line   711; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return; 
+0000FE B200           00783         BTFSC   _TXSTAbits, 1
+000100 EC00 F000      00784         CALL    _Serial_Init_Receiver
+000104                00785 _00640_DS_:
+000104 CFE4 F000      00786         MOVFF   PREINC1, r0x04
+000108 CFE4 F000      00787         MOVFF   PREINC1, r0x03
+00010C CFE4 F000      00788         MOVFF   PREINC1, r0x02
+000110 CFE4 F000      00789         MOVFF   PREINC1, r0x01
+000114 CFE4 F000      00790         MOVFF   PREINC1, r0x00
+000118 0012           00791         RETURN  
+                      00792 
+                      00793 ; ; Starting pCode block
+                      00794 S_fraisedevice__ResetToBld      code
+000000                00795 _ResetToBld:
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 16
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00796 ;       .line   632; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       static void ResetToBld() //"F" command
+000000 C000 FFE5      00797         MOVFF   r0x00, POSTDEC1
+                      00798 ;       .line   634; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(CompareName()) return;
+000004 EC00 F000      00799         CALL    _CompareName
+000008 6E00           00800         MOVWF   r0x00
+00000A 5000           00801         MOVF    r0x00, W
+00000C E100           00802         BNZ     _00603_DS_
+00000E                00803 _00602_DS_:
+00000E 00FF           00804         reset 
+000010                00805 _00603_DS_:
+000010 CFE4 F000      00806         MOVFF   PREINC1, r0x00
+000014 0012           00807         RETURN  
+                      00808 
+                      00809 ; ; Starting pCode block
+                      00810 S_fraisedevice__Assign  code
+000000                00811 _Assign:
+                      00812 ;       .line   613; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       static void Assign() //"N" command
+000000 C000 FFE5      00813         MOVFF   r0x00, POSTDEC1
+000004 C000 FFE5      00814         MOVFF   r0x01, POSTDEC1
+000008 C000 FFE5      00815         MOVFF   r0x02, POSTDEC1
+                      00816 ;       .line   617; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c = fraiseGetChar();
+00000C EC00 F000      00817         CALL    _fraiseGetChar
+000010 6E00           00818         MOVWF   r0x00
+                      00819 ;       .line   618; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c2 = fraiseGetChar();
+000012 EC00 F000      00820         CALL    _fraiseGetChar
+000016 6E00           00821         MOVWF   r0x01
+                      00822 ;       .line   619; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c -= '0'; if (c > 9) c -= 'A' - '9' - 1;
+000018 5000           00823         MOVF    r0x00, W
+00001A 6E00           00824         MOVWF   r0x02
+00001C 0ED0           00825         MOVLW   0xd0
+00001E 2400           00826         ADDWF   r0x02, W
+000020 6E00           00827         MOVWF   r0x00
+000022 0E0A           00828         MOVLW   0x0a
+000024 5C00           00829         SUBWF   r0x00, W
+000026 E300           00830         BNC     _00571_DS_
+000028 5000           00831         MOVF    r0x00, W
+00002A 6E00           00832         MOVWF   r0x02
+00002C 0EF9           00833         MOVLW   0xf9
+00002E 2400           00834         ADDWF   r0x02, W
+000030 6E00           00835         MOVWF   r0x00
+000032                00836 _00571_DS_:
+                      00837 ;       .line   620; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c2 -= '0'; if (c2 > 9) c2 -= 'A' - '9' - 1;
+000032 5000           00838         MOVF    r0x01, W
+000034 6E00           00839         MOVWF   r0x02
+000036 0ED0           00840         MOVLW   0xd0
+000038 2400           00841         ADDWF   r0x02, W
+00003A 6E00           00842         MOVWF   r0x01
+00003C 0E0A           00843         MOVLW   0x0a
+00003E 5C00           00844         SUBWF   r0x01, W
+000040 E300           00845         BNC     _00573_DS_
+000042 5000           00846         MOVF    r0x01, W
+000044 6E00           00847         MOVWF   r0x02
+000046 0EF9           00848         MOVLW   0xf9
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 17
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000048 2400           00849         ADDWF   r0x02, W
+00004A 6E00           00850         MOVWF   r0x01
+00004C                00851 _00573_DS_:
+                      00852 ;       .line   621; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if((c > 7) || (c2 > 15)) { // bad id... discard
+00004C 0E08           00853         MOVLW   0x08
+00004E 5C00           00854         SUBWF   r0x00, W
+000050 E200           00855         BC      _00579_DS_
+000052 0E10           00856         MOVLW   0x10
+                      00857 ; #     SUBWF   r0x01, W
+                      00858 ; #     BTFSS   STATUS, 0
+                      00859 ; #     GOTO    _00575_DS_
+                      00860 ; #     GOTO    _00579_DS_
+                      00861 ; #     SWAPF   r0x00, W
+                      00862 ;       .line   622; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return; 
+000054 5C00           00863         SUBWF   r0x01, W
+                      00864 ;       .line   624; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       tmpid = c2 + (c << 4);
+000056 B0D8           00865         BTFSC   STATUS, 0
+000058                00866 _00574_DS_:
+000058 D000           00867         BRA     _00579_DS_
+00005A 3800           00868         SWAPF   r0x00, W
+00005C 0BF0           00869         ANDLW   0xf0
+                      00870 ; #     MOVWF   r0x02
+                      00871 ; #     MOVF    r0x02, W
+00005E 2400           00872         ADDWF   r0x01, W
+000060 6E00           00873         MOVWF   r0x00
+                      00874 ;       .line   626; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(CompareName()) return;
+000062 EC00 F000      00875         CALL    _CompareName
+000066 6E00           00876         MOVWF   r0x01
+                      00877 ; #     MOVF    r0x01, W
+                      00878 ; #     BTFSC   STATUS, 2
+                      00879 ; #     GOTO    _00578_DS_
+                      00880 ; #     GOTO    _00579_DS_
+                      00881 ; #     MOVF    r0x00, W
+                      00882 ;       .line   628; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       fraiseSetID(tmpid);
+000068 5000           00883         MOVF    r0x01, W
+00006A E100           00884         BNZ     _00579_DS_
+00006C 5000           00885         MOVF    r0x00, W
+00006E 6EE5           00886         MOVWF   POSTDEC1
+000070 EC00 F000      00887         CALL    _fraiseSetID
+000074 52E6           00888         MOVF    POSTINC1, F
+000076                00889 _00579_DS_:
+                      00890 ;       .line   629; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return;
+000076 CFE4 F000      00891         MOVFF   PREINC1, r0x02
+00007A CFE4 F000      00892         MOVFF   PREINC1, r0x01
+00007E CFE4 F000      00893         MOVFF   PREINC1, r0x00
+000082 0012           00894         RETURN  
+                      00895 
+                      00896 ; ; Starting pCode block
+                      00897 S_fraisedevice__CompareName     code
+000000                00898 _CompareName:
+                      00899 ;       .line   581; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       static char CompareName() 
+000000 C000 FFE5      00900         MOVFF   r0x00, POSTDEC1
+000004 C000 FFE5      00901         MOVFF   r0x01, POSTDEC1
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 18
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000008 C000 FFE5      00902         MOVFF   r0x02, POSTDEC1
+                      00903 ;       .line   585; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       eei = EE_PREFIX;
+00000C 0E01           00904         MOVLW   0x01
+00000E 6E00           00905         MOVWF   r0x00
+000010                00906 _00536_DS_:
+                      00907 ;       .line   586; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       while(c = fraiseGetChar()){
+000010 EC00 F000      00908         CALL    _fraiseGetChar
+000014 6E00           00909         MOVWF   r0x01
+000016 C000 F000      00910         MOVFF   r0x01, r0x02
+00001A 5000           00911         MOVF    r0x01, W
+00001C E000           00912         BZ      _00538_DS_
+                      00913 ;       .line   587; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c2 = eeReadByte(eei);
+00001E 5000           00914         MOVF    r0x00, W
+000020 6EE5           00915         MOVWF   POSTDEC1
+000022 EC00 F000      00916         CALL    _eeReadByte
+000026 6E00           00917         MOVWF   r0x01
+000028 52E6           00918         MOVF    POSTINC1, F
+                      00919 ;       .line   588; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(c2 == 0) { //end of string
+00002A 5000           00920         MOVF    r0x01, W
+00002C E100           00921         BNZ     _00531_DS_
+                      00922 ;       .line   589; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(eei < EE_NAME) { //end of prefix
+00002E 0E0A           00923         MOVLW   0x0a
+000030 5C00           00924         SUBWF   r0x00, W
+000032 E200           00925         BC      _00528_DS_
+                      00926 ; #     MOVLW   0x0a
+                      00927 ; #     MOVWF   r0x00
+                      00928 ; #     MOVLW   0x0a
+                      00929 ;       .line   590; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       eei = EE_NAME; //goto to name first char
+000034 0E0A           00930         MOVLW   0x0a
+                      00931 ;       .line   591; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c2 = eeReadByte(eei);
+000036 6E00           00932         MOVWF   r0x00
+000038 6EE5           00933         MOVWF   POSTDEC1
+00003A EC00 F000      00934         CALL    _eeReadByte
+00003E 6E00           00935         MOVWF   r0x01
+000040 52E6           00936         MOVF    POSTINC1, F
+                      00937 ;       .line   592; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(c2 == 0) { //no name?!
+000042 5000           00938         MOVF    r0x01, W
+000044 E100           00939         BNZ     _00531_DS_
+                      00940 ;       .line   593; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return -1; 
+000046 68E8           00941         SETF    WREG
+000048 D000           00942         BRA     _00539_DS_
+00004A                00943 _00528_DS_:
+                      00944 ;       .line   597; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return -1; 
+00004A 68E8           00945         SETF    WREG
+00004C D000           00946         BRA     _00539_DS_
+00004E                00947 _00531_DS_:
+                      00948 ;       .line   600; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(c2 != c) { //spelled name differs from device name; discard.
+00004E 5000           00949         MOVF    r0x01, W
+000050 1800           00950         XORWF   r0x02, W
+000052 E000           00951         BZ      _00533_DS_
+                      00952 ;       .line   601; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return -1; 
+000054 68E8           00953         SETF    WREG
+000056 D000           00954         BRA     _00539_DS_
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 19
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000058                00955 _00533_DS_:
+                      00956 ;       .line   603; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       eei++;
+000058 2A00           00957         INCF    r0x00, F
+                      00958 ;       .line   604; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(eei > EE_NAMEMAX) { //spelled name too long; discard.
+00005A 0E1B           00959         MOVLW   0x1b
+00005C 5C00           00960         SUBWF   r0x00, W
+00005E E300           00961         BNC     _00536_DS_
+                      00962 ;       .line   605; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return -1;
+000060 68E8           00963         SETF    WREG
+000062 D000           00964         BRA     _00539_DS_
+000064                00965 _00538_DS_:
+                      00966 ;       .line   609; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return 0;
+000064 6AE8           00967         CLRF    WREG
+000066                00968 _00539_DS_:
+000066 CFE4 F000      00969         MOVFF   PREINC1, r0x02
+00006A CFE4 F000      00970         MOVFF   PREINC1, r0x01
+00006E CFE4 F000      00971         MOVFF   PREINC1, r0x00
+000072 0012           00972         RETURN  
+                      00973 
+                      00974 ; ; Starting pCode block
+                      00975 S_fraisedevice__fraiseSendCopy  code
+000000                00976 _fraiseSendCopy:
+                      00977 ;       .line   563; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       void fraiseSendCopy()
+000000 C000 FFE5      00978         MOVFF   r0x00, POSTDEC1
+000004 C000 FFE5      00979         MOVFF   r0x01, POSTDEC1
+000008 C000 FFE5      00980         MOVFF   r0x02, POSTDEC1
+00000C C000 FFE5      00981         MOVFF   r0x03, POSTDEC1
+                      00982 ;       .line   567; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       l = (FrRXout - FrRXout_first)%sizeof(FrRXbuf);
+000010 C000 F000      00983         MOVFF   _FrRXout, r0x00
+000014 6A00           00984         CLRF    r0x01
+000016 C000 F000      00985         MOVFF   _FrRXout_first, r0x02
+00001A 6A00           00986         CLRF    r0x03
+00001C 5000           00987         MOVF    r0x02, W
+00001E 5E00           00988         SUBWF   r0x00, F
+000020 5000           00989         MOVF    r0x03, W
+000022 5A00           00990         SUBWFB  r0x01, F
+000024 6AE5           00991         CLRF    POSTDEC1
+000026 0E80           00992         MOVLW   0x80
+000028 6EE5           00993         MOVWF   POSTDEC1
+00002A 5000           00994         MOVF    r0x01, W
+00002C 6EE5           00995         MOVWF   POSTDEC1
+00002E 5000           00996         MOVF    r0x00, W
+000030 6EE5           00997         MOVWF   POSTDEC1
+000032 EC00 F000      00998         CALL    __modsint
+000036 6E00           00999         MOVWF   r0x00
+000038 0E04           01000         MOVLW   0x04
+00003A 26E1           01001         ADDWF   FSR1L, F
+                      01002 ;       .line   568; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       l--;
+00003C 0600           01003         DECF    r0x00, F
+                      01004 ;       .line   569; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       i = FrRXout_first;
+00003E C000 F000      01005         MOVFF   _FrRXout_first, r0x01
+                      01006 ;       .line   570; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       putchar('C'); putchar(' '); 
+000042 0E43           01007         MOVLW   0x43
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 20
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000044 EC00 F000      01008         CALL    _putchar
+000048 0E20           01009         MOVLW   0x20
+00004A EC00 F000      01010         CALL    _putchar
+00004E                01011 _00503_DS_:
+                      01012 ;       .line   572; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       while(l > 0) {
+00004E 5000           01013         MOVF    r0x00, W
+000050 0F80           01014         ADDLW   0x80
+000052 0F7F           01015         ADDLW   0x7f
+000054 E300           01016         BNC     _00506_DS_
+                      01017 ;       .line   573; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       printf("%d ", FrRXbuf[i]);
+000056 0E00           01018         MOVLW   LOW(_FrRXbuf)
+000058 2400           01019         ADDWF   r0x01, W
+00005A 6E00           01020         MOVWF   r0x02
+00005C 6A00           01021         CLRF    r0x03
+00005E 0E00           01022         MOVLW   HIGH(_FrRXbuf)
+000060 2200           01023         ADDWFC  r0x03, F
+000062 C000 FFE9      01024         MOVFF   r0x02, FSR0L
+000066 C000 FFEA      01025         MOVFF   r0x03, FSR0H
+00006A CFEF F000      01026         MOVFF   INDF0, r0x02
+00006E 6AE5           01027         CLRF    POSTDEC1
+000070 5000           01028         MOVF    r0x02, W
+000072 6EE5           01029         MOVWF   POSTDEC1
+000074 0E00           01030         MOVLW   UPPER(__str_0)
+000076 6EE5           01031         MOVWF   POSTDEC1
+000078 0E00           01032         MOVLW   HIGH(__str_0)
+00007A 6EE5           01033         MOVWF   POSTDEC1
+00007C 0E00           01034         MOVLW   LOW(__str_0)
+00007E 6EE5           01035         MOVWF   POSTDEC1
+000080 EC00 F000      01036         CALL    _printf
+000084 0E05           01037         MOVLW   0x05
+000086 26E1           01038         ADDWF   FSR1L, F
+                      01039 ;       .line   574; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       i++;
+000088 2A00           01040         INCF    r0x01, F
+                      01041 ;       .line   575; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(i == sizeof(FrRXbuf)) i = 0;
+00008A 5000           01042         MOVF    r0x01, W
+00008C 0A80           01043         XORLW   0x80
+00008E E100           01044         BNZ     _00502_DS_
+000090 6A00           01045         CLRF    r0x01
+000092                01046 _00502_DS_:
+                      01047 ;       .line   576; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       l--;
+000092 0600           01048         DECF    r0x00, F
+000094 D000           01049         BRA     _00503_DS_
+000096                01050 _00506_DS_:
+000096 CFE4 F000      01051         MOVFF   PREINC1, r0x03
+00009A CFE4 F000      01052         MOVFF   PREINC1, r0x02
+00009E CFE4 F000      01053         MOVFF   PREINC1, r0x01
+0000A2 CFE4 F000      01054         MOVFF   PREINC1, r0x00
+0000A6 0012           01055         RETURN  
+                      01056 
+                      01057 ; ; Starting pCode block
+                      01058 S_fraisedevice__fraiseGetAt     code
+000000                01059 _fraiseGetAt:
+                      01060 ;       .line   558; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       unsigned char fraiseGetAt(unsigned char i)
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 21
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000000 CFD9 FFE5      01061         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      01062         MOVFF   FSR1L, FSR2L
+000008 C000 FFE5      01063         MOVFF   r0x00, POSTDEC1
+00000C C000 FFE5      01064         MOVFF   r0x01, POSTDEC1
+000010 C000 FFE5      01065         MOVFF   r0x02, POSTDEC1
+000014 C000 FFE5      01066         MOVFF   r0x03, POSTDEC1
+000018 0E02           01067         MOVLW   0x02
+00001A CFDB F000      01068         MOVFF   PLUSW2, r0x00
+                      01069 ;       .line   560; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return FrRXbuf[(i + FrRXout_first)%sizeof(FrRXbuf)];
+00001E 6A00           01070         CLRF    r0x01
+000020 C000 F000      01071         MOVFF   _FrRXout_first, r0x02
+000024 6A00           01072         CLRF    r0x03
+000026 5000           01073         MOVF    r0x02, W
+000028 2600           01074         ADDWF   r0x00, F
+00002A 5000           01075         MOVF    r0x03, W
+00002C 2200           01076         ADDWFC  r0x01, F
+00002E 6AE5           01077         CLRF    POSTDEC1
+000030 0E80           01078         MOVLW   0x80
+000032 6EE5           01079         MOVWF   POSTDEC1
+000034 5000           01080         MOVF    r0x01, W
+000036 6EE5           01081         MOVWF   POSTDEC1
+000038 5000           01082         MOVF    r0x00, W
+00003A 6EE5           01083         MOVWF   POSTDEC1
+00003C EC00 F000      01084         CALL    __modsint
+000040 6E00           01085         MOVWF   r0x00
+000042 CFF3 F000      01086         MOVFF   PRODL, r0x01
+000046 0E04           01087         MOVLW   0x04
+000048 26E1           01088         ADDWF   FSR1L, F
+00004A 0E00           01089         MOVLW   LOW(_FrRXbuf)
+00004C 2600           01090         ADDWF   r0x00, F
+00004E 0E00           01091         MOVLW   HIGH(_FrRXbuf)
+000050 2200           01092         ADDWFC  r0x01, F
+000052 C000 FFE9      01093         MOVFF   r0x00, FSR0L
+000056 C000 FFEA      01094         MOVFF   r0x01, FSR0H
+00005A CFEF F000      01095         MOVFF   INDF0, r0x00
+00005E 5000           01096         MOVF    r0x00, W
+000060 CFE4 F000      01097         MOVFF   PREINC1, r0x03
+000064 CFE4 F000      01098         MOVFF   PREINC1, r0x02
+000068 CFE4 F000      01099         MOVFF   PREINC1, r0x01
+00006C CFE4 F000      01100         MOVFF   PREINC1, r0x00
+000070 CFE4 FFD9      01101         MOVFF   PREINC1, FSR2L
+000074 0012           01102         RETURN  
+                      01103 
+                      01104 ; ; Starting pCode block
+                      01105 S_fraisedevice__fraiseGetIndex  code
+000000                01106 _fraiseGetIndex:
+000000 0100           01107         BANKSEL _FrRXout
+                      01108 ;       .line   555; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return FrRXout;
+000002 5100           01109         MOVF    _FrRXout, W, B
+000004 0012           01110         RETURN  
+                      01111 
+                      01112 ; ; Starting pCode block
+                      01113 S_fraisedevice__fraiseGetLen    code
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 22
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000000                01114 _fraiseGetLen:
+000000 0100           01115         BANKSEL _FrRXout_len
+                      01116 ;       .line   550; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return FrRXout_len;
+000002 5100           01117         MOVF    _FrRXout_len, W, B
+000004 0012           01118         RETURN  
+                      01119 
+                      01120 ; ; Starting pCode block
+                      01121 S_fraisedevice__fraisePeekChar  code
+000000                01122 _fraisePeekChar:
+                      01123 ;       .line   543; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       unsigned char fraisePeekChar()
+000000 C000 FFE5      01124         MOVFF   r0x00, POSTDEC1
+000004 C000 FFE5      01125         MOVFF   r0x01, POSTDEC1
+                      01126 ;       .line   545; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return FrRXbuf[FrRXout];
+000008 0E00           01127         MOVLW   LOW(_FrRXbuf)
+00000A 0100           01128         BANKSEL _FrRXout
+00000C 2500           01129         ADDWF   _FrRXout, W, B
+00000E 6E00           01130         MOVWF   r0x00
+000010 6A00           01131         CLRF    r0x01
+000012 0E00           01132         MOVLW   HIGH(_FrRXbuf)
+000014 2200           01133         ADDWFC  r0x01, F
+000016 C000 FFE9      01134         MOVFF   r0x00, FSR0L
+00001A C000 FFEA      01135         MOVFF   r0x01, FSR0H
+00001E CFEF F000      01136         MOVFF   INDF0, r0x00
+000022 5000           01137         MOVF    r0x00, W
+000024 CFE4 F000      01138         MOVFF   PREINC1, r0x01
+000028 CFE4 F000      01139         MOVFF   PREINC1, r0x00
+00002C 0012           01140         RETURN  
+                      01141 
+                      01142 ; ; Starting pCode block
+                      01143 S_fraisedevice__fraiseGetChar   code
+000000                01144 _fraiseGetChar:
+                      01145 ;       .line   533; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       unsigned char fraiseGetChar()
+000000 C000 FFE5      01146         MOVFF   r0x00, POSTDEC1
+000004 C000 FFE5      01147         MOVFF   r0x01, POSTDEC1
+000008 0100           01148         BANKSEL _FrRXout
+                      01149 ;       .line   537; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if((FrRXout == FrRXout_end) || (FrRXout == FrRXin)) return 0; //underflow error
+00000A 5100           01150         MOVF    _FrRXout, W, B
+00000C 0100           01151         BANKSEL _FrRXout_end
+00000E 1900           01152         XORWF   _FrRXout_end, W, B
+000010 E000           01153         BZ      _00458_DS_
+000012                01154 _00472_DS_:
+000012 0100           01155         BANKSEL _FrRXout
+000014 5100           01156         MOVF    _FrRXout, W, B
+000016 0100           01157         BANKSEL _FrRXin
+000018 1900           01158         XORWF   _FrRXin, W, B
+00001A E100           01159         BNZ     _00459_DS_
+00001C                01160 _00458_DS_:
+00001C 6AE8           01161         CLRF    WREG
+00001E D000           01162         BRA     _00463_DS_
+000020                01163 _00459_DS_:
+                      01164 ;       .line   538; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c = FrRXbuf[FrRXout++];
+000020 C000 F000      01165         MOVFF   _FrRXout, r0x00
+000024 0100           01166         BANKSEL _FrRXout
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 23
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000026 2B00           01167         INCF    _FrRXout, F, B
+000028 6A00           01168         CLRF    r0x01
+00002A 0E00           01169         MOVLW   LOW(_FrRXbuf)
+00002C 2600           01170         ADDWF   r0x00, F
+00002E 0E00           01171         MOVLW   HIGH(_FrRXbuf)
+000030 2200           01172         ADDWFC  r0x01, F
+000032 C000 FFE9      01173         MOVFF   r0x00, FSR0L
+000036 C000 FFEA      01174         MOVFF   r0x01, FSR0H
+00003A CFEF F000      01175         MOVFF   INDF0, r0x00
+                      01176 ; removed redundant BANKSEL
+                      01177 ;       .line   539; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(FrRXout == sizeof(FrRXbuf)) FrRXout = 0;
+00003E 5100           01178         MOVF    _FrRXout, W, B
+000040 0A80           01179         XORLW   0x80
+000042 E100           01180         BNZ     _00462_DS_
+000044                01181 _00476_DS_:
+000044 0100           01182         BANKSEL _FrRXout
+000046 6B00           01183         CLRF    _FrRXout, B
+000048                01184 _00462_DS_:
+                      01185 ;       .line   540; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return c;
+000048 5000           01186         MOVF    r0x00, W
+00004A                01187 _00463_DS_:
+00004A CFE4 F000      01188         MOVFF   PREINC1, r0x01
+00004E CFE4 F000      01189         MOVFF   PREINC1, r0x00
+000052 0012           01190         RETURN  
+                      01191 
+                      01192 ; ; Starting pCode block
+                      01193 S_fraisedevice__fraiseISR       code
+000000                01194 _fraiseISR:
+                      01195 ;       .line   416; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       void fraiseISR(void)
+000000 C000 FFE5      01196         MOVFF   r0x00, POSTDEC1
+000004 C000 FFE5      01197         MOVFF   r0x01, POSTDEC1
+                      01198 ; #     MOVF    _FrInterruptEnabled, W, B
+                      01199 ; #     BTFSS   STATUS, 2
+                      01200 ; #     GOTO    _00294_DS_
+                      01201 ; #     GOTO    _00359_DS_
+                      01202 ; #     BTFSS   _PIE1bits, 4
+000008 0100           01203         BANKSEL _FrInterruptEnabled
+                      01204 ;       .line   420; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(FrInterruptEnabled == 0) return;
+00000A 5100           01205         MOVF    _FrInterruptEnabled, W, B
+                      01206 ;       .line   422; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(TXxIE && TXxIF) {
+00000C B4D8           01207         BTFSC   STATUS, 2
+00000E D000           01208         BRA     _00359_DS_
+000010 A800           01209         BTFSS   _PIE1bits, 4
+000012 D000           01210         BRA     _00298_DS_
+000014 A800           01211         BTFSS   _PIR1bits, 4
+000016 D000           01212         BRA     _00298_DS_
+000018 0100           01213         BANKSEL _FrTXpacket_i
+                      01214 ;       .line   423; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(FrTXpacket_i == FrTXpacket_len) { //if end of the packet:
+00001A 5100           01215         MOVF    _FrTXpacket_i, W, B
+00001C 0100           01216         BANKSEL _FrTXpacket_len
+00001E 1900           01217         XORWF   _FrTXpacket_len, W, B
+000020 E100           01218         BNZ     _00296_DS_
+                      01219 ;       .line   424; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       Serial_Init_Receiver();
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 24
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000022 EC00 F000      01220         CALL    _Serial_Init_Receiver
+000026 0100           01221         BANKSEL _FrTXpacket_len
+                      01222 ;       .line   425; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrTXpacket_len = 0;
+000028 6B00           01223         CLRF    _FrTXpacket_len, B
+                      01224 ;       .line   426; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return;
+00002A D000           01225         BRA     _00359_DS_
+00002C                01226 _00296_DS_:
+                      01227 ;       .line   428; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c = FrTXpacket[FrTXpacket_i];
+00002C 0E00           01228         MOVLW   LOW(_FrTXpacket)
+00002E 0100           01229         BANKSEL _FrTXpacket_i
+000030 2500           01230         ADDWF   _FrTXpacket_i, W, B
+000032 6E00           01231         MOVWF   r0x00
+000034 6A00           01232         CLRF    r0x01
+000036 0E00           01233         MOVLW   HIGH(_FrTXpacket)
+000038 2200           01234         ADDWFC  r0x01, F
+00003A C000 FFE9      01235         MOVFF   r0x00, FSR0L
+00003E C000 FFEA      01236         MOVFF   r0x01, FSR0H
+000042 CFEF F000      01237         MOVFF   INDF0, _fraiseISR_c_1_105
+                      01238 ; removed redundant BANKSEL
+                      01239 ;       .line   429; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrTXpacket_i++;
+000046 2B00           01240         INCF    _FrTXpacket_i, F, B
+                      01241 ;       .line   430; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       TXREGx = c; // send next byte
+000048 C000 F000      01242         MOVFF   _fraiseISR_c_1_105, _TXREG
+                      01243 ;       .line   432; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return;
+00004C D000           01244         BRA     _00359_DS_
+00004E                01245 _00298_DS_:
+                      01246 ;       .line   435; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(RCxIF) {
+00004E AA00           01247         BTFSS   _PIR1bits, 5
+000050 D000           01248         BRA     _00359_DS_
+                      01249 ;       .line   436; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(RCSTAxbits.OERR){
+000052 A200           01250         BTFSS   _RCSTAbits, 1
+000054 D000           01251         BRA     _00301_DS_
+000056 0100           01252         BANKSEL _FraiseStatus
+                      01253 ;       .line   437; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FraiseStatus.RX_OERR = 1;
+000058 8100           01254         BSF     _FraiseStatus, 0, B
+                      01255 ;       .line   438; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       Serial_Init_Receiver();
+00005A EC00 F000      01256         CALL    _Serial_Init_Receiver
+                      01257 ;       .line   439; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return;
+00005E D000           01258         BRA     _00359_DS_
+000060                01259 _00301_DS_:
+                      01260 ;       .line   441; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(RCSTAxbits.FERR){
+000060 A400           01261         BTFSS   _RCSTAbits, 2
+000062 D000           01262         BRA     _00303_DS_
+000064 0100           01263         BANKSEL _FraiseStatus
+                      01264 ;       .line   442; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FraiseStatus.RX_FERR = 1;
+000066 8300           01265         BSF     _FraiseStatus, 1, B
+                      01266 ;       .line   443; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       Serial_Init_Receiver();
+000068 EC00 F000      01267         CALL    _Serial_Init_Receiver
+                      01268 ;       .line   444; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return;
+00006C D000           01269         BRA     _00359_DS_
+00006E                01270 _00303_DS_:
+                      01271 ;       .line   447; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if (RCSTAxbits.RX9D) { // -------  address : 
+00006E A000           01272         BTFSS   _RCSTAbits, 0
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 25
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000070 D000           01273         BRA     _00315_DS_
+                      01274 ;       .line   448; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c = RCREGx; // get byte
+000072 C000 F000      01275         MOVFF   _RCREG, _fraiseISR_c_1_105
+                      01276 ;       .line   449; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(c == (FrID | 128)) { // poll signal
+000076 0E80           01277         MOVLW   0x80
+000078 0100           01278         BANKSEL _FrID
+00007A 1100           01279         IORWF   _FrID, W, B
+                      01280 ; #     MOVWF   r0x00
+                      01281 ; #     MOVF    _fraiseISR_c_1_105, W, B
+                      01282 ; #     XORWF   r0x00, W
+00007C 0100           01283         BANKSEL _fraiseISR_c_1_105
+00007E 1900           01284         XORWF   _fraiseISR_c_1_105, W, B
+000080 E100           01285         BNZ     _00305_DS_
+000082                01286 _00434_DS_:
+000082 0100           01287         BANKSEL _FraiseStatus
+                      01288 ;       .line   450; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FraiseStatus.RX_POLL = 1;
+000084 8900           01289         BSF     _FraiseStatus, 4, B
+                      01290 ;       .line   451; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       RCSTAxbits.ADDEN = 0;
+000086 9600           01291         BCF     _RCSTAbits, 3
+                      01292 ;       .line   452; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return;
+000088 D000           01293         BRA     _00359_DS_
+00008A                01294 _00305_DS_:
+00008A 0100           01295         BANKSEL _fraiseISR_c_1_105
+                      01296 ;       .line   454; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if ((c == 0) || (c == FrID)) {
+00008C 5100           01297         MOVF    _fraiseISR_c_1_105, W, B
+00008E E000           01298         BZ      _00311_DS_
+                      01299 ; removed redundant BANKSEL
+000090 5100           01300         MOVF    _fraiseISR_c_1_105, W, B
+000092 0100           01301         BANKSEL _FrID
+000094 1900           01302         XORWF   _FrID, W, B
+000096 E100           01303         BNZ     _00312_DS_
+000098                01304 _00311_DS_:
+000098 0100           01305         BANKSEL _FraiseStatus
+                      01306 ;       .line   455; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FraiseStatus.RX_POLL = 0;
+00009A 9900           01307         BCF     _FraiseStatus, 4, B
+                      01308 ;       .line   456; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       RCSTAxbits.ADDEN = 0;
+00009C 9600           01309         BCF     _RCSTAbits, 3
+00009E 0100           01310         BANKSEL _fraiseISR_c_1_105
+                      01311 ;       .line   457; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(c) FraiseStatus.RX_BRDCST = 0;
+0000A0 5100           01312         MOVF    _fraiseISR_c_1_105, W, B
+0000A2 E000           01313         BZ      _00307_DS_
+0000A4 0100           01314         BANKSEL _FraiseStatus
+0000A6 9700           01315         BCF     _FraiseStatus, 3, B
+0000A8 D000           01316         BRA     _00308_DS_
+0000AA                01317 _00307_DS_:
+0000AA 0100           01318         BANKSEL _FraiseStatus
+                      01319 ;       .line   458; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       else FraiseStatus.RX_BRDCST = 1;
+0000AC 8700           01320         BSF     _FraiseStatus, 3, B
+0000AE                01321 _00308_DS_:
+                      01322 ;       .line   459; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXchksum = c;
+0000AE C000 F000      01323         MOVFF   _fraiseISR_c_1_105, _FrRXchksum
+                      01324 ;       .line   460; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXin_tmp = FrRXin;
+0000B2 C000 F000      01325         MOVFF   _FrRXin, _FrRXin_tmp
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 26
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0000B6 0100           01326         BANKSEL _FrRXin
+                      01327 ;       .line   461; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXin_end = FrRXin - 1; // protect FrRXin_end
+0000B8 0500           01328         DECF    _FrRXin, W, B
+0000BA 0100           01329         BANKSEL _FrRXin_end
+0000BC 6F00           01330         MOVWF   _FrRXin_end, B
+                      01331 ;       .line   462; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXbuf[FrRXin_tmp] = c;
+0000BE 0E00           01332         MOVLW   LOW(_FrRXbuf)
+0000C0 0100           01333         BANKSEL _FrRXin_tmp
+0000C2 2500           01334         ADDWF   _FrRXin_tmp, W, B
+0000C4 6E00           01335         MOVWF   r0x00
+0000C6 6A00           01336         CLRF    r0x01
+0000C8 0E00           01337         MOVLW   HIGH(_FrRXbuf)
+0000CA 2200           01338         ADDWFC  r0x01, F
+0000CC C000 FFE9      01339         MOVFF   r0x00, FSR0L
+0000D0 C000 FFEA      01340         MOVFF   r0x01, FSR0H
+0000D4 C000 FFEF      01341         MOVFF   _fraiseISR_c_1_105, INDF0
+                      01342 ; removed redundant BANKSEL
+                      01343 ;       .line   463; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXin_tmp++;
+0000D8 2B00           01344         INCF    _FrRXin_tmp, F, B
+                      01345 ;       .line   464; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(FrRXin_tmp == sizeof(FrRXbuf)) FrRXin_tmp = 0;
+0000DA 5100           01346         MOVF    _FrRXin_tmp, W, B
+0000DC 0A80           01347         XORLW   0x80
+0000DE E100           01348         BNZ     _00310_DS_
+0000E0                01349 _00438_DS_:
+0000E0 0100           01350         BANKSEL _FrRXin_tmp
+0000E2 6B00           01351         CLRF    _FrRXin_tmp, B
+0000E4                01352 _00310_DS_:
+                      01353 ;       .line   465; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return;
+0000E4 D000           01354         BRA     _00359_DS_
+0000E6                01355 _00312_DS_:
+0000E6 0100           01356         BANKSEL _FraiseStatus
+                      01357 ;       .line   467; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FraiseStatus.RX_POLL= 0;
+0000E8 9900           01358         BCF     _FraiseStatus, 4, B
+                      01359 ;       .line   468; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       RCSTAxbits.ADDEN = 1;
+0000EA 8600           01360         BSF     _RCSTAbits, 3
+                      01361 ;       .line   469; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return;
+0000EC D000           01362         BRA     _00359_DS_
+0000EE                01363 _00315_DS_:
+                      01364 ;       .line   472; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c = RCREGx; // get byte
+0000EE C000 F000      01365         MOVFF   _RCREG, _fraiseISR_c_1_105
+0000F2 0100           01366         BANKSEL _FraiseStatus
+                      01367 ;       .line   474; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(FraiseStatus.RX_POLL) { // had a poll signal
+0000F4 A900           01368         BTFSS   _FraiseStatus, 4, B
+0000F6 D000           01369         BRA     _00328_DS_
+                      01370 ;       .line   475; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(c == (FrID | 128)){  // confirmation byte of poll signal:
+0000F8 0E80           01371         MOVLW   0x80
+0000FA 0100           01372         BANKSEL _FrID
+0000FC 1100           01373         IORWF   _FrID, W, B
+                      01374 ; #     MOVWF   r0x00
+                      01375 ; #     MOVF    _fraiseISR_c_1_105, W, B
+                      01376 ; #     XORWF   r0x00, W
+0000FE 0100           01377         BANKSEL _fraiseISR_c_1_105
+000100 1900           01378         XORWF   _fraiseISR_c_1_105, W, B
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 27
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000102 E100           01379         BNZ     _00326_DS_
+                      01380 ;       .line   477; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       Serial_Init_Driver();
+000104 9000           01381         BCF     _LATCbits, 0
+000106 9A00           01382         BCF     _PIE1bits, 5
+000108 9800           01383         BCF     _RCSTAbits, 4
+00010A 0100           01384         BANKSEL _FrTXpacket_len
+                      01385 ;       .line   478; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(FrTXpacket_len == 0) {
+00010C 5100           01386         MOVF    _FrTXpacket_len, W, B
+00010E E100           01387         BNZ     _00323_DS_
+                      01388 ;       .line   479; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       TXREGx = 0;
+000110 6A00           01389         CLRF    _TXREG
+                      01390 ;       .line   480; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       Serial_Init_Receiver();
+000112 EC00 F000      01391         CALL    _Serial_Init_Receiver
+000116 D000           01392         BRA     _00326_DS_
+000118                01393 _00323_DS_:
+                      01394 ;       .line   482; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       fraiseSendLaunch();
+000118 C000 F000      01395         MOVFF   _FrTXpacket, _TXREG
+00011C 0E01           01396         MOVLW   0x01
+00011E 0100           01397         BANKSEL _FrTXpacket_i
+000120 6F00           01398         MOVWF   _FrTXpacket_i, B
+000122 8800           01399         BSF     _PIE1bits, 4
+                      01400 ;       .line   483; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return;
+000124 D000           01401         BRA     _00359_DS_
+000126                01402 _00326_DS_:
+                      01403 ;       .line   486; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       RCSTAxbits.ADDEN = 1;
+000126 8600           01404         BSF     _RCSTAbits, 3
+                      01405 ;       .line   487; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return;
+000128 D000           01406         BRA     _00359_DS_
+00012A                01407 _00328_DS_:
+00012A 0100           01408         BANKSEL _fraiseISR_c_1_105
+                      01409 ;       .line   490; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXchksum += c;
+00012C 5100           01410         MOVF    _fraiseISR_c_1_105, W, B
+00012E 0100           01411         BANKSEL _FrRXchksum
+000130 2700           01412         ADDWF   _FrRXchksum, F, B
+000132 0100           01413         BANKSEL _FrRXin_tmp
+                      01414 ;       .line   492; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(FrRXin_tmp == FrRXin_end) {// RX packet complete
+000134 5100           01415         MOVF    _FrRXin_tmp, W, B
+000136 0100           01416         BANKSEL _FrRXin_end
+000138 1900           01417         XORWF   _FrRXin_end, W, B
+00013A E100           01418         BNZ     _00349_DS_
+00013C                01419 _00443_DS_:
+00013C 0100           01420         BANKSEL _FrRXchksum
+                      01421 ;       .line   493; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(!FrRXchksum) { // RX packet checksum ok 
+00013E 5100           01422         MOVF    _FrRXchksum, W, B
+000140 E100           01423         BNZ     _00346_DS_
+                      01424 ;       .line   494; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXin = FrRXin_tmp; //validation of packet
+000142 C000 F000      01425         MOVFF   _FrRXin_tmp, _FrRXin
+000146 0100           01426         BANKSEL _FraiseStatus
+                      01427 ;       .line   495; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(!FraiseStatus.RX_BRDCST){
+000148 B700           01428         BTFSC   _FraiseStatus, 3, B
+00014A D000           01429         BRA     _00347_DS_
+                      01430 ;       .line   496; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       Serial_Init_Driver();
+00014C 9000           01431         BCF     _LATCbits, 0
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 28
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00014E 9A00           01432         BCF     _PIE1bits, 5
+000150 9800           01433         BCF     _RCSTAbits, 4
+                      01434 ;       .line   497; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       TXREGx = 0; //Acknowldge
+000152 6A00           01435         CLRF    _TXREG
+                      01436 ;       .line   498; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       Serial_Init_Receiver();
+000154 EC00 F000      01437         CALL    _Serial_Init_Receiver
+000158 D000           01438         BRA     _00347_DS_
+00015A                01439 _00346_DS_:
+00015A 0100           01440         BANKSEL _FraiseStatus
+                      01441 ;       .line   502; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FraiseStatus.RX_SERR = 1;
+00015C 8500           01442         BSF     _FraiseStatus, 2, B
+                      01443 ;       .line   503; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(!FraiseStatus.RX_BRDCST){
+00015E B700           01444         BTFSC   _FraiseStatus, 3, B
+000160 D000           01445         BRA     _00347_DS_
+                      01446 ;       .line   504; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       Serial_Init_Driver();
+000162 9000           01447         BCF     _LATCbits, 0
+000164 9A00           01448         BCF     _PIE1bits, 5
+000166 9800           01449         BCF     _RCSTAbits, 4
+                      01450 ;       .line   505; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       TXREGx = 1; //Checksum nack
+000168 0E01           01451         MOVLW   0x01
+00016A 6E00           01452         MOVWF   _TXREG
+                      01453 ;       .line   506; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       Serial_Init_Receiver();
+00016C EC00 F000      01454         CALL    _Serial_Init_Receiver
+000170                01455 _00347_DS_:
+                      01456 ;       .line   509; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return;
+000170 D000           01457         BRA     _00359_DS_
+000172                01458 _00349_DS_:
+000172 0100           01459         BANKSEL _FrRXin_tmp
+                      01460 ;       .line   512; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if((FrRXin_tmp == FrRXout)&&(FrRXout != FrRXin)) { //collision case : RX buffer full !
+000174 5100           01461         MOVF    _FrRXin_tmp, W, B
+000176 0100           01462         BANKSEL _FrRXout
+000178 1900           01463         XORWF   _FrRXout, W, B
+00017A E100           01464         BNZ     _00351_DS_
+00017C                01465 _00445_DS_:
+00017C 0100           01466         BANKSEL _FrRXout
+00017E 5100           01467         MOVF    _FrRXout, W, B
+000180 0100           01468         BANKSEL _FrRXin
+000182 1900           01469         XORWF   _FrRXin, W, B
+000184 E000           01470         BZ      _00351_DS_
+                      01471 ;       .line   513; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       Serial_Init_Receiver(); // discard current packet... TODO:send an buffer full nack (2)
+000186 EC00 F000      01472         CALL    _Serial_Init_Receiver
+                      01473 ;       .line   514; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return;
+00018A D000           01474         BRA     _00359_DS_
+00018C                01475 _00351_DS_:
+                      01476 ;       .line   517; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c2 = (FrRXin + 1) % sizeof(FrRXbuf);
+00018C C000 F000      01477         MOVFF   _FrRXin, r0x00
+000190 6A00           01478         CLRF    r0x01
+000192 4A00           01479         INFSNZ  r0x00, F
+000194 2A00           01480         INCF    r0x01, F
+000196 6AE5           01481         CLRF    POSTDEC1
+000198 0E80           01482         MOVLW   0x80
+00019A 6EE5           01483         MOVWF   POSTDEC1
+00019C 5000           01484         MOVF    r0x01, W
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 29
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00019E 6EE5           01485         MOVWF   POSTDEC1
+0001A0 5000           01486         MOVF    r0x00, W
+0001A2 6EE5           01487         MOVWF   POSTDEC1
+0001A4 EC00 F000      01488         CALL    __modsint
+0001A8 6E00           01489         MOVWF   r0x00
+0001AA 0E04           01490         MOVLW   0x04
+0001AC 26E1           01491         ADDWF   FSR1L, F
+0001AE 5000           01492         MOVF    r0x00, W
+                      01493 ; #     MOVWF   _fraiseISR_c2_1_105, B
+                      01494 ; #     MOVF    _FrRXin_tmp, W, B
+                      01495 ; #     XORWF   _fraiseISR_c2_1_105, W, B
+0001B0 0100           01496         BANKSEL _fraiseISR_c2_1_105
+                      01497 ;       .line   518; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(FrRXin_tmp == c2) { //FrRXin_tmp == (FrRXin + 1): first byte following address = data length...
+0001B2 6F00           01498         MOVWF   _fraiseISR_c2_1_105, B
+0001B4 0100           01499         BANKSEL _FrRXin_tmp
+0001B6 1900           01500         XORWF   _FrRXin_tmp, W, B
+0001B8 E100           01501         BNZ     _00354_DS_
+                      01502 ;       .line   519; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXin_end = (c & 31);
+0001BA 0E1F           01503         MOVLW   0x1f
+0001BC 0100           01504         BANKSEL _fraiseISR_c_1_105
+0001BE 1500           01505         ANDWF   _fraiseISR_c_1_105, W, B
+0001C0 0100           01506         BANKSEL _FrRXin_end
+0001C2 6F00           01507         MOVWF   _FrRXin_end, B
+                      01508 ;       .line   520; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXin_end += 2;
+0001C4 2B00           01509         INCF    _FrRXin_end, F, B
+0001C6 2B00           01510         INCF    _FrRXin_end, F, B
+0001C8 0100           01511         BANKSEL _FrRXin
+                      01512 ;       .line   521; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXin_end += FrRXin;
+0001CA 5100           01513         MOVF    _FrRXin, W, B
+0001CC 0100           01514         BANKSEL _FrRXin_end
+0001CE 2700           01515         ADDWF   _FrRXin_end, F, B
+                      01516 ;       .line   522; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXin_end %= sizeof(FrRXbuf);
+0001D0 9F00           01517         BCF     _FrRXin_end, 7, B
+0001D2                01518 _00354_DS_:
+                      01519 ;       .line   525; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXbuf[FrRXin_tmp++] = c;
+0001D2 C000 F000      01520         MOVFF   _FrRXin_tmp, r0x00
+0001D6 0100           01521         BANKSEL _FrRXin_tmp
+0001D8 2B00           01522         INCF    _FrRXin_tmp, F, B
+0001DA 6A00           01523         CLRF    r0x01
+0001DC 0E00           01524         MOVLW   LOW(_FrRXbuf)
+0001DE 2600           01525         ADDWF   r0x00, F
+0001E0 0E00           01526         MOVLW   HIGH(_FrRXbuf)
+0001E2 2200           01527         ADDWFC  r0x01, F
+0001E4 C000 FFE9      01528         MOVFF   r0x00, FSR0L
+0001E8 C000 FFEA      01529         MOVFF   r0x01, FSR0H
+0001EC C000 FFEF      01530         MOVFF   _fraiseISR_c_1_105, INDF0
+                      01531 ; removed redundant BANKSEL
+                      01532 ;       .line   526; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(FrRXin_tmp == sizeof(FrRXbuf)) FrRXin_tmp = 0; //ring buffer index
+0001F0 5100           01533         MOVF    _FrRXin_tmp, W, B
+0001F2 0A80           01534         XORLW   0x80
+0001F4 E100           01535         BNZ     _00359_DS_
+0001F6                01536 _00453_DS_:
+0001F6 0100           01537         BANKSEL _FrRXin_tmp
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 30
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0001F8 6B00           01538         CLRF    _FrRXin_tmp, B
+0001FA                01539 _00359_DS_:
+                      01540 ;       .line   527; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return;
+0001FA CFE4 F000      01541         MOVFF   PREINC1, r0x01
+0001FE CFE4 F000      01542         MOVFF   PREINC1, r0x00
+000202 0012           01543         RETURN  
+                      01544 
+                      01545 ; ; Starting pCode block
+                      01546 S_fraisedevice__fraiseDecodeNextTXPacket        code
+000000                01547 _fraiseDecodeNextTXPacket:
+                      01548 ;       .line   330; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       static void fraiseDecodeNextTXPacket()
+000000 C000 FFE5      01549         MOVFF   r0x00, POSTDEC1
+000004 C000 FFE5      01550         MOVFF   r0x01, POSTDEC1
+000008 C000 FFE5      01551         MOVFF   r0x02, POSTDEC1
+                      01552 ; #     MOVFF   r0x03, POSTDEC1
+                      01553 ; #; info ==> [localregs] entry end
+                      01554 
+                      01555 ; #     BTFSC   _TXSTAbits, 1
+                      01556 ; #     GOTO    _00200_DS_
+                      01557 ; #     GOTO    _00238_DS_
+                      01558 ; #     CALL    _fraiseGetTXChar
+                      01559 ;       .line   334; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(TXSTAxbits.TRMT == 0) return; //return if a serial transmission is in progress
+00000C C000 FFE5      01560         MOVFF   r0x03, POSTDEC1
+                      01561 ;       .line   336; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       len = fraiseGetTXChar(); //1st byte = len
+000010 A200           01562         BTFSS   _TXSTAbits, 1
+000012 D000           01563         BRA     _00238_DS_
+000014 EC00 F000      01564         CALL    _fraiseGetTXChar
+000018 6E00           01565         MOVWF   r0x00
+                      01566 ;       .line   337; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(!len) {
+00001A 5000           01567         MOVF    r0x00, W
+00001C E100           01568         BNZ     _00202_DS_
+00001E 0100           01569         BANKSEL _FrTXout
+                      01570 ;       .line   339; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrTXin = FrTXout=0;
+000020 6B00           01571         CLRF    _FrTXout, B
+000022 0100           01572         BANKSEL _FrTXin
+000024 6B00           01573         CLRF    _FrTXin, B
+                      01574 ;       .line   340; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return; //?
+000026 D000           01575         BRA     _00238_DS_
+000028                01576 _00202_DS_:
+                      01577 ;       .line   343; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       txout_end = FrTXout;
+000028 C000 F000      01578         MOVFF   _FrTXout, r0x01
+                      01579 ;       .line   344; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       txout_end += len;
+00002C 5000           01580         MOVF    r0x00, W
+00002E 2600           01581         ADDWF   r0x01, F
+                      01582 ;       .line   346; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c=fraiseGetTXChar(); //2nd byte = command (or hi nibble of address)
+000030 EC00 F000      01583         CALL    _fraiseGetTXChar
+000034 6E00           01584         MOVWF   r0x02
+                      01585 ;       .line   347; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       len -= 1;
+000036 0600           01586         DECF    r0x00, F
+                      01587 ;       .line   349; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(c == '#') {                                          
+000038 5000           01588         MOVF    r0x02, W
+00003A 0A23           01589         XORLW   0x23
+00003C E100           01590         BNZ     _00217_DS_
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 31
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      01591 ;       .line   351; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(len < 1) goto discard;
+00003E 0E01           01592         MOVLW   0x01
+000040 5C00           01593         SUBWF   r0x00, W
+000042 A0D8           01594         BTFSS   STATUS, 0
+000044 D000           01595         BRA     _00237_DS_
+                      01596 ;       .line   352; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c = fraiseGetTXChar(); //what is the command ?
+000046 EC00 F000      01597         CALL    _fraiseGetTXChar
+                      01598 ; #     MOVWF   r0x02
+                      01599 ; #     MOVF    r0x02, W
+                      01600 ;       .line   353; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(c == 'i'){
+00004A 6E00           01601         MOVWF   r0x02
+00004C 0A69           01602         XORLW   0x69
+00004E E100           01603         BNZ     _00214_DS_
+                      01604 ;       .line   355; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       fraiseInit();
+000050 EC00 F000      01605         CALL    _fraiseInit
+                      01606 ;       .line   356; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       goto discard;
+000054 D000           01607         BRA     _00237_DS_
+000056                01608 _00214_DS_:
+                      01609 ;       .line   363; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       else if(c == 'r'){
+000056 5000           01610         MOVF    r0x02, W
+000058 0A72           01611         XORLW   0x72
+00005A E100           01612         BNZ     _00211_DS_
+                      01613 ;       .line   364; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       Serial_Init_Receiver();
+00005C EC00 F000      01614         CALL    _Serial_Init_Receiver
+                      01615 ;       .line   365; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       goto discard;
+000060 D000           01616         BRA     _00237_DS_
+000062                01617 _00211_DS_:
+                      01618 ;       .line   367; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       else if(c == 's'){
+000062 5000           01619         MOVF    r0x02, W
+000064 0A73           01620         XORLW   0x73
+000066 E000           01621         BZ      _00281_DS_
+000068 D000           01622         BRA     _00237_DS_
+00006A                01623 _00281_DS_:
+                      01624 ;       .line   369; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       SerDrv_Off();
+00006A 8000           01625         BSF     _LATCbits, 0
+                      01626 ;       .line   370; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       RCSTAxbits.ADDEN = 1; 
+00006C 8600           01627         BSF     _RCSTAbits, 3
+                      01628 ;       .line   371; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       RCxIE = 1;              
+00006E 8A00           01629         BSF     _PIE1bits, 5
+                      01630 ;       .line   372; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       TXxIE = 0;
+000070 9800           01631         BCF     _PIE1bits, 4
+                      01632         ;       VOLATILE READ - BEGIN
+000072 5000           01633         MOVF    _RCREG, W
+                      01634         ;       VOLATILE READ - END
+                      01635         ;       VOLATILE READ - BEGIN
+000074 5000           01636         MOVF    _RCREG, W
+                      01637         ;       VOLATILE READ - END
+                      01638 ;       .line   375; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       RCSTAxbits.CREN = 0;            
+000076 9800           01639         BCF     _RCSTAbits, 4
+                      01640 ;       .line   376; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       RCSTAxbits.CREN = 1;            
+000078 8800           01641         BSF     _RCSTAbits, 4
+                      01642 ;       .line   378; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       goto discard;
+00007A D000           01643         BRA     _00237_DS_
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 32
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00007C                01644 _00217_DS_:
+                      01645 ;       .line   384; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(c == 'C') { //"char" packet
+00007C 5000           01646         MOVF    r0x02, W
+00007E 0A43           01647         XORLW   0x43
+000080 E000           01648         BZ      _00222_DS_
+                      01649 ;       .line   389; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(c == 'B') { //"bytes" packet
+000082 5000           01650         MOVF    r0x02, W
+000084 0A42           01651         XORLW   0x42
+000086 E000           01652         BZ      _00285_DS_
+000088 D000           01653         BRA     _00237_DS_
+00008A                01654 _00285_DS_:
+                      01655 ;       .line   397; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(ischar) len |= 128;
+00008A D000           01656         BRA     _00225_DS_
+00008C                01657 _00222_DS_:
+                      01658 ;       .line   397; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(ischar) len |= 128;
+00008C 8E00           01659         BSF     r0x00, 7
+00008E                01660 _00225_DS_:
+                      01661 ;       .line   399; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       fraiseSendInit(len);
+00008E C000 F000      01662         MOVFF   r0x00, _FrTXchksum
+000092 5000           01663         MOVF    r0x00, W
+000094 0100           01664         BANKSEL _FrTXpacket
+000096 6F00           01665         MOVWF   _FrTXpacket, B
+000098 0E01           01666         MOVLW   0x01
+00009A 0100           01667         BANKSEL _FrTXpacket_i
+00009C 6F00           01668         MOVWF   _FrTXpacket_i, B
+00009E                01669 _00231_DS_:
+00009E 0100           01670         BANKSEL _FrTXout
+                      01671 ;       .line   401; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       while(FrTXout != txout_end) {
+0000A0 5100           01672         MOVF    _FrTXout, W, B
+0000A2 1800           01673         XORWF   r0x01, W
+0000A4 E000           01674         BZ      _00234_DS_
+                      01675 ;       .line   402; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c = fraiseGetTXChar();
+0000A6 EC00 F000      01676         CALL    _fraiseGetTXChar
+                      01677 ; #     MOVWF   r0x02
+                      01678 ; #     MOVF    r0x02, W
+                      01679 ;       .line   403; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       fraiseSendData(c); 
+0000AA 6E00           01680         MOVWF   r0x02
+0000AC 0100           01681         BANKSEL _FrTXchksum
+0000AE 2700           01682         ADDWF   _FrTXchksum, F, B
+0000B0 0E00           01683         MOVLW   LOW(_FrTXpacket)
+0000B2 0100           01684         BANKSEL _FrTXpacket_i
+0000B4 2500           01685         ADDWF   _FrTXpacket_i, W, B
+0000B6 6E00           01686         MOVWF   r0x00
+0000B8 6A00           01687         CLRF    r0x03
+0000BA 0E00           01688         MOVLW   HIGH(_FrTXpacket)
+0000BC 2200           01689         ADDWFC  r0x03, F
+0000BE C000 FFE9      01690         MOVFF   r0x00, FSR0L
+0000C2 C000 FFEA      01691         MOVFF   r0x03, FSR0H
+0000C6 C000 FFEF      01692         MOVFF   r0x02, INDF0
+                      01693 ; removed redundant BANKSEL
+0000CA 2B00           01694         INCF    _FrTXpacket_i, F, B
+0000CC D000           01695         BRA     _00231_DS_
+0000CE                01696 _00234_DS_:
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 33
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      01697 ;       .line   405; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       fraiseSendClose();      
+0000CE 0E00           01698         MOVLW   LOW(_FrTXpacket)
+0000D0 0100           01699         BANKSEL _FrTXpacket_i
+0000D2 2500           01700         ADDWF   _FrTXpacket_i, W, B
+0000D4 6E00           01701         MOVWF   r0x00
+0000D6 6A00           01702         CLRF    r0x02
+0000D8 0E00           01703         MOVLW   HIGH(_FrTXpacket)
+0000DA 2200           01704         ADDWFC  r0x02, F
+0000DC 0100           01705         BANKSEL _FrTXchksum
+0000DE 1D00           01706         COMF    _FrTXchksum, W, B
+0000E0 6E00           01707         MOVWF   r0x03
+0000E2 2A00           01708         INCF    r0x03, F
+0000E4 C000 FFE9      01709         MOVFF   r0x00, FSR0L
+0000E8 C000 FFEA      01710         MOVFF   r0x02, FSR0H
+0000EC C000 FFEF      01711         MOVFF   r0x03, INDF0
+0000F0 0100           01712         BANKSEL _FrTXpacket_i
+0000F2 2B00           01713         INCF    _FrTXpacket_i, F, B
+0000F4 C000 F000      01714         MOVFF   _FrTXpacket_i, _FrTXpacket_len
+0000F8 0100           01715         BANKSEL _FrTXtries
+                      01716 ;       .line   406; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrTXtries = 0;
+0000FA 6B00           01717         CLRF    _FrTXtries, B
+0000FC                01718 _00237_DS_:
+                      01719 ;       .line   409; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrTXout = txout_end;
+0000FC C000 F000      01720         MOVFF   r0x01, _FrTXout
+000100                01721 _00238_DS_:
+                      01722 ;       .line   410; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return;
+000100 CFE4 F000      01723         MOVFF   PREINC1, r0x03
+000104 CFE4 F000      01724         MOVFF   PREINC1, r0x02
+000108 CFE4 F000      01725         MOVFF   PREINC1, r0x01
+00010C CFE4 F000      01726         MOVFF   PREINC1, r0x00
+000110 0012           01727         RETURN  
+                      01728 
+                      01729 ; ; Starting pCode block
+                      01730 S_fraisedevice__fraiseSend      code
+000000                01731 _fraiseSend:
+                      01732 ;       .line   287; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       char fraiseSend(const unsigned char *buf,unsigned char len)
+000000 CFD9 FFE5      01733         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      01734         MOVFF   FSR1L, FSR2L
+000008 C000 FFE5      01735         MOVFF   r0x00, POSTDEC1
+00000C C000 FFE5      01736         MOVFF   r0x01, POSTDEC1
+000010 C000 FFE5      01737         MOVFF   r0x02, POSTDEC1
+000014 C000 FFE5      01738         MOVFF   r0x03, POSTDEC1
+000018 C000 FFE5      01739         MOVFF   r0x04, POSTDEC1
+00001C C000 FFE5      01740         MOVFF   r0x05, POSTDEC1
+000020 C000 FFE5      01741         MOVFF   r0x06, POSTDEC1
+000024 C000 FFE5      01742         MOVFF   r0x07, POSTDEC1
+000028 0E02           01743         MOVLW   0x02
+00002A CFDB F000      01744         MOVFF   PLUSW2, r0x00
+00002E 0E03           01745         MOVLW   0x03
+000030 CFDB F000      01746         MOVFF   PLUSW2, r0x01
+000034 0E04           01747         MOVLW   0x04
+000036 CFDB F000      01748         MOVFF   PLUSW2, r0x02
+00003A 0E05           01749         MOVLW   0x05
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 34
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00003C CFDB F000      01750         MOVFF   PLUSW2, r0x03
+                      01751 ;       .line   291; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrTXbufFree = FrTXout;
+000040 C000 F000      01752         MOVFF   _FrTXout, _FrTXbufFree
+000044 0100           01753         BANKSEL _FrTXin
+                      01754 ;       .line   292; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrTXbufFree -= FrTXin;
+000046 5100           01755         MOVF    _FrTXin, W, B
+000048 0100           01756         BANKSEL _FrTXbufFree
+00004A 5F00           01757         SUBWF   _FrTXbufFree, F, B
+                      01758 ;       .line   293; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrTXbufFree -= 1;
+00004C 0700           01759         DECF    _FrTXbufFree, F, B
+                      01760 ;       .line   295; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if ((len + 3) > FrTXbufFree) {
+00004E C000 F000      01761         MOVFF   r0x03, r0x04
+000052 6A00           01762         CLRF    r0x05
+000054 0E03           01763         MOVLW   0x03
+000056 2600           01764         ADDWF   r0x04, F
+000058 B0D8           01765         BTFSC   STATUS, 0
+00005A 2A00           01766         INCF    r0x05, F
+00005C C000 F000      01767         MOVFF   _FrTXbufFree, r0x06
+000060 6A00           01768         CLRF    r0x07
+000062 5000           01769         MOVF    r0x07, W
+000064 0F80           01770         ADDLW   0x80
+000066 6EF3           01771         MOVWF   PRODL
+000068 5000           01772         MOVF    r0x05, W
+00006A 0F80           01773         ADDLW   0x80
+00006C 5CF3           01774         SUBWF   PRODL, W
+00006E E100           01775         BNZ     _00192_DS_
+000070 5000           01776         MOVF    r0x04, W
+000072 5C00           01777         SUBWF   r0x06, W
+000074                01778 _00192_DS_:
+000074 E200           01779         BC      _00171_DS_
+                      01780 ;       .line   297; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return -1;
+000076 68E8           01781         SETF    WREG
+000078 D000           01782         BRA     _00177_DS_
+00007A                01783 _00171_DS_:
+                      01784 ;       .line   299; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if (len < 2) {
+00007A 0E02           01785         MOVLW   0x02
+00007C 5C00           01786         SUBWF   r0x03, W
+00007E E200           01787         BC      _00173_DS_
+                      01788 ;       .line   301; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return 0;
+000080 6AE8           01789         CLRF    WREG
+000082 D000           01790         BRA     _00177_DS_
+000084                01791 _00173_DS_:
+                      01792 ;       .line   303; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       len -= 1; //don't keep '\n' terminator
+000084 0600           01793         DECF    r0x03, F
+                      01794 ;       .line   304; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       fraisePutChar(len); //prefix tx packet buffer by its length
+000086 5000           01795         MOVF    r0x03, W
+000088 6EE5           01796         MOVWF   POSTDEC1
+00008A EC00 F000      01797         CALL    _fraisePutChar
+00008E 52E6           01798         MOVF    POSTINC1, F
+                      01799 ;       .line   306; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       while(i < len) { //fill tx packet buffer
+000090 6A00           01800         CLRF    r0x04
+000092                01801 _00174_DS_:
+000092 5000           01802         MOVF    r0x03, W
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 35
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000094 5C00           01803         SUBWF   r0x04, W
+000096 E200           01804         BC      _00176_DS_
+                      01805 ;       .line   307; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c = buf[i];
+000098 5000           01806         MOVF    r0x04, W
+00009A 2400           01807         ADDWF   r0x00, W
+00009C 6E00           01808         MOVWF   r0x05
+00009E 6AE8           01809         CLRF    WREG
+0000A0 2000           01810         ADDWFC  r0x01, W
+0000A2 6E00           01811         MOVWF   r0x06
+0000A4 6AE8           01812         CLRF    WREG
+0000A6 2000           01813         ADDWFC  r0x02, W
+0000A8 C000 FFE9      01814         MOVFF   r0x05, FSR0L
+0000AC C000 FFF3      01815         MOVFF   r0x06, PRODL
+0000B0 EC00 F000      01816         CALL    __gptrget1
+                      01817 ;       .line   308; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       i++;
+0000B4 2A00           01818         INCF    r0x04, F
+                      01819 ;       .line   309; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       fraisePutChar(c);
+0000B6 6EE5           01820         MOVWF   POSTDEC1
+0000B8 EC00 F000      01821         CALL    _fraisePutChar
+0000BC 52E6           01822         MOVF    POSTINC1, F
+0000BE D000           01823         BRA     _00174_DS_
+0000C0                01824 _00176_DS_:
+                      01825 ;       .line   313; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrTXbufFree = FrTXout;
+0000C0 C000 F000      01826         MOVFF   _FrTXout, _FrTXbufFree
+0000C4 0100           01827         BANKSEL _FrTXin
+                      01828 ;       .line   314; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrTXbufFree -= FrTXin;
+0000C6 5100           01829         MOVF    _FrTXin, W, B
+0000C8 0100           01830         BANKSEL _FrTXbufFree
+0000CA 5F00           01831         SUBWF   _FrTXbufFree, F, B
+                      01832 ;       .line   315; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrTXbufFree -= 1;
+0000CC 0700           01833         DECF    _FrTXbufFree, F, B
+                      01834 ;       .line   316; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return 0;
+0000CE 6AE8           01835         CLRF    WREG
+0000D0                01836 _00177_DS_:
+0000D0 CFE4 F000      01837         MOVFF   PREINC1, r0x07
+0000D4 CFE4 F000      01838         MOVFF   PREINC1, r0x06
+0000D8 CFE4 F000      01839         MOVFF   PREINC1, r0x05
+0000DC CFE4 F000      01840         MOVFF   PREINC1, r0x04
+0000E0 CFE4 F000      01841         MOVFF   PREINC1, r0x03
+0000E4 CFE4 F000      01842         MOVFF   PREINC1, r0x02
+0000E8 CFE4 F000      01843         MOVFF   PREINC1, r0x01
+0000EC CFE4 F000      01844         MOVFF   PREINC1, r0x00
+0000F0 CFE4 FFD9      01845         MOVFF   PREINC1, FSR2L
+0000F4 0012           01846         RETURN  
+                      01847 
+                      01848 ; ; Starting pCode block
+                      01849 S_fraisedevice__fraiseGetTXChar code
+000000                01850 _fraiseGetTXChar:
+                      01851 ;       .line   277; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       static unsigned char fraiseGetTXChar()
+000000 C000 FFE5      01852         MOVFF   r0x00, POSTDEC1
+000004 C000 FFE5      01853         MOVFF   r0x01, POSTDEC1
+000008 0100           01854         BANKSEL _FrTXin
+                      01855 ;       .line   281; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(FrTXin == FrTXout) return 0; //underflow check
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 36
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00000A 5100           01856         MOVF    _FrTXin, W, B
+00000C 0100           01857         BANKSEL _FrTXout
+00000E 1900           01858         XORWF   _FrTXout, W, B
+000010 E100           01859         BNZ     _00158_DS_
+000012 6AE8           01860         CLRF    WREG
+000014 D000           01861         BRA     _00159_DS_
+000016                01862 _00158_DS_:
+                      01863 ;       .line   282; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       c = FrTXbuf[FrTXout];
+000016 0E00           01864         MOVLW   LOW(_FrTXbuf)
+000018 0100           01865         BANKSEL _FrTXout
+00001A 2500           01866         ADDWF   _FrTXout, W, B
+00001C 6E00           01867         MOVWF   r0x00
+00001E 6A00           01868         CLRF    r0x01
+000020 0E00           01869         MOVLW   HIGH(_FrTXbuf)
+000022 2200           01870         ADDWFC  r0x01, F
+000024 C000 FFE9      01871         MOVFF   r0x00, FSR0L
+000028 C000 FFEA      01872         MOVFF   r0x01, FSR0H
+00002C CFEF F000      01873         MOVFF   INDF0, r0x00
+                      01874 ; removed redundant BANKSEL
+                      01875 ;       .line   283; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrTXout++;
+000030 2B00           01876         INCF    _FrTXout, F, B
+                      01877 ;       .line   284; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return c;
+000032 5000           01878         MOVF    r0x00, W
+000034                01879 _00159_DS_:
+000034 CFE4 F000      01880         MOVFF   PREINC1, r0x01
+000038 CFE4 F000      01881         MOVFF   PREINC1, r0x00
+00003C 0012           01882         RETURN  
+                      01883 
+                      01884 ; ; Starting pCode block
+                      01885 S_fraisedevice__fraisePutChar   code
+000000                01886 _fraisePutChar:
+                      01887 ;       .line   267; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       static void fraisePutChar(unsigned char c)
+000000 CFD9 FFE5      01888         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      01889         MOVFF   FSR1L, FSR2L
+000008 C000 FFE5      01890         MOVFF   r0x00, POSTDEC1
+00000C C000 FFE5      01891         MOVFF   r0x01, POSTDEC1
+000010 C000 FFE5      01892         MOVFF   r0x02, POSTDEC1
+000014 C000 FFE5      01893         MOVFF   r0x03, POSTDEC1
+000018 C000 FFE5      01894         MOVFF   r0x04, POSTDEC1
+00001C 0E02           01895         MOVLW   0x02
+00001E CFDB F000      01896         MOVFF   PLUSW2, r0x00
+                      01897 ;       .line   269; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if((FrTXin + 1) == FrTXout) {
+000022 C000 F000      01898         MOVFF   _FrTXin, r0x01
+000026 6A00           01899         CLRF    r0x02
+000028 4A00           01900         INFSNZ  r0x01, F
+00002A 2A00           01901         INCF    r0x02, F
+00002C C000 F000      01902         MOVFF   _FrTXout, r0x03
+000030 6A00           01903         CLRF    r0x04
+000032 5000           01904         MOVF    r0x01, W
+000034 1800           01905         XORWF   r0x03, W
+000036 E100           01906         BNZ     _00151_DS_
+000038 5000           01907         MOVF    r0x02, W
+00003A 1800           01908         XORWF   r0x04, W
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 37
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00003C E000           01909         BZ      _00152_DS_
+00003E                01910 _00151_DS_:
+00003E D000           01911         BRA     _00145_DS_
+000040                01912 _00152_DS_:
+                      01913 ;       .line   271; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return; //overflow check done by fraiseSend, but...
+000040 D000           01914         BRA     _00146_DS_
+000042                01915 _00145_DS_:
+                      01916 ;       .line   273; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrTXbuf[FrTXin] = c;
+000042 0E00           01917         MOVLW   LOW(_FrTXbuf)
+000044 0100           01918         BANKSEL _FrTXin
+000046 2500           01919         ADDWF   _FrTXin, W, B
+000048 6E00           01920         MOVWF   r0x01
+00004A 6A00           01921         CLRF    r0x02
+00004C 0E00           01922         MOVLW   HIGH(_FrTXbuf)
+00004E 2200           01923         ADDWFC  r0x02, F
+000050 C000 FFE9      01924         MOVFF   r0x01, FSR0L
+000054 C000 FFEA      01925         MOVFF   r0x02, FSR0H
+000058 C000 FFEF      01926         MOVFF   r0x00, INDF0
+                      01927 ; removed redundant BANKSEL
+                      01928 ;       .line   274; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrTXin++;
+00005C 2B00           01929         INCF    _FrTXin, F, B
+00005E                01930 _00146_DS_:
+00005E CFE4 F000      01931         MOVFF   PREINC1, r0x04
+000062 CFE4 F000      01932         MOVFF   PREINC1, r0x03
+000066 CFE4 F000      01933         MOVFF   PREINC1, r0x02
+00006A CFE4 F000      01934         MOVFF   PREINC1, r0x01
+00006E CFE4 F000      01935         MOVFF   PREINC1, r0x00
+000072 CFE4 FFD9      01936         MOVFF   PREINC1, FSR2L
+000076 0012           01937         RETURN  
+                      01938 
+                      01939 ; ; Starting pCode block
+                      01940 S_fraisedevice__fraiseGetInterruptEnable        code
+000000                01941 _fraiseGetInterruptEnable:
+000000 0100           01942         BANKSEL _FrInterruptEnabled
+                      01943 ;       .line   261; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       return FrInterruptEnabled;
+000002 5100           01944         MOVF    _FrInterruptEnabled, W, B
+000004 0012           01945         RETURN  
+                      01946 
+                      01947 ; ; Starting pCode block
+                      01948 S_fraisedevice__fraiseSetInterruptEnable        code
+000000                01949 _fraiseSetInterruptEnable:
+                      01950 ;       .line   249; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       void fraiseSetInterruptEnable(char enable)
+000000 CFD9 FFE5      01951         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      01952         MOVFF   FSR1L, FSR2L
+000008 C000 FFE5      01953         MOVFF   r0x00, POSTDEC1
+00000C 0E02           01954         MOVLW   0x02
+00000E CFDB F000      01955         MOVFF   PLUSW2, r0x00
+                      01956 ;       .line   251; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrInterruptEnabled = enable;
+000012 C000 F000      01957         MOVFF   r0x00, _FrInterruptEnabled
+                      01958 ;       .line   252; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       if(enable == 0) {
+000016 5000           01959         MOVF    r0x00, W
+000018 E100           01960         BNZ     _00134_DS_
+                      01961 ;       .line   253; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       Serial_Init_Receiver();
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 38
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00001A EC00 F000      01962         CALL    _Serial_Init_Receiver
+                      01963 ;       .line   254; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       RCxIE = 0;
+00001E 9A00           01964         BCF     _PIE1bits, 5
+                      01965 ;       .line   255; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       TXxIE = 0;
+000020 9800           01966         BCF     _PIE1bits, 4
+000022                01967 _00134_DS_:
+000022 CFE4 F000      01968         MOVFF   PREINC1, r0x00
+000026 CFE4 FFD9      01969         MOVFF   PREINC1, FSR2L
+00002A 0012           01970         RETURN  
+                      01971 
+                      01972 ; ; Starting pCode block
+                      01973 S_fraisedevice__fraiseInit      code
+000000                01974 _fraiseInit:
+000000 0100           01975         BANKSEL _FrTXin
+                      01976 ;       .line   207; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrTXin = 0;
+000002 6B00           01977         CLRF    _FrTXin, B
+000004 0100           01978         BANKSEL _FrTXout
+                      01979 ;       .line   208; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrTXout = 0;
+000006 6B00           01980         CLRF    _FrTXout, B
+000008 0100           01981         BANKSEL _FrTXbufFree
+                      01982 ;       .line   209; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrTXbufFree = 255;
+00000A 6900           01983         SETF    _FrTXbufFree, B
+                      01984 ;       .line   212; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       SerDrv_Off();
+00000C 8000           01985         BSF     _LATCbits, 0
+                      01986 ;       .line   213; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       InitSerDrv();
+00000E 9000           01987         BCF     _TRISCbits, 0
+                      01988 ;       .line   217; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       SPBRGHx = BRGHL/256;
+000010 6A00           01989         CLRF    _SPBRGH
+                      01990 ;       .line   218; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       SPBRGx = BRGHL%256;
+000012 0E3F           01991         MOVLW   0x3f
+000014 6E00           01992         MOVWF   _SPBRG
+                      01993 ;       .line   220; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       BAUDCONxbits.BRG16 = 1;
+000016 8600           01994         BSF     _BAUDCONbits, 3
+                      01995 ;       .line   222; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       TXSTAxbits.TXEN = 1;
+000018 8A00           01996         BSF     _TXSTAbits, 5
+                      01997 ;       .line   223; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       TXSTAxbits.BRGH = 1;
+00001A 8400           01998         BSF     _TXSTAbits, 2
+                      01999 ;       .line   224; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       TXSTAxbits.TX9 = 1;
+00001C 8C00           02000         BSF     _TXSTAbits, 6
+                      02001 ;       .line   225; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       TXSTAxbits.TX9D = 0;
+00001E 9000           02002         BCF     _TXSTAbits, 0
+                      02003 ;       .line   227; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       RCSTAxbits.RX9 = 1;
+000020 8C00           02004         BSF     _RCSTAbits, 6
+                      02005 ;       .line   228; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       RCSTAxbits.SPEN = 1;
+000022 8E00           02006         BSF     _RCSTAbits, 7
+000024 0100           02007         BANKSEL _FraiseStatus
+                      02008 ;       .line   230; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FraiseStatus.VAL = 0;
+000026 6B00           02009         CLRF    _FraiseStatus, B
+000028 0100           02010         BANKSEL _FraiseState
+                      02011 ;       .line   231; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FraiseState = fIDLE;
+00002A 6B00           02012         CLRF    _FraiseState, B
+00002C 0100           02013         BANKSEL _FrRXin
+                      02014 ;       .line   232; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXin = 0;
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 39
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00002E 6B00           02015         CLRF    _FrRXin, B
+000030 0100           02016         BANKSEL _FrRXout
+                      02017 ;       .line   233; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrRXout = 0;
+000032 6B00           02018         CLRF    _FrRXout, B
+000034 0100           02019         BANKSEL _FrTXpacket_len
+                      02020 ;       .line   234; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrTXpacket_len = 0;
+000036 6B00           02021         CLRF    _FrTXpacket_len, B
+                      02022 ;       .line   236; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrID = eeReadByte(EE_ID);
+000038 0E00           02023         MOVLW   0x00
+00003A 6AE5           02024         CLRF    POSTDEC1
+00003C EC00 F000      02025         CALL    _eeReadByte
+000040 0100           02026         BANKSEL _FrID
+000042 6F00           02027         MOVWF   _FrID, B
+000044 52E6           02028         MOVF    POSTINC1, F
+                      02029 ;       .line   239; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       TXxIP = 0;
+000046 9800           02030         BCF     _IPR1bits, 4
+                      02031 ;       .line   240; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       RCxIP = 0;
+000048 9A00           02032         BCF     _IPR1bits, 5
+                      02033 ;       .line   241; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       FrInterruptEnabled = 1;
+00004A 0E01           02034         MOVLW   0x01
+00004C 0100           02035         BANKSEL _FrInterruptEnabled
+00004E 6F00           02036         MOVWF   _FrInterruptEnabled, B
+000050 0100           02037         BANKSEL _stdout
+                      02038 ;       .line   244; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       stdout = STREAM_USER;
+000052 6B00           02039         CLRF    _stdout, B
+                      02040 ; removed redundant BANKSEL
+000054 6B00           02041         CLRF    (_stdout + 1), B
+000056 0E2F           02042         MOVLW   0x2f
+                      02043 ; removed redundant BANKSEL
+000058 6F00           02044         MOVWF   (_stdout + 2), B
+                      02045 ;       .line   246; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       Serial_Init_Receiver();
+00005A EC00 F000      02046         CALL    _Serial_Init_Receiver
+00005E 0012           02047         RETURN  
+                      02048 
+                      02049 ; ; Starting pCode block
+                      02050 S_fraisedevice__fraiseSetID     code
+000000                02051 _fraiseSetID:
+                      02052 ;       .line   200; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       void fraiseSetID(unsigned char id)
+000000 CFD9 FFE5      02053         MOVFF   FSR2L, POSTDEC1
+000004 CFE1 FFD9      02054         MOVFF   FSR1L, FSR2L
+000008 C000 FFE5      02055         MOVFF   r0x00, POSTDEC1
+00000C 0E02           02056         MOVLW   0x02
+00000E CFDB F000      02057         MOVFF   PLUSW2, r0x00
+                      02058 ;       .line   202; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       eeWriteByte(EE_ID,FrID = id);
+000012 C000 F000      02059         MOVFF   r0x00, _FrID
+000016 5000           02060         MOVF    r0x00, W
+000018 6EE5           02061         MOVWF   POSTDEC1
+00001A 0E00           02062         MOVLW   0x00
+00001C 6AE5           02063         CLRF    POSTDEC1
+00001E EC00 F000      02064         CALL    _eeWriteByte
+000022 52E6           02065         MOVF    POSTINC1, F
+000024 52E6           02066         MOVF    POSTINC1, F
+000026 CFE4 F000      02067         MOVFF   PREINC1, r0x00
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 40
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00002A CFE4 FFD9      02068         MOVFF   PREINC1, FSR2L
+00002E 0012           02069         RETURN  
+                      02070 
+                      02071 ; ; Starting pCode block
+                      02072 S_fraisedevice__Serial_Init_Receiver    code
+000000                02073 _Serial_Init_Receiver:
+000000                02074 _00105_DS_:
+                      02075 ;       .line   103; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       while(TXSTAxbits.TRMT == 0);
+000000 A200           02076         BTFSS   _TXSTAbits, 1
+000002 D000           02077         BRA     _00105_DS_
+                      02078 ;       .line   104; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       SerDrv_Off();
+000004 8000           02079         BSF     _LATCbits, 0
+                      02080 ;       .line   105; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       WREG=RCREGx;
+000006 5000           02081         MOVF    _RCREG, W
+000008 0000           02082         nop 
+                      02083 ;       .line   107; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       WREG=RCREGx;
+00000A 5000           02084         MOVF    _RCREG, W
+                      02085 ;       .line   108; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       RCSTAxbits.CREN = 0;
+00000C 9800           02086         BCF     _RCSTAbits, 4
+                      02087 ;       .line   109; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       RCSTAxbits.CREN = 1;
+00000E 8800           02088         BSF     _RCSTAbits, 4
+                      02089 ;       .line   110; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       RCSTAxbits.ADDEN = 1;
+000010 8600           02090         BSF     _RCSTAbits, 3
+                      02091 ;       .line   111; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       RCxIE = 1;
+000012 8A00           02092         BSF     _PIE1bits, 5
+                      02093 ;       .line   112; /home/arsene/pd-externals/Fraise/fraisedevice/fraisedevice.c       TXxIE = 0;
+000014 9800           02094         BCF     _PIE1bits, 4
+000016 0012           02095         RETURN  
+                      02096 
+                      02097 ; ; Starting pCode block
+000018                02098 __str_0:
+000018 6425 0020      02099         DB      0x25, 0x64, 0x20, 0x00
+                      02100 
+                      02101 
+                      02102 ; Statistics:
+                      02103 ; code size:     2524 (0x09dc) bytes ( 1.93%)
+                      02104 ;                1262 (0x04ee) words
+                      02105 ; udata size:     471 (0x01d7) bytes (12.80%)
+                      02106 ; access size:      8 (0x0008) bytes
+                      02107 
+                      02108 
+                      02109         end
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 41
+
+
+SYMBOL TABLE
+  LABEL                             VALUE
+
+FSR0H                             00000FEA
+FSR0L                             00000FE9
+FSR1L                             00000FE1
+FSR2L                             00000FD9
+INDF0                             00000FEF
+PLUSW2                            00000FDB
+POSTDEC1                          00000FE5
+POSTINC1                          00000FE6
+PREINC1                           00000FE4
+PRODL                             00000FF3
+STATUS                            00000FD8
+WREG                              00000FE8
+_00105_DS_                        00000000
+_00134_DS_                        00000022
+_00145_DS_                        00000042
+_00146_DS_                        0000005E
+_00151_DS_                        0000003E
+_00152_DS_                        00000040
+_00158_DS_                        00000016
+_00159_DS_                        00000034
+_00171_DS_                        0000007A
+_00173_DS_                        00000084
+_00174_DS_                        00000092
+_00176_DS_                        000000C0
+_00177_DS_                        000000D0
+_00192_DS_                        00000074
+_00202_DS_                        00000028
+_00211_DS_                        00000062
+_00214_DS_                        00000056
+_00217_DS_                        0000007C
+_00222_DS_                        0000008C
+_00225_DS_                        0000008E
+_00231_DS_                        0000009E
+_00234_DS_                        000000CE
+_00237_DS_                        000000FC
+_00238_DS_                        00000100
+_00281_DS_                        0000006A
+_00285_DS_                        0000008A
+_00296_DS_                        0000002C
+_00298_DS_                        0000004E
+_00301_DS_                        00000060
+_00303_DS_                        0000006E
+_00305_DS_                        0000008A
+_00307_DS_                        000000AA
+_00308_DS_                        000000AE
+_00310_DS_                        000000E4
+_00311_DS_                        00000098
+_00312_DS_                        000000E6
+_00315_DS_                        000000EE
+_00323_DS_                        00000118
+_00326_DS_                        00000126
+_00328_DS_                        0000012A
+_00346_DS_                        0000015A
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 42
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_00347_DS_                        00000170
+_00349_DS_                        00000172
+_00351_DS_                        0000018C
+_00354_DS_                        000001D2
+_00359_DS_                        000001FA
+_00434_DS_                        00000082
+_00438_DS_                        000000E0
+_00443_DS_                        0000013C
+_00445_DS_                        0000017C
+_00453_DS_                        000001F6
+_00458_DS_                        0000001C
+_00459_DS_                        00000020
+_00462_DS_                        00000048
+_00463_DS_                        0000004A
+_00472_DS_                        00000012
+_00476_DS_                        00000044
+_00502_DS_                        00000092
+_00503_DS_                        0000004E
+_00506_DS_                        00000096
+_00528_DS_                        0000004A
+_00531_DS_                        0000004E
+_00533_DS_                        00000058
+_00536_DS_                        00000010
+_00538_DS_                        00000064
+_00539_DS_                        00000066
+_00571_DS_                        00000032
+_00573_DS_                        0000004C
+_00574_DS_                        00000058
+_00579_DS_                        00000076
+_00602_DS_                        0000000E
+_00603_DS_                        00000010
+_00609_DS_                        0000008E
+_00613_DS_                        000000BE
+_00616_DS_                        000000B2
+_00624_DS_                        000000D6
+_00627_DS_                        000000C8
+_00629_DS_                        000000DA
+_00631_DS_                        000000DE
+_00637_DS_                        000000F4
+_00640_DS_                        00000104
+_00685_DS_                        00000020
+_00689_DS_                        00000066
+_00690_DS_                        00000068
+_00700_DS_                        000000C4
+_00702_DS_                        000000E8
+_00711_DS_                        00000054
+_00721_DS_                        00000036
+_10707_DS_                        00000030
+_ADCON0                           00000000
+_ADCON0bits                       00000000
+_ADCON1                           00000000
+_ADCON1bits                       00000000
+_ADCON2                           00000000
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 43
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_ADCON2bits                       00000000
+_ADRES                            00000000
+_ADRESH                           00000000
+_ADRESL                           00000000
+_ANSELA                           00000000
+_ANSELAbits                       00000000
+_ANSELB                           00000000
+_ANSELBbits                       00000000
+_ANSELC                           00000000
+_ANSELCbits                       00000000
+_ANSELZ                           00000000
+_ANSELZbits                       00000000
+_Assign                           00000000
+_BAUD1CON                         00000000
+_BAUD1CONbits                     00000000
+_BAUD2CON                         00000000
+_BAUD2CONbits                     00000000
+_BAUDCON                          00000000
+_BAUDCON1                         00000000
+_BAUDCON1bits                     00000000
+_BAUDCON2                         00000000
+_BAUDCON2bits                     00000000
+_BAUDCONbits                      00000000
+_BAUDCTL                          00000000
+_BAUDCTLbits                      00000000
+_BSR                              00000000
+_CCP1CON                          00000000
+_CCP1CONbits                      00000000
+_CCP2AS                           00000000
+_CCP2ASbits                       00000000
+_CCP2CON                          00000000
+_CCP2CONbits                      00000000
+_CCP3AS                           00000000
+_CCP3ASbits                       00000000
+_CCP3CON                          00000000
+_CCP3CONbits                      00000000
+_CCP4CON                          00000000
+_CCP4CONbits                      00000000
+_CCP5CON                          00000000
+_CCP5CONbits                      00000000
+_CCPR1                            00000000
+_CCPR1H                           00000000
+_CCPR1L                           00000000
+_CCPR2                            00000000
+_CCPR2H                           00000000
+_CCPR2L                           00000000
+_CCPR3                            00000000
+_CCPR3H                           00000000
+_CCPR3L                           00000000
+_CCPR4                            00000000
+_CCPR4H                           00000000
+_CCPR4L                           00000000
+_CCPR5                            00000000
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 44
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_CCPR5H                           00000000
+_CCPR5L                           00000000
+_CCPTMRS0                         00000000
+_CCPTMRS0bits                     00000000
+_CCPTMRS1                         00000000
+_CCPTMRS1bits                     00000000
+_CM12CON                          00000000
+_CM12CONbits                      00000000
+_CM1CON                           00000000
+_CM1CON0                          00000000
+_CM1CON0bits                      00000000
+_CM1CONbits                       00000000
+_CM2CON                           00000000
+_CM2CON0                          00000000
+_CM2CON0bits                      00000000
+_CM2CON1                          00000000
+_CM2CON1bits                      00000000
+_CM2CONbits                       00000000
+_CTMUCON0                         00000000
+_CTMUCON0bits                     00000000
+_CTMUCON1                         00000000
+_CTMUCON1bits                     00000000
+_CTMUCONH                         00000000
+_CTMUCONHbits                     00000000
+_CTMUCONL                         00000000
+_CTMUCONLbits                     00000000
+_CTMUICON                         00000000
+_CTMUICONH                        00000000
+_CTMUICONHbits                    00000000
+_CTMUICONbits                     00000000
+_CompareName                      00000000
+_DACCON0                          00000000
+_DACCON0bits                      00000000
+_DACCON1                          00000000
+_DACCON1bits                      00000000
+_DDRA                             00000000
+_DDRAbits                         00000000
+_DDRB                             00000000
+_DDRBbits                         00000000
+_DDRC                             00000000
+_DDRCbits                         00000000
+_ECCP1AS                          00000000
+_ECCP1ASbits                      00000000
+_ECCP2AS                          00000000
+_ECCP2ASbits                      00000000
+_ECCP3AS                          00000000
+_ECCP3ASbits                      00000000
+_ECCPAS                           00000000
+_ECCPASbits                       00000000
+_EEADR                            00000000
+_EEADRH                           00000000
+_EEADRHbits                       00000000
+_EEADRbits                        00000000
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 45
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_EECON1                           00000000
+_EECON1bits                       00000000
+_EECON2                           00000000
+_EEDATA                           00000000
+_FSR0H                            00000000
+_FSR0L                            00000000
+_FSR1H                            00000000
+_FSR1L                            00000000
+_FSR2H                            00000000
+_FSR2L                            00000000
+_FVRCON                           00000000
+_FVRCONbits                       00000000
+_FrID                             00000004
+_FrInterruptEnabled               00000003
+_FrRXbuf                          00000000
+_FrRXchksum                       00000000
+_FrRXin                           00000000
+_FrRXin_end                       00000000
+_FrRXin_tmp                       00000000
+_FrRXout                          00000000
+_FrRXout_end                      00000000
+_FrRXout_first                    00000000
+_FrRXout_len                      00000000
+_FrTXbuf                          00000000
+_FrTXbufFree                      00000002
+_FrTXchksum                       00000000
+_FrTXin                           00000000
+_FrTXout                          00000001
+_FrTXpacket                       00000000
+_FrTXpacket_i                     00000000
+_FrTXpacket_len                   00000000
+_FrTXtries                        00000000
+_FraiseState                      00000000
+_FraiseStatus                     00000000
+_HLVDCON                          00000000
+_HLVDCONbits                      00000000
+_INDF0                            00000000
+_INDF1                            00000000
+_INDF2                            00000000
+_INTCON                           00000000
+_INTCON2                          00000000
+_INTCON2bits                      00000000
+_INTCON3                          00000000
+_INTCON3bits                      00000000
+_INTCONbits                       00000000
+_IOCB                             00000000
+_IOCBbits                         00000000
+_IPR1                             00000000
+_IPR1bits                         00000000
+_IPR2                             00000000
+_IPR2bits                         00000000
+_IPR3                             00000000
+_IPR3bits                         00000000
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 46
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_IPR4                             00000000
+_IPR4bits                         00000000
+_IPR5                             00000000
+_IPR5bits                         00000000
+_LATA                             00000000
+_LATAbits                         00000000
+_LATB                             00000000
+_LATBbits                         00000000
+_LATC                             00000000
+_LATCbits                         00000000
+_LATZ                             00000000
+_LATZbits                         00000000
+_LVDCON                           00000000
+_LVDCONbits                       00000000
+_Now                              00000000
+_OSCCON                           00000000
+_OSCCON2                          00000000
+_OSCCON2bits                      00000000
+_OSCCONbits                       00000000
+_OSCTUNE                          00000000
+_OSCTUNEbits                      00000000
+_PC                               00000000
+_PCL                              00000000
+_PCLATH                           00000000
+_PCLATU                           00000000
+_PIE1                             00000000
+_PIE1bits                         00000000
+_PIE2                             00000000
+_PIE2bits                         00000000
+_PIE3                             00000000
+_PIE3bits                         00000000
+_PIE4                             00000000
+_PIE4bits                         00000000
+_PIE5                             00000000
+_PIE5bits                         00000000
+_PIR1                             00000000
+_PIR1bits                         00000000
+_PIR2                             00000000
+_PIR2bits                         00000000
+_PIR3                             00000000
+_PIR3bits                         00000000
+_PIR4                             00000000
+_PIR4bits                         00000000
+_PIR5                             00000000
+_PIR5bits                         00000000
+_PLUSW0                           00000000
+_PLUSW1                           00000000
+_PLUSW2                           00000000
+_PMD0                             00000000
+_PMD0bits                         00000000
+_PMD1                             00000000
+_PMD1bits                         00000000
+_PMD2                             00000000
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 47
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_PMD2bits                         00000000
+_PORTA                            00000000
+_PORTAbits                        00000000
+_PORTB                            00000000
+_PORTBbits                        00000000
+_PORTC                            00000000
+_PORTCbits                        00000000
+_PORTE                            00000000
+_PORTEbits                        00000000
+_PORTZ                            00000000
+_PORTZbits                        00000000
+_POSTDEC0                         00000000
+_POSTDEC1                         00000000
+_POSTDEC2                         00000000
+_POSTINC0                         00000000
+_POSTINC1                         00000000
+_POSTINC2                         00000000
+_PR2                              00000000
+_PR4                              00000000
+_PR6                              00000000
+_PREINC0                          00000000
+_PREINC1                          00000000
+_PREINC2                          00000000
+_PROD                             00000000
+_PRODH                            00000000
+_PRODL                            00000000
+_PSTR1CON                         00000000
+_PSTR1CONbits                     00000000
+_PSTR2CON                         00000000
+_PSTR2CONbits                     00000000
+_PSTR3CON                         00000000
+_PSTR3CONbits                     00000000
+_PSTRCON                          00000000
+_PSTRCONbits                      00000000
+_PWM1CON                          00000000
+_PWM1CONbits                      00000000
+_PWM2CON                          00000000
+_PWM2CONbits                      00000000
+_PWM3CON                          00000000
+_PWM3CONbits                      00000000
+_PWMCON                           00000000
+_PWMCONbits                       00000000
+_RC1REG                           00000000
+_RC1STA                           00000000
+_RC1STAbits                       00000000
+_RC2REG                           00000000
+_RC2STA                           00000000
+_RC2STAbits                       00000000
+_RCON                             00000000
+_RCONbits                         00000000
+_RCREG                            00000000
+_RCREG1                           00000000
+_RCREG2                           00000000
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 48
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_RCSTA                            00000000
+_RCSTA1                           00000000
+_RCSTA1bits                       00000000
+_RCSTA2                           00000000
+_RCSTA2bits                       00000000
+_RCSTAbits                        00000000
+_ResetToBld                       00000000
+_SLRCON                           00000000
+_SLRCONbits                       00000000
+_SP1BRG                           00000000
+_SP1BRGH                          00000000
+_SP2BRG                           00000000
+_SP2BRGH                          00000000
+_SPBRG                            00000000
+_SPBRG1                           00000000
+_SPBRG2                           00000000
+_SPBRGH                           00000000
+_SPBRGH1                          00000000
+_SPBRGH2                          00000000
+_SRCON0                           00000000
+_SRCON0bits                       00000000
+_SRCON1                           00000000
+_SRCON1bits                       00000000
+_SSP1ADD                          00000000
+_SSP1BUF                          00000000
+_SSP1CON1                         00000000
+_SSP1CON1bits                     00000000
+_SSP1CON2                         00000000
+_SSP1CON2bits                     00000000
+_SSP1CON3                         00000000
+_SSP1CON3bits                     00000000
+_SSP1MSK                          00000000
+_SSP1MSKbits                      00000000
+_SSP1STAT                         00000000
+_SSP1STATbits                     00000000
+_SSP2ADD                          00000000
+_SSP2BUF                          00000000
+_SSP2CON1                         00000000
+_SSP2CON1bits                     00000000
+_SSP2CON2                         00000000
+_SSP2CON2bits                     00000000
+_SSP2CON3                         00000000
+_SSP2CON3bits                     00000000
+_SSP2MSK                          00000000
+_SSP2MSKbits                      00000000
+_SSP2STAT                         00000000
+_SSP2STATbits                     00000000
+_SSPADD                           00000000
+_SSPBUF                           00000000
+_SSPCON1                          00000000
+_SSPCON1bits                      00000000
+_SSPCON2                          00000000
+_SSPCON2bits                      00000000
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 49
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_SSPCON3                          00000000
+_SSPCON3bits                      00000000
+_SSPMSK                           00000000
+_SSPMSKbits                       00000000
+_SSPSTAT                          00000000
+_SSPSTATbits                      00000000
+_STATUS                           00000000
+_STATUSbits                       00000000
+_STKPTR                           00000000
+_STKPTRbits                       00000000
+_Serial_Init_Receiver             00000000
+_T0CON                            00000000
+_T0CONbits                        00000000
+_T1CON                            00000000
+_T1CONbits                        00000000
+_T1GCON                           00000000
+_T1GCONbits                       00000000
+_T2CON                            00000000
+_T2CONbits                        00000000
+_T3CON                            00000000
+_T3CONbits                        00000000
+_T3GCON                           00000000
+_T3GCONbits                       00000000
+_T4CON                            00000000
+_T4CONbits                        00000000
+_T5CON                            00000000
+_T5CONbits                        00000000
+_T5GCON                           00000000
+_T5GCONbits                       00000000
+_T6CON                            00000000
+_T6CONbits                        00000000
+_TABLAT                           00000000
+_TBLPTR                           00000000
+_TBLPTRH                          00000000
+_TBLPTRL                          00000000
+_TBLPTRU                          00000000
+_TMR0                             00000000
+_TMR0H                            00000000
+_TMR0L                            00000000
+_TMR1                             00000000
+_TMR1H                            00000000
+_TMR1L                            00000000
+_TMR2                             00000000
+_TMR3                             00000000
+_TMR3H                            00000000
+_TMR3L                            00000000
+_TMR4                             00000000
+_TMR5                             00000000
+_TMR5H                            00000000
+_TMR5L                            00000000
+_TMR6                             00000000
+_TOS                              00000000
+_TOSH                             00000000
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 50
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_TOSL                             00000000
+_TOSU                             00000000
+_TRICZ                            00000000
+_TRISA                            00000000
+_TRISAbits                        00000000
+_TRISB                            00000000
+_TRISBbits                        00000000
+_TRISC                            00000000
+_TRISCbits                        00000000
+_TRISE                            00000000
+_TRISEbits                        00000000
+_TRISZbits                        00000000
+_TX1REG                           00000000
+_TX1STA                           00000000
+_TX1STAbits                       00000000
+_TX2REG                           00000000
+_TX2STA                           00000000
+_TX2STAbits                       00000000
+_TXREG                            00000000
+_TXREG1                           00000000
+_TXREG2                           00000000
+_TXSTA                            00000000
+_TXSTA1                           00000000
+_TXSTA1bits                       00000000
+_TXSTA2                           00000000
+_TXSTA2bits                       00000000
+_TXSTAbits                        00000000
+_VREFCON0                         00000000
+_VREFCON0bits                     00000000
+_VREFCON1                         00000000
+_VREFCON1bits                     00000000
+_VREFCON2                         00000000
+_VREFCON2bits                     00000000
+_WDTCON                           00000000
+_WDTCONbits                       00000000
+_WPUB                             00000000
+_WPUBbits                         00000000
+_WREG                             00000000
+__18F26K22                        00000001
+__gptrget1                        00000000
+__modsint                         00000000
+__str_0                           00000018
+_eeReadByte                       00000000
+_eeWriteByte                      00000000
+_fraiseDecodeNextTXPacket         00000000
+_fraiseDecodeNextTXPacket_ischar_1_91  00000000
+_fraiseGetAt                      00000000
+_fraiseGetChar                    00000000
+_fraiseGetIndex                   00000000
+_fraiseGetInterruptEnable         00000000
+_fraiseGetLen                     00000000
+_fraiseGetTXChar                  00000000
+_fraiseISR                        00000000
+gpasm-0.14.1 (Aug 21 2013)   exampleFruit-objs/fraisedevice/fraisedevice.asm1-13-2017  11:36:10          PAGE 51
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_fraiseISR_c2_1_105               00000000
+_fraiseISR_c_1_105                00000000
+_fraiseInit                       00000000
+_fraisePeekChar                   00000000
+_fraisePutChar                    00000000
+_fraiseReceive                    00000000
+_fraiseReceiveChar                00000000
+_fraiseSend                       00000000
+_fraiseSendCopy                   00000000
+_fraiseService                    00000000
+_fraiseSetID                      00000000
+_fraiseSetInterruptEnable         00000000
+_printf                           00000000
+_putchar                          00000000
+_stdin                            00000000
+_stdout                           00000000
+_txbuf                            00000000
+_txlen                            00000005
+r0x00                             00000000
+r0x01                             00000001
+r0x02                             00000002
+r0x03                             00000003
+r0x04                             00000004
+r0x05                             00000005
+r0x06                             00000006
+r0x07                             00000007
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

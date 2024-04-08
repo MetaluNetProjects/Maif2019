@@ -1,0 +1,1343 @@
+gplink-0.14.1 (Aug 21 2013)
+Map File - Created 1-13-2017  11:36:10
+ 
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+    S_crt0iz_rloc___entry       code   00000000    program   0x000004
+S_strmmssp____stream_mssp_putchar       code   0x000004    program   0x000004
+ S_core_ivec_0x1_high_ISR       code   0x000008    program   0x000004
+                 .idata_i       code   0x00000c    program   0x00000c
+  S_core_ivec_0x2_low_ISR       code   0x000018    program   0x000004
+     S_vfprintf__vfprintf       code   0x00001c    program   0x000864
+          S__convert_frac       code   0x000880    program   0x000702
+           S__convert_int       code   0x000f82    program   0x0002ac
+         S_x_ftoa__x_ftoa       code   0x00122e    program   0x000224
+S_fraisedevice__fraiseISR       code   0x001452    program   0x000204
+            S_ltoa__ultoa       code   0x001656    program   0x0001b8
+    S_modulong___modulong       code   0x00180e    program   0x000126
+   S_eeparams__EELoadLong       code   0x001934    program   0x00011a
+S_fraisedevice__fraiseService       code   0x001a4e    program   0x00011a
+    S_divulong___divulong       code   0x001b68    program   0x000118
+S_fraisedevice__fraiseDecodeNextTXPacket       code   0x001c80    program   0x000112
+S_strmputchar____stream_putchar       code   0x001d92    program   0x000112
+S_fraisedevice__fraiseSend       code   0x001ea4    program   0x0000f6
+      S_modsint___modsint       code   0x001f9a    program   0x0000dc
+   S_eeparams__EESaveLong       code   0x002076    program   0x0000da
+            S_main__setup       code   0x002150    program   0x0000d0
+S_eeparams__EEdeclareLong       code   0x002220    program   0x0000cc
+             S_main__loop       code   0x0022ec    program   0x0000ca
+             S_ltoa__ltoa       code   0x0023b6    program   0x0000c6
+      S_moduint___moduint       code   0x00247c    program   0x0000ba
+S_fraisedevice__fraiseSendCopy       code   0x002536    program   0x0000a8
+ S_eeparams__EEdeclareInt       code   0x0025de    program   0x00009c
+ S_crt0iz_rloc___do_cinit       code   0x00267a    program   0x00009c
+   S_fraisedevice__Assign       code   0x002716    program   0x000084
+         S_printf__printf       code   0x00279a    program   0x000080
+S_eeparams__EEdeclareChar       code   0x00281a    program   0x00007e
+S_main__fraiseReceiveChar       code   0x002898    program   0x00007a
+    S_eeparams__EESaveInt       code   0x002912    program   0x00007a
+S_fraisedevice__fraisePutChar       code   0x00298c    program   0x000078
+S_fraisedevice__fraiseGetAt       code   0x002a04    program   0x000076
+S_fraisedevice__CompareName       code   0x002a7a    program   0x000074
+         S_core__high_ISR       code   0x002aee    program   0x000070
+    S_eeparams__EELoadInt       code   0x002b5e    program   0x000068
+ S_x_ftoa__x_cnvfrac_wrap       code   0x002bc6    program   0x000064
+  S_fraisedevice__putchar       code   0x002c2a    program   0x000062
+S_fraisedevice__fraiseInit       code   0x002c8c    program   0x000060
+  S_x_ftoa__x_cnvint_wrap       code   0x002cec    program   0x000056
+             S_core__time       code   0x002d42    program   0x000054
+S_fraisedevice__fraiseGetChar       code   0x002d96    program   0x000054
+         S_core__coreInit       code   0x002dea    program   0x00004e
+      S_core__eeWriteByte       code   0x002e38    program   0x00004e
+   S_eeparams__EESaveChar       code   0x002e86    program   0x00004c
+          S_core__low_ISR       code   0x002ed2    program   0x00004a
+    S_gptrget4___gptrget4       code   0x002f1c    program   0x000040
+S_fraisedevice__fraiseGetTXChar       code   0x002f5c    program   0x00003e
+S_eeprom16_gptrput4____eeprom16_gptrput4       code   0x002f9a    program   0x00003c
+S_eeprom16_gptrget4____eeprom16_gptrget4       code   0x002fd6    program   0x00003a
+    S_gptrget3___gptrget3       code   0x003010    program   0x000036
+S_eeprom16_gptrput3____eeprom16_gptrput3       code   0x003046    program   0x000034
+S_fraisedevice__fraiseSetID       code   0x00307a    program   0x000030
+S_eeprom16_gptrget3____eeprom16_gptrget3       code   0x0030aa    program   0x000030
+S_fraisedevice__fraisePeekChar       code   0x0030da    program   0x00002e
+       S_islower__islower       code   0x003108    program   0x00002e
+   S_eeparams__EELoadChar       code   0x003136    program   0x00002c
+S_fraisedevice__fraiseSetInterruptEnable       code   0x003162    program   0x00002c
+    S_gptrget2___gptrget2       code   0x00318e    program   0x00002c
+S_eeprom16_gptrput2____eeprom16_gptrput2       code   0x0031ba    program   0x00002c
+  S_crt0iz_rloc___startup       code   0x0031e6    program   0x000028
+S_eeprom16_gptrget2____eeprom16_gptrget2       code   0x00320e    program   0x000026
+S_eeprom16_gptrput1____eeprom16_gptrput1       code   0x003234    program   0x000024
+    S_gptrget1___gptrget1       code   0x003258    program   0x000022
+    S_gptrput4___gptrput4       code   0x00327a    program   0x000022
+    S_gptrput3___gptrput3       code   0x00329c    program   0x00001e
+       S_core__eeReadByte       code   0x0032ba    program   0x00001c
+S_fraisedevice__Serial_Init_Receiver       code   0x0032d6    program   0x00001c
+S_eeprom16_gptrget1____eeprom16_gptrget1       code   0x0032f2    program   0x00001c
+    S_gptrput2___gptrput2       code   0x00330e    program   0x00001a
+S_boardconfig__Generic26kSetup       code   0x003328    program   0x000016
+S_fraisedevice__ResetToBld       code   0x00333e    program   0x000016
+    S_gptrput1___gptrput1       code   0x003354    program   0x000016
+    S_main__fraiseReceive       code   0x00336a    program   0x000012
+S_eeprom16_write____eeprom16_write       code   0x00337c    program   0x000012
+  S_eeparams__EEwriteMain       code   0x00338e    program   0x000010
+   S_eeparams__EEreadMain       code   0x00339e    program   0x00000e
+                   .cinit       code   0x0033ac    program   0x00000e
+             S_core__main       code   0x0033ba    program   0x00000c
+       S_fruit__fruitInit       code   0x0033c6    program   0x00000a
+S_strmusart____stream_usart_putchar       code   0x0033d0    program   0x000008
+     S_boardconfig__Setup       code   0x0033d8    program   0x000006
+S_fraisedevice__fraiseGetIndex       code   0x0033de    program   0x000006
+S_fraisedevice__fraiseGetLen       code   0x0033e4    program   0x000006
+S_fraisedevice__fraiseGetInterruptEnable       code   0x0033ea    program   0x000006
+S_strmgpsim____stream_gpsim_putchar       code   0x0033f0    program   0x000006
+ S___eeprom_gptrput1_stub       code   0x0033f6    program   0x000004
+ S___eeprom_gptrput2_stub       code   0x0033fa    program   0x000004
+ S___eeprom_gptrput4_stub       code   0x0033fe    program   0x000004
+ S___eeprom_gptrget1_stub       code   0x003402    program   0x000004
+ S___eeprom_gptrget2_stub       code   0x003406    program   0x000004
+ S___eeprom_gptrget4_stub       code   0x00340a    program   0x000004
+ S___eeprom_gptrget3_stub       code   0x00340e    program   0x000004
+ S___eeprom_gptrput3_stub       code   0x003412    program   0x000004
+                   .idata      idata   0x000424       data   0x00000c
+               .registers      udata   00000000       data   0x00001f
+    udata_fraisedevice_16      udata   0x000060       data   0x000080
+             udata_ltoa_0      udata   0x0000e0       data   0x000020
+         udata_vfprintf_1      udata   0x000400       data   0x000024
+             udata_main_0      udata   0x000430       data   0x000004
+             udata_core_0      udata   0x000434       data   0x000004
+            ustat_core_00      udata   0x000438       data   0x000001
+    udata_fraisedevice_20      udata   0x000439       data   0x000023
+    udata_fraisedevice_19      udata   0x00045c       data   0x000001
+            ustat_core_01      udata   0x000480       data   0x000001
+             udata_core_1      udata   0x000481       data   0x000004
+           udata_x_ftoa_0      udata   0x000485       data   0x000004
+            ustat_core_02      udata   0x000489       data   0x000001
+          udata_streams_0      udata   0x00048a       data   0x000003
+          udata_streams_1      udata   0x00048d       data   0x000003
+         udata_eeparams_0      udata   0x000490       data   0x000002
+            ustat_core_03      udata   0x000492       data   0x000001
+     udata_fraisedevice_8      udata   0x000700       data   0x000100
+            stack_section      udata   0x000800       data   0x000100
+    udata_fraisedevice_12      udata   0x000f00       data   0x000023
+         udata_vfprintf_0      udata   0x000f23       data   0x000003
+         udata_eeparams_1      udata   0x000f26       data   0x000001
+     udata_fraisedevice_0      udata   0x000f27       data   0x000001
+     udata_fraisedevice_1      udata   0x000f28       data   0x000001
+     udata_fraisedevice_2      udata   0x000f29       data   0x000001
+     udata_fraisedevice_3      udata   0x000f2a       data   0x000001
+     udata_fraisedevice_4      udata   0x000f2b       data   0x000001
+     udata_fraisedevice_5      udata   0x000f2c       data   0x000001
+     udata_fraisedevice_6      udata   0x000f2d       data   0x000001
+     udata_fraisedevice_7      udata   0x000f2e       data   0x000001
+     udata_fraisedevice_9      udata   0x000f2f       data   0x000001
+    udata_fraisedevice_10      udata   0x000f30       data   0x000001
+    udata_fraisedevice_11      udata   0x000f31       data   0x000001
+    udata_fraisedevice_13      udata   0x000f32       data   0x000001
+    udata_fraisedevice_14      udata   0x000f33       data   0x000001
+    udata_fraisedevice_15      udata   0x000f34       data   0x000001
+    udata_fraisedevice_17      udata   0x000f35       data   0x000001
+    udata_fraisedevice_18      udata   0x000f36       data   0x000001
+     ustat_pic18f26k22_00      udata   0x000f38       data   0x000003
+     ustat_pic18f26k22_01      udata   0x000f3d       data   0x000046
+     ustat_pic18f26k22_02      udata   0x000f84       data   0x000001
+     ustat_pic18f26k22_03      udata   0x000f89       data   0x000003
+     ustat_pic18f26k22_04      udata   0x000f92       data   0x000003
+     ustat_pic18f26k22_05      udata   0x000f96       data   0x000001
+     ustat_pic18f26k22_06      udata   0x000f9b       data   0x00001a
+     ustat_pic18f26k22_07      udata   0x000fb6       data   0x00001e
+     ustat_pic18f26k22_08      udata   0x000fd5       data   0x00002b
+ 
+                              Program Memory Usage
+                               Start         End
+                           ---------   ---------
+                            0x0033d8    0x0033dd
+                            0x003328    0x00333d
+                            0x00000c    0x000017
+                            0x00336a    0x00337b
+                            0x002898    0x002911
+                            0x0022ec    0x0023b5
+                            0x002150    0x00221f
+                            0x0033c6    0x0033cf
+                            0x00339e    0x0033ab
+                            0x00338e    0x00339d
+                            0x002220    0x0022eb
+                            0x0025de    0x002679
+                            0x00281a    0x002897
+                            0x002076    0x00214f
+                            0x002912    0x00298b
+                            0x002e86    0x002ed1
+                            0x001934    0x001a4d
+                            0x002b5e    0x002bc5
+                            0x003136    0x003161
+                            0x000008    0x00000b
+                            0x000018    0x00001b
+                            0x0033ba    0x0033c5
+                            0x002d42    0x002d95
+                            0x002ed2    0x002f1b
+                            0x002aee    0x002b5d
+                            0x002dea    0x002e37
+                            0x0032ba    0x0032d5
+                            0x002e38    0x002e85
+                            0x002c2a    0x002c8b
+                            0x001a4e    0x001b67
+                            0x00333e    0x003353
+                            0x002716    0x002799
+                            0x002a7a    0x002aed
+                            0x002536    0x0025dd
+                            0x002a04    0x002a79
+                            0x0033de    0x0033e3
+                            0x0033e4    0x0033e9
+                            0x0030da    0x003107
+                            0x002d96    0x002de9
+                            0x001452    0x001655
+                            0x001c80    0x001d91
+                            0x001ea4    0x001f99
+                            0x002f5c    0x002f99
+                            0x00298c    0x002a03
+                            0x0033ea    0x0033ef
+                            0x003162    0x00318d
+                            0x002c8c    0x002ceb
+                            0x00307a    0x0030a9
+                            0x0032d6    0x0032f1
+                            00000000    0x000003
+                            0x00267a    0x002715
+                            0x0031e6    0x00320d
+                            0x003258    0x003279
+                            0x00318e    0x0031b9
+                            0x002f1c    0x002f5b
+                            0x001f9a    0x002075
+                            0x003354    0x003369
+                            0x00330e    0x003327
+                            0x00327a    0x00329b
+                            0x00247c    0x002535
+                            0x00279a    0x002819
+                            0x00001c    0x00087f
+                            0x001d92    0x001ea3
+                            0x000004    0x000007
+                            0x0033f0    0x0033f5
+                            0x00122e    0x001451
+                            0x002bc6    0x002c29
+                            0x002cec    0x002d41
+                            0x0023b6    0x00247b
+                            0x001656    0x00180d
+                            0x003108    0x003135
+                            0x000880    0x000f81
+                            0x000f82    0x00122d
+                            0x0033d0    0x0033d7
+                            0x0033f6    0x0033f9
+                            0x0033fa    0x0033fd
+                            0x0033fe    0x003401
+                            0x003402    0x003405
+                            0x003406    0x003409
+                            0x00340a    0x00340d
+                            0x00180e    0x001933
+                            0x0032f2    0x00330d
+                            0x00320e    0x003233
+                            0x00329c    0x0032b9
+                            0x002fd6    0x00300f
+                            0x001b68    0x001c7f
+                            0x003234    0x003257
+                            0x0031ba    0x0031e5
+                            0x003010    0x003045
+                            0x002f9a    0x002fd5
+                            0x00337c    0x00338d
+                            0x00340e    0x003411
+                            0x003412    0x003415
+                            0x003046    0x003079
+                            0x0030aa    0x0030d9
+                            0x0033ac    0x0033b9
+ 
+                            6667 program addresses used
+ 
+                              Symbols
+                     Name    Address   Location    Storage File
+                ---------  ---------  ---------  --------- ---------
+                   _Setup   0x0033d8    program     extern exampleFruit-objs/boardconfig.asm
+         _Generic26kSetup   0x003328    program     extern exampleFruit-objs/boardconfig.asm
+                  _period   0x000424       data     extern exampleFruit-objs/exampleFruit.asm
+                       _t   0x000425       data     extern exampleFruit-objs/exampleFruit.asm
+                      _t2   0x000426       data     extern exampleFruit-objs/exampleFruit.asm
+                    r0x00   00000000       data     static exampleFruit-objs/exampleFruit.asm
+                    r0x01   0x000001       data     static exampleFruit-objs/exampleFruit.asm
+                    r0x02   0x000002       data     static exampleFruit-objs/exampleFruit.asm
+                    r0x03   0x000003       data     static exampleFruit-objs/exampleFruit.asm
+                    r0x05   0x000004       data     static exampleFruit-objs/exampleFruit.asm
+               _mainDelay   0x000430       data     extern exampleFruit-objs/exampleFruit.asm
+           _fraiseReceive   0x00336a    program     extern exampleFruit-objs/exampleFruit.asm
+               _00182_DS_   0x00337a    program     static exampleFruit-objs/exampleFruit.asm
+       _fraiseReceiveChar   0x002898    program     extern exampleFruit-objs/exampleFruit.asm
+               _00139_DS_   0x0028b6    program     static exampleFruit-objs/exampleFruit.asm
+               _00150_DS_   0x0028ba    program     static exampleFruit-objs/exampleFruit.asm
+               _00144_DS_   0x0028da    program     static exampleFruit-objs/exampleFruit.asm
+               _00146_DS_   0x002902    program     static exampleFruit-objs/exampleFruit.asm
+               _00152_DS_   0x002908    program     static exampleFruit-objs/exampleFruit.asm
+                    _loop   0x0022ec    program     extern exampleFruit-objs/exampleFruit.asm
+               _00132_DS_   0x00233c    program     static exampleFruit-objs/exampleFruit.asm
+               _00123_DS_   0x0023a4    program     static exampleFruit-objs/exampleFruit.asm
+                   _setup   0x002150    program     extern exampleFruit-objs/exampleFruit.asm
+                  __str_0   0x002202    program     static exampleFruit-objs/exampleFruit.asm
+                  __str_1   0x00221a    program     static exampleFruit-objs/exampleFruit.asm
+                  __str_2   0x00221c    program     static exampleFruit-objs/exampleFruit.asm
+               _fruitInit   0x0033c6    program     extern exampleFruit-objs/fruit/fruit.asm
+                    r0x00   00000000       data     static exampleFruit-objs/eeparams/eeparams.asm
+                    r0x01   0x000001       data     static exampleFruit-objs/eeparams/eeparams.asm
+                    r0x02   0x000002       data     static exampleFruit-objs/eeparams/eeparams.asm
+                    r0x03   0x000003       data     static exampleFruit-objs/eeparams/eeparams.asm
+                    r0x04   0x000004       data     static exampleFruit-objs/eeparams/eeparams.asm
+                    r0x05   0x000005       data     static exampleFruit-objs/eeparams/eeparams.asm
+                    r0x06   0x000006       data     static exampleFruit-objs/eeparams/eeparams.asm
+                    r0x07   0x000007       data     static exampleFruit-objs/eeparams/eeparams.asm
+                    r0x08   0x000008       data     static exampleFruit-objs/eeparams/eeparams.asm
+                    r0x09   0x000009       data     static exampleFruit-objs/eeparams/eeparams.asm
+                    r0x0a   0x00000a       data     static exampleFruit-objs/eeparams/eeparams.asm
+                    r0x0b   0x00000b       data     static exampleFruit-objs/eeparams/eeparams.asm
+               _eeaddress   0x000490       data     extern exampleFruit-objs/eeparams/eeparams.asm
+             _eeoperation   0x000f26       data     extern exampleFruit-objs/eeparams/eeparams.asm
+              _EEreadMain   0x00339e    program     extern exampleFruit-objs/eeparams/eeparams.asm
+             _EEwriteMain   0x00338e    program     extern exampleFruit-objs/eeparams/eeparams.asm
+           _EEdeclareLong   0x002220    program     extern exampleFruit-objs/eeparams/eeparams.asm
+               _00176_DS_   0x00228e    program     static exampleFruit-objs/eeparams/eeparams.asm
+               _00178_DS_   0x0022ca    program     static exampleFruit-objs/eeparams/eeparams.asm
+            _EEdeclareInt   0x0025de    program     extern exampleFruit-objs/eeparams/eeparams.asm
+               _00157_DS_   0x002634    program     static exampleFruit-objs/eeparams/eeparams.asm
+               _00159_DS_   0x002660    program     static exampleFruit-objs/eeparams/eeparams.asm
+           _EEdeclareChar   0x00281a    program     extern exampleFruit-objs/eeparams/eeparams.asm
+               _00138_DS_   0x002864    program     static exampleFruit-objs/eeparams/eeparams.asm
+               _00140_DS_   0x002882    program     static exampleFruit-objs/eeparams/eeparams.asm
+              _EESaveLong   0x002076    program     extern exampleFruit-objs/eeparams/eeparams.asm
+               _10197_DS_   0x0020be    program     static exampleFruit-objs/eeparams/eeparams.asm
+               _20198_DS_   0x0020de    program     static exampleFruit-objs/eeparams/eeparams.asm
+               _30199_DS_   0x002100    program     static exampleFruit-objs/eeparams/eeparams.asm
+               _40200_DS_   0x002122    program     static exampleFruit-objs/eeparams/eeparams.asm
+               _EESaveInt   0x002912    program     extern exampleFruit-objs/eeparams/eeparams.asm
+               _50201_DS_   0x002946    program     static exampleFruit-objs/eeparams/eeparams.asm
+               _60202_DS_   0x002966    program     static exampleFruit-objs/eeparams/eeparams.asm
+              _EESaveChar   0x002e86    program     extern exampleFruit-objs/eeparams/eeparams.asm
+               _70203_DS_   0x002eb0    program     static exampleFruit-objs/eeparams/eeparams.asm
+              _EELoadLong   0x001934    program     extern exampleFruit-objs/eeparams/eeparams.asm
+               _80204_DS_   0x001970    program     static exampleFruit-objs/eeparams/eeparams.asm
+               _90205_DS_   0x001992    program     static exampleFruit-objs/eeparams/eeparams.asm
+              _100206_DS_   0x0019c0    program     static exampleFruit-objs/eeparams/eeparams.asm
+              _110207_DS_   0x0019fc    program     static exampleFruit-objs/eeparams/eeparams.asm
+               _EELoadInt   0x002b5e    program     extern exampleFruit-objs/eeparams/eeparams.asm
+              _120208_DS_   0x002b7e    program     static exampleFruit-objs/eeparams/eeparams.asm
+              _130209_DS_   0x002b9c    program     static exampleFruit-objs/eeparams/eeparams.asm
+              _EELoadChar   0x003136    program     extern exampleFruit-objs/eeparams/eeparams.asm
+              _140210_DS_   0x00314e    program     static exampleFruit-objs/eeparams/eeparams.asm
+                   _TMR0U   0x000427       data     extern exampleFruit-objs/core/core.asm
+                    r0x00   00000000       data     static exampleFruit-objs/core/core.asm
+                     _Now   0x000434       data     extern exampleFruit-objs/core/core.asm
+           _time_now_1_76   0x000481       data     static exampleFruit-objs/core/core.asm
+                  _ANSELZ   0x000438       data     extern exampleFruit-objs/core/core.asm
+              _ANSELZbits   0x000438       data     extern exampleFruit-objs/core/core.asm
+                   _PORTZ   0x000480       data     extern exampleFruit-objs/core/core.asm
+               _PORTZbits   0x000480       data     extern exampleFruit-objs/core/core.asm
+                    _LATZ   0x000489       data     extern exampleFruit-objs/core/core.asm
+                _LATZbits   0x000489       data     extern exampleFruit-objs/core/core.asm
+                   _TRICZ   0x000492       data     extern exampleFruit-objs/core/core.asm
+               _TRISZbits   0x000492       data     extern exampleFruit-objs/core/core.asm
+        ivec_0x1_high_ISR   0x000008    program     static exampleFruit-objs/core/core.asm
+         ivec_0x2_low_ISR   0x000018    program     static exampleFruit-objs/core/core.asm
+                    _main   0x0033ba    program     extern exampleFruit-objs/core/core.asm
+               _00124_DS_   0x0033be    program     static exampleFruit-objs/core/core.asm
+                    _time   0x002d42    program     extern exampleFruit-objs/core/core.asm
+               _00151_DS_   0x002d6c    program     static exampleFruit-objs/core/core.asm
+               _00144_DS_   0x002d84    program     static exampleFruit-objs/core/core.asm
+                 _low_ISR   0x002ed2    program     extern exampleFruit-objs/core/core.asm
+                _high_ISR   0x002aee    program     extern exampleFruit-objs/core/core.asm
+               _10143_DS_   0x002b2a    program     static exampleFruit-objs/core/core.asm
+               _00133_DS_   0x002b44    program     static exampleFruit-objs/core/core.asm
+                _coreInit   0x002dea    program     extern exampleFruit-objs/core/core.asm
+              _eeReadByte   0x0032ba    program     extern exampleFruit-objs/core/core.asm
+             _eeWriteByte   0x002e38    program     extern exampleFruit-objs/core/core.asm
+               _00105_DS_   0x002e68    program     static exampleFruit-objs/core/core.asm
+               _00107_DS_   0x002e70    program     static exampleFruit-objs/core/core.asm
+                  _FrTXin   0x000429       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+                 _FrTXout   0x00042a       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+             _FrTXbufFree   0x00042b       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+      _FrInterruptEnabled   0x00042c       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+                    _FrID   0x00042d       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+                   _txlen   0x00042e       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+                    r0x00   00000000       data     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+                    r0x01   0x000001       data     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+                    r0x02   0x000002       data     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+                    r0x03   0x000003       data     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+                    r0x04   0x000004       data     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+                    r0x05   0x000005       data     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+                    r0x06   0x000006       data     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+                    r0x07   0x000007       data     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _FrTXtries   0x000f27       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+             _FraiseState   0x000f28       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+       _fraiseISR_c_1_105   0x000f29       data     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+      _fraiseISR_c2_1_105   0x000f2a       data     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+                  _FrRXin   0x000f2b       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+                 _FrRXout   0x000f2c       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+          _FrTXpacket_len   0x000f2d       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+            _FraiseStatus   0x000f2e       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+                 _FrTXbuf   0x000700       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+              _FrTXchksum   0x000f2f       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+            _FrTXpacket_i   0x000f30       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+_fraiseDecodeNextTXPacket_ischar_1_91   0x000f31       data     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+              _FrTXpacket   0x000f00       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+              _FrRXchksum   0x000f32       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+              _FrRXin_tmp   0x000f33       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+              _FrRXin_end   0x000f34       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+                 _FrRXbuf   0x000060       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+             _FrRXout_end   0x000f35       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+             _FrRXout_len   0x000f36       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+           _FrRXout_first   0x00045c       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+                   _txbuf   0x000439       data     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+                 _putchar   0x002c2a    program     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _10707_DS_   0x002c5a    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00721_DS_   0x002c60    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00711_DS_   0x002c7e    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+           _fraiseService   0x001a4e    program     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00685_DS_   0x001a6e    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00689_DS_   0x001ab4    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00690_DS_   0x001ab6    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00609_DS_   0x001adc    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00616_DS_   0x001b00    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00613_DS_   0x001b0c    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00700_DS_   0x001b12    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00627_DS_   0x001b16    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00624_DS_   0x001b24    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00629_DS_   0x001b28    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00631_DS_   0x001b2c    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00702_DS_   0x001b36    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00637_DS_   0x001b42    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00640_DS_   0x001b52    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+              _ResetToBld   0x00333e    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00602_DS_   0x00334c    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00603_DS_   0x00334e    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+                  _Assign   0x002716    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00571_DS_   0x002748    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00573_DS_   0x002762    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00574_DS_   0x00276e    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00579_DS_   0x00278c    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+             _CompareName   0x002a7a    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00536_DS_   0x002a8a    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00528_DS_   0x002ac4    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00531_DS_   0x002ac8    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00533_DS_   0x002ad2    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00538_DS_   0x002ade    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00539_DS_   0x002ae0    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+          _fraiseSendCopy   0x002536    program     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00503_DS_   0x002584    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00502_DS_   0x0025c8    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00506_DS_   0x0025cc    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+             _fraiseGetAt   0x002a04    program     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+          _fraiseGetIndex   0x0033de    program     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+            _fraiseGetLen   0x0033e4    program     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+          _fraisePeekChar   0x0030da    program     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+           _fraiseGetChar   0x002d96    program     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00472_DS_   0x002da8    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00458_DS_   0x002db2    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00459_DS_   0x002db6    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00476_DS_   0x002dda    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00462_DS_   0x002dde    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00463_DS_   0x002de0    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _fraiseISR   0x001452    program     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00296_DS_   0x00147e    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00298_DS_   0x0014a0    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00301_DS_   0x0014b2    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00303_DS_   0x0014c0    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00434_DS_   0x0014d4    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00305_DS_   0x0014dc    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00311_DS_   0x0014ea    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00307_DS_   0x0014fc    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00308_DS_   0x001500    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00438_DS_   0x001532    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00310_DS_   0x001536    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00312_DS_   0x001538    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00315_DS_   0x001540    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00323_DS_   0x00156a    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00326_DS_   0x001578    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00328_DS_   0x00157c    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00443_DS_   0x00158e    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00346_DS_   0x0015ac    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00347_DS_   0x0015c2    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00349_DS_   0x0015c4    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00445_DS_   0x0015ce    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00351_DS_   0x0015de    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00354_DS_   0x001624    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00453_DS_   0x001648    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00359_DS_   0x00164c    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+_fraiseDecodeNextTXPacket   0x001c80    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00202_DS_   0x001ca8    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00214_DS_   0x001cd6    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00211_DS_   0x001ce2    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00281_DS_   0x001cea    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00217_DS_   0x001cfc    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00285_DS_   0x001d0a    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00222_DS_   0x001d0c    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00225_DS_   0x001d0e    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00231_DS_   0x001d1e    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00234_DS_   0x001d4e    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00237_DS_   0x001d7c    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00238_DS_   0x001d80    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+              _fraiseSend   0x001ea4    program     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00192_DS_   0x001f18    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00171_DS_   0x001f1e    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00173_DS_   0x001f28    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00174_DS_   0x001f36    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00176_DS_   0x001f64    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00177_DS_   0x001f74    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+         _fraiseGetTXChar   0x002f5c    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00158_DS_   0x002f72    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00159_DS_   0x002f90    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+           _fraisePutChar   0x00298c    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00151_DS_   0x0029ca    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00152_DS_   0x0029cc    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00145_DS_   0x0029ce    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00146_DS_   0x0029ea    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+_fraiseGetInterruptEnable   0x0033ea    program     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+_fraiseSetInterruptEnable   0x003162    program     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00134_DS_   0x003184    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+              _fraiseInit   0x002c8c    program     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+             _fraiseSetID   0x00307a    program     extern exampleFruit-objs/fraisedevice/fraisedevice.asm
+    _Serial_Init_Receiver   0x0032d6    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+               _00105_DS_   0x0032d6    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+                  __str_0   0x0032ee    program     static exampleFruit-objs/fraisedevice/fraisedevice.asm
+                ___uflags   0x00042f       data     extern exampleFruit-objs/crt.asm
+                  __entry   00000000    program     extern exampleFruit-objs/crt.asm
+               __do_cinit   0x00267a    program     extern exampleFruit-objs/crt.asm
+                     test   0x002692    program     static exampleFruit-objs/crt.asm
+                    done1   0x002698    program     static exampleFruit-objs/crt.asm
+                    cont1   0x00269c    program     static exampleFruit-objs/crt.asm
+                copy_loop   0x0026ea    program     static exampleFruit-objs/crt.asm
+            copy_one_byte   0x0026f0    program     static exampleFruit-objs/crt.asm
+             done_copying   0x0026fe    program     static exampleFruit-objs/crt.asm
+                  do_next   0x002710    program     static exampleFruit-objs/crt.asm
+                     done   0x002714    program     static exampleFruit-objs/crt.asm
+                __startup   0x0031e6    program     extern exampleFruit-objs/crt.asm
+               clear_loop   0x0031fe    program     static exampleFruit-objs/crt.asm
+               _00110_DS_   0x00320c    program     static exampleFruit-objs/crt.asm
+                   _stack   0x000800       data     extern /dvpt/sdcc/sources/sdcc/device/lib/pic16/libsdcc/stack/stack.S
+               _stack_end   0x0008ff       data     extern /dvpt/sdcc/sources/sdcc/device/lib/pic16/libsdcc/stack/stack.S
+               __gptrget1   0x003258    program     extern gptrget1.asm
+                 _lab_01_   0x003264    program     static gptrget1.asm
+               __gptrget2   0x00318e    program     extern gptrget2.asm
+                 _lab_01_   0x00319e    program     static gptrget2.asm
+               __gptrget4   0x002f1c    program     extern gptrget4.asm
+                 _lab_01_   0x002f34    program     static gptrget4.asm
+                    r0x00   00000000       data     static modsint.asm
+                    r0x01   0x000001       data     static modsint.asm
+                    r0x02   0x000002       data     static modsint.asm
+                    r0x03   0x000003       data     static modsint.asm
+                    r0x04   0x000004       data     static modsint.asm
+                    r0x05   0x000005       data     static modsint.asm
+                    r0x06   0x000006       data     static modsint.asm
+                __modsint   0x001f9a    program     extern modsint.asm
+               _00110_DS_   0x001ff2    program     static modsint.asm
+               _00111_DS_   0x001ffa    program     static modsint.asm
+               _00112_DS_   0x002010    program     static modsint.asm
+               _00113_DS_   0x002018    program     static modsint.asm
+               _00106_DS_   0x00204e    program     static modsint.asm
+               _00108_DS_   0x002054    program     static modsint.asm
+               __gptrput1   0x003354    program     extern gptrput1.asm
+                 _lab_01_   0x003362    program     static gptrput1.asm
+               __gptrput2   0x00330e    program     extern gptrput2.asm
+                 _lab_01_   0x003320    program     static gptrput2.asm
+               __gptrput4   0x00327a    program     extern gptrput4.asm
+                 _lab_01_   0x003294    program     static gptrput4.asm
+                    r0x00   00000000       data     static moduint.asm
+                    r0x01   0x000001       data     static moduint.asm
+                    r0x02   0x000002       data     static moduint.asm
+                    r0x03   0x000003       data     static moduint.asm
+                    r0x04   0x000004       data     static moduint.asm
+                    r0x05   0x000005       data     static moduint.asm
+                    r0x06   0x000006       data     static moduint.asm
+                __moduint   0x00247c    program     extern moduint.asm
+               _00107_DS_   0x0024bc    program     static moduint.asm
+               _00136_DS_   0x0024d8    program     static moduint.asm
+               _00106_DS_   0x0024e2    program     static moduint.asm
+               _00112_DS_   0x0024ea    program     static moduint.asm
+               _00137_DS_   0x0024f4    program     static moduint.asm
+               _00111_DS_   0x0024fe    program     static moduint.asm
+                  _stdout   0x00048a       data     extern streams.asm
+                   _stdin   0x00048d       data     extern streams.asm
+                    r0x00   00000000       data     static printf.asm
+                    r0x01   0x000001       data     static printf.asm
+                    r0x02   0x000002       data     static printf.asm
+                  _printf   0x00279a    program     extern printf.asm
+                    r0x00   00000000       data     static vfprintf.asm
+                    r0x01   0x000001       data     static vfprintf.asm
+                    r0x02   0x000002       data     static vfprintf.asm
+                    r0x03   0x000003       data     static vfprintf.asm
+                    r0x04   0x000004       data     static vfprintf.asm
+                    r0x05   0x000005       data     static vfprintf.asm
+                    r0x06   0x000006       data     static vfprintf.asm
+                    r0x07   0x000007       data     static vfprintf.asm
+                    r0x08   0x000008       data     static vfprintf.asm
+                    r0x09   0x000009       data     static vfprintf.asm
+                    r0x0a   0x00000a       data     static vfprintf.asm
+                    r0x0b   0x00000b       data     static vfprintf.asm
+                    r0x0c   0x00000c       data     static vfprintf.asm
+                    r0x0d   0x00000d       data     static vfprintf.asm
+                    r0x0e   0x00000e       data     static vfprintf.asm
+                    r0x0f   0x00000f       data     static vfprintf.asm
+                    r0x10   0x000010       data     static vfprintf.asm
+                    r0x11   0x000011       data     static vfprintf.asm
+                    r0x12   0x000012       data     static vfprintf.asm
+                    r0x13   0x000013       data     static vfprintf.asm
+                    r0x14   0x000014       data     static vfprintf.asm
+                    r0x15   0x000015       data     static vfprintf.asm
+                    r0x16   0x000016       data     static vfprintf.asm
+                    r0x17   0x000017       data     static vfprintf.asm
+                    r0x18   0x000018       data     static vfprintf.asm
+                    r0x19   0x000019       data     static vfprintf.asm
+                    r0x1a   0x00001a       data     static vfprintf.asm
+                    r0x1b   0x00001b       data     static vfprintf.asm
+                    r0x1c   0x00001c       data     static vfprintf.asm
+                    r0x1d   0x00001d       data     static vfprintf.asm
+                    r0x1e   0x00001e       data     static vfprintf.asm
+_vfprintf_stringbuffer_1_41   0x000f23       data     static vfprintf.asm
+    _vfprintf_buffer_1_41   0x000400       data     static vfprintf.asm
+                _vfprintf   0x00001c    program     extern vfprintf.asm
+               _00215_DS_   0x0000fe    program     static vfprintf.asm
+               _00393_DS_   0x000120    program     static vfprintf.asm
+               _00394_DS_   0x000148    program     static vfprintf.asm
+               _00397_DS_   0x000180    program     static vfprintf.asm
+               _00108_DS_   0x000182    program     static vfprintf.asm
+               _00400_DS_   0x000194    program     static vfprintf.asm
+               _00110_DS_   0x000194    program     static vfprintf.asm
+               _00403_DS_   0x0001b2    program     static vfprintf.asm
+               _00112_DS_   0x0001b2    program     static vfprintf.asm
+               _00406_DS_   0x0001d4    program     static vfprintf.asm
+               _00114_DS_   0x0001d4    program     static vfprintf.asm
+               _00409_DS_   0x0001f2    program     static vfprintf.asm
+               _00116_DS_   0x0001f2    program     static vfprintf.asm
+               _00118_DS_   0x00021c    program     static vfprintf.asm
+               _00414_DS_   0x000254    program     static vfprintf.asm
+               _00274_DS_   0x000256    program     static vfprintf.asm
+               _00122_DS_   0x000262    program     static vfprintf.asm
+               _00417_DS_   0x00027c    program     static vfprintf.asm
+               _00125_DS_   0x00028a    program     static vfprintf.asm
+               _00420_DS_   0x0002c2    program     static vfprintf.asm
+               _00275_DS_   0x0002c4    program     static vfprintf.asm
+               _00129_DS_   0x0002d0    program     static vfprintf.asm
+               _00423_DS_   0x0002f0    program     static vfprintf.asm
+               _00133_DS_   0x0002f2    program     static vfprintf.asm
+               _00426_DS_   0x000304    program     static vfprintf.asm
+               _00134_DS_   0x000304    program     static vfprintf.asm
+               _00429_DS_   0x000322    program     static vfprintf.asm
+               _00136_DS_   0x000322    program     static vfprintf.asm
+               _00160_DS_   0x000340    program     static vfprintf.asm
+               _00157_DS_   0x00034c    program     static vfprintf.asm
+               _00154_DS_   0x00035c    program     static vfprintf.asm
+               _00151_DS_   0x000366    program     static vfprintf.asm
+               _00148_DS_   0x000372    program     static vfprintf.asm
+               _00145_DS_   0x00037e    program     static vfprintf.asm
+               _00138_DS_   0x000398    program     static vfprintf.asm
+               _00446_DS_   0x0003bc    program     static vfprintf.asm
+               _00161_DS_   0x0003be    program     static vfprintf.asm
+               _00187_DS_   0x000404    program     static vfprintf.asm
+               _00184_DS_   0x000486    program     static vfprintf.asm
+               _00172_DS_   0x0004d2    program     static vfprintf.asm
+               _00162_DS_   0x00052a    program     static vfprintf.asm
+               _00169_DS_   0x00053a    program     static vfprintf.asm
+               _00165_DS_   0x000592    program     static vfprintf.asm
+               _00173_DS_   0x0005a6    program     static vfprintf.asm
+               _00175_DS_   0x0005e2    program     static vfprintf.asm
+               _00176_DS_   0x000606    program     static vfprintf.asm
+               _00181_DS_   0x000638    program     static vfprintf.asm
+               _00263_DS_   0x000668    program     static vfprintf.asm
+               _00190_DS_   0x000678    program     static vfprintf.asm
+               _00453_DS_   0x000698    program     static vfprintf.asm
+               _00276_DS_   0x00069c    program     static vfprintf.asm
+               _00193_DS_   0x0006b0    program     static vfprintf.asm
+               _00277_DS_   0x0006d4    program     static vfprintf.asm
+               _00270_DS_   0x0006e0    program     static vfprintf.asm
+               _00204_DS_   0x0006f8    program     static vfprintf.asm
+               _00205_DS_   0x000728    program     static vfprintf.asm
+               _00220_DS_   0x000754    program     static vfprintf.asm
+               _00221_DS_   0x000758    program     static vfprintf.asm
+               _00199_DS_   0x00075c    program     static vfprintf.asm
+               _00455_DS_   0x00077c    program     static vfprintf.asm
+               _00278_DS_   0x00078a    program     static vfprintf.asm
+               _00207_DS_   0x0007a2    program     static vfprintf.asm
+               _00213_DS_   0x0007c6    program     static vfprintf.asm
+               _00279_DS_   0x0007e4    program     static vfprintf.asm
+               _00214_DS_   0x0007ec    program     static vfprintf.asm
+               _00456_DS_   0x0007f4    program     static vfprintf.asm
+               _00217_DS_   0x0007f8    program     static vfprintf.asm
+                    r0x00   00000000       data     static strmputchar.asm
+                    r0x01   0x000001       data     static strmputchar.asm
+                    r0x02   0x000002       data     static strmputchar.asm
+                    r0x03   0x000003       data     static strmputchar.asm
+                    r0x04   0x000004       data     static strmputchar.asm
+                    r0x05   0x000005       data     static strmputchar.asm
+                    r0x06   0x000006       data     static strmputchar.asm
+                    r0x07   0x000007       data     static strmputchar.asm
+        ___stream_putchar   0x001d92    program     extern strmputchar.asm
+               _00143_DS_   0x001e28    program     static strmputchar.asm
+               _00119_DS_   0x001e44    program     static strmputchar.asm
+               _00114_DS_   0x001e56    program     static strmputchar.asm
+               _00111_DS_   0x001e64    program     static strmputchar.asm
+               _00108_DS_   0x001e72    program     static strmputchar.asm
+               _00121_DS_   0x001e7e    program     static strmputchar.asm
+   ___stream_mssp_putchar   0x000004    program     extern strmmssp.asm
+  ___stream_gpsim_putchar   0x0033f0    program     extern strmgpsim.asm
+                    r0x00   00000000       data     static x_ftoa.asm
+                    r0x01   0x000001       data     static x_ftoa.asm
+                    r0x02   0x000002       data     static x_ftoa.asm
+                    r0x03   0x000003       data     static x_ftoa.asm
+                    r0x04   0x000004       data     static x_ftoa.asm
+                    r0x05   0x000005       data     static x_ftoa.asm
+                    r0x06   0x000006       data     static x_ftoa.asm
+                    r0x07   0x000007       data     static x_ftoa.asm
+                    r0x08   0x000008       data     static x_ftoa.asm
+                    r0x09   0x000009       data     static x_ftoa.asm
+                    r0x0a   0x00000a       data     static x_ftoa.asm
+                    r0x0b   0x00000b       data     static x_ftoa.asm
+         _x_ftoa_f_l_1_26   0x000485       data     static x_ftoa.asm
+                  _x_ftoa   0x00122e    program     extern x_ftoa.asm
+               _00115_DS_   0x001296    program     static x_ftoa.asm
+               _00117_DS_   0x0012bc    program     static x_ftoa.asm
+               _00164_DS_   0x0012fc    program     static x_ftoa.asm
+               _00165_DS_   0x0012fe    program     static x_ftoa.asm
+               _00119_DS_   0x001322    program     static x_ftoa.asm
+               _00125_DS_   0x001346    program     static x_ftoa.asm
+               _00123_DS_   0x00136e    program     static x_ftoa.asm
+               _00127_DS_   0x00137c    program     static x_ftoa.asm
+               _00129_DS_   0x0013aa    program     static x_ftoa.asm
+               _00130_DS_   0x0013ba    program     static x_ftoa.asm
+               _00132_DS_   0x00141a    program     static x_ftoa.asm
+          _x_cnvfrac_wrap   0x002bc6    program     extern x_ftoa.asm
+           _x_cnvint_wrap   0x002cec    program     extern x_ftoa.asm
+                    r0x00   00000000       data     static ltoa.asm
+                    r0x01   0x000001       data     static ltoa.asm
+                    r0x02   0x000002       data     static ltoa.asm
+                    r0x03   0x000003       data     static ltoa.asm
+                    r0x04   0x000004       data     static ltoa.asm
+                    r0x05   0x000005       data     static ltoa.asm
+                    r0x06   0x000006       data     static ltoa.asm
+                    r0x07   0x000007       data     static ltoa.asm
+                    r0x08   0x000008       data     static ltoa.asm
+                    r0x09   0x000009       data     static ltoa.asm
+                    r0x0a   0x00000a       data     static ltoa.asm
+                    r0x0b   0x00000b       data     static ltoa.asm
+                    r0x0c   0x00000c       data     static ltoa.asm
+                    r0x0d   0x00000d       data     static ltoa.asm
+                    r0x0e   0x00000e       data     static ltoa.asm
+                    r0x0f   0x00000f       data     static ltoa.asm
+        _ultoa_buffer_1_2   0x0000e0       data     static ltoa.asm
+                    _ltoa   0x0023b6    program     extern ltoa.asm
+               _00138_DS_   0x002436    program     static ltoa.asm
+                   _ultoa   0x001656    program     extern ltoa.asm
+               _00107_DS_   0x0016ce    program     static ltoa.asm
+               _00106_DS_   0x001710    program     static ltoa.asm
+               _00110_DS_   0x001780    program     static ltoa.asm
+               _00132_DS_   0x0017ba    program     static ltoa.asm
+                    r0x00   00000000       data     static islower.asm
+                 _islower   0x003108    program     extern islower.asm
+               _00106_DS_   0x00312a    program     static islower.asm
+               _00108_DS_   0x00312c    program     static islower.asm
+                    r0x00   00000000       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    r0x01   0x000001       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    r0x02   0x000002       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    r0x03   0x000003       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+              round_digit   0x000004       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x00   0x000005       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x01   0x000006       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x02   0x000007       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x03   0x000008       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x04   0x000009       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x05   0x00000a       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x06   0x00000b       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x07   0x00000c       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x08   0x00000d       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x09   0x00000e       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x10   0x00000f       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x11   0x000010       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x12   0x000011       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x13   0x000012       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x14   0x000013       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x15   0x000014       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x16   0x000015       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x17   0x000016       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x18   0x000017       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x19   0x000018       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x20   0x000019       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x21   0x00001a       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x22   0x00001b       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x23   0x00001c       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    d0x24   0x00001d       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+            _convert_frac   0x000880    program     extern /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                       @1   0x0008ec    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                       @2   0x0008f4    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                       @3   0x000902    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                       @4   0x00090e    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                       @5   0x000916    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                       @6   0x000924    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                       @7   0x000934    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                       @8   0x00093c    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                       @9   0x00094a    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @10   0x00095a    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @11   0x000962    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @12   0x000970    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @13   0x000988    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @14   0x000990    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @15   0x00099e    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @16   0x0009ba    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @17   0x0009c2    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @18   0x0009d0    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @19   0x0009ec    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @20   0x0009f4    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @21   0x000a02    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @22   0x000a1a    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @23   0x000a22    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @24   0x000a30    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @25   0x000a58    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @26   0x000a60    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @27   0x000a6e    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @28   0x000a9a    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @29   0x000aa2    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @30   0x000ab0    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @31   0x000ae0    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @32   0x000ae8    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @33   0x000af6    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @34   0x000b26    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @35   0x000b2e    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @36   0x000b3c    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @37   0x000b74    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @38   0x000b7c    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @39   0x000b8a    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @40   0x000bbe    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @41   0x000bc6    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @42   0x000bd4    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @43   0x000c14    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @44   0x000c1c    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @45   0x000c2a    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @46   0x000c66    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @47   0x000c6e    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @48   0x000c7c    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @49   0x000cc0    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @50   0x000cc8    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @51   0x000cd6    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @52   0x000d16    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @53   0x000d1e    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @54   0x000d2c    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @55   0x000d64    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @56   0x000d6c    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @57   0x000d7a    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @58   0x000daa    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @59   0x000db2    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @60   0x000dc0    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @61   0x000dec    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @62   0x000df4    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @63   0x000e02    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @64   0x000e22    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @65   0x000e2a    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @66   0x000e38    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @67   0x000e50    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @68   0x000e58    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @69   0x000e66    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @70   0x000e76    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @71   0x000e7e    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @72   0x000e8c    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @73   0x000e8c    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @74   0x000e92    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @75   0x000e98    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @76   0x000e9e    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @77   0x000ea4    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @78   0x000eaa    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @79   0x000eb0    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @80   0x000eb6    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @81   0x000ebc    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @82   0x000ec2    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @83   0x000ec8    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @84   0x000ece    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @85   0x000ed4    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @86   0x000eda    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @87   0x000ee0    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @88   0x000ee6    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @89   0x000eec    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @90   0x000ef2    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @91   0x000ef8    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @92   0x000efe    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @93   0x000f04    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @94   0x000f0a    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @95   0x000f10    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                      @96   0x000f16    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvfrac.S
+                    r0x00   00000000       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                    r0x01   0x000001       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                    r0x02   0x000002       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                    r0x03   0x000003       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                    d0x00   0x000004       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                    d0x01   0x000005       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                    d0x02   0x000006       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                    d0x03   0x000007       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                    d0x04   0x000008       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                    d0x05   0x000009       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                    d0x06   0x00000a       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                    d0x07   0x00000b       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                    d0x08   0x00000c       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                    d0x09   0x00000d       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+              digit_count   0x00000e       data     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+             _convert_int   0x000f82    program     extern /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                       @1   0x001022    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                       @2   0x00102a    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                       @3   0x00107a    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                       @4   0x001082    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                       @5   0x0010be    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                       @6   0x0010c6    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                       @7   0x001106    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                       @8   0x00110e    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                       @9   0x00113e    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                      @10   0x001146    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                      @11   0x001162    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                      @12   0x00116a    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                      @13   0x001182    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                      @14   0x00118a    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                      @15   0x0011b0    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                      @16   0x0011b8    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                      @17   0x0011c0    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                      @18   0x0011c8    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                      @19   0x0011d0    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                      @20   0x0011d8    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                      @21   0x0011e0    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+                      @22   0x0011e8    program     static /dvpt/sdcc/sources/sdcc/device/lib/pic16/libc/utils/cnvint.S
+  ___stream_usart_putchar   0x0033d0    program     extern strmusart.asm
+                       @1   0x0033d0    program     static strmusart.asm
+                  _ANSELA   0x000f38       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _ANSELAbits   0x000f38       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _ANSELB   0x000f39       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _ANSELBbits   0x000f39       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _ANSELC   0x000f3a       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _ANSELCbits   0x000f3a       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _PMD2   0x000f3d       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _PMD2bits   0x000f3d       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _PMD1   0x000f3e       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _PMD1bits   0x000f3e       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _PMD0   0x000f3f       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _PMD0bits   0x000f3f       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _DACCON1   0x000f40       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _DACCON1bits   0x000f40       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _VREFCON2   0x000f40       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _VREFCON2bits   0x000f40       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _DACCON0   0x000f41       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _DACCON0bits   0x000f41       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _VREFCON1   0x000f41       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _VREFCON1bits   0x000f41       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _FVRCON   0x000f42       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _FVRCONbits   0x000f42       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _VREFCON0   0x000f42       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _VREFCON0bits   0x000f42       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _CTMUICON   0x000f43       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _CTMUICONH   0x000f43       data     extern libdev18f26k22_a-pic18f26k22.asm
+           _CTMUICONHbits   0x000f43       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _CTMUICONbits   0x000f43       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _CTMUCON1   0x000f44       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _CTMUCON1bits   0x000f44       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _CTMUCONL   0x000f44       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _CTMUCONLbits   0x000f44       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _CTMUCON0   0x000f45       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _CTMUCON0bits   0x000f45       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _CTMUCONH   0x000f45       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _CTMUCONHbits   0x000f45       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _SRCON1   0x000f46       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _SRCON1bits   0x000f46       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _SRCON0   0x000f47       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _SRCON0bits   0x000f47       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _CCPTMRS1   0x000f48       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _CCPTMRS1bits   0x000f48       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _CCPTMRS0   0x000f49       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _CCPTMRS0bits   0x000f49       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _T6CON   0x000f4a       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _T6CONbits   0x000f4a       data     extern libdev18f26k22_a-pic18f26k22.asm
+                     _PR6   0x000f4b       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _TMR6   0x000f4c       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _T5GCON   0x000f4d       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _T5GCONbits   0x000f4d       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _T5CON   0x000f4e       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _T5CONbits   0x000f4e       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _TMR5   0x000f4f       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _TMR5L   0x000f4f       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _TMR5H   0x000f50       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _T4CON   0x000f51       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _T4CONbits   0x000f51       data     extern libdev18f26k22_a-pic18f26k22.asm
+                     _PR4   0x000f52       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _TMR4   0x000f53       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _CCP5CON   0x000f54       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _CCP5CONbits   0x000f54       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _CCPR5   0x000f55       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _CCPR5L   0x000f55       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _CCPR5H   0x000f56       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _CCP4CON   0x000f57       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _CCP4CONbits   0x000f57       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _CCPR4   0x000f58       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _CCPR4L   0x000f58       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _CCPR4H   0x000f59       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _PSTR3CON   0x000f5a       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _PSTR3CONbits   0x000f5a       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _CCP3AS   0x000f5b       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _CCP3ASbits   0x000f5b       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _ECCP3AS   0x000f5b       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _ECCP3ASbits   0x000f5b       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _PWM3CON   0x000f5c       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _PWM3CONbits   0x000f5c       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _CCP3CON   0x000f5d       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _CCP3CONbits   0x000f5d       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _CCPR3   0x000f5e       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _CCPR3L   0x000f5e       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _CCPR3H   0x000f5f       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _SLRCON   0x000f60       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _SLRCONbits   0x000f60       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _WPUB   0x000f61       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _WPUBbits   0x000f61       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _IOCB   0x000f62       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _IOCBbits   0x000f62       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _PSTR2CON   0x000f63       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _PSTR2CONbits   0x000f63       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _CCP2AS   0x000f64       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _CCP2ASbits   0x000f64       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _ECCP2AS   0x000f64       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _ECCP2ASbits   0x000f64       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _PWM2CON   0x000f65       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _PWM2CONbits   0x000f65       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _CCP2CON   0x000f66       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _CCP2CONbits   0x000f66       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _CCPR2   0x000f67       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _CCPR2L   0x000f67       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _CCPR2H   0x000f68       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _SSP2CON3   0x000f69       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _SSP2CON3bits   0x000f69       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _SSP2MSK   0x000f6a       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _SSP2MSKbits   0x000f6a       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _SSP2CON2   0x000f6b       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _SSP2CON2bits   0x000f6b       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _SSP2CON1   0x000f6c       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _SSP2CON1bits   0x000f6c       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _SSP2STAT   0x000f6d       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _SSP2STATbits   0x000f6d       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _SSP2ADD   0x000f6e       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _SSP2BUF   0x000f6f       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _BAUD2CON   0x000f70       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _BAUD2CONbits   0x000f70       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _BAUDCON2   0x000f70       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _BAUDCON2bits   0x000f70       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _RC2STA   0x000f71       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _RC2STAbits   0x000f71       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _RCSTA2   0x000f71       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _RCSTA2bits   0x000f71       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _TX2STA   0x000f72       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _TX2STAbits   0x000f72       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _TXSTA2   0x000f72       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _TXSTA2bits   0x000f72       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _TX2REG   0x000f73       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _TXREG2   0x000f73       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _RC2REG   0x000f74       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _RCREG2   0x000f74       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _SP2BRG   0x000f75       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _SPBRG2   0x000f75       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _SP2BRGH   0x000f76       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _SPBRGH2   0x000f76       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _CM12CON   0x000f77       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _CM12CONbits   0x000f77       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _CM2CON1   0x000f77       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _CM2CON1bits   0x000f77       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _CM2CON   0x000f78       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _CM2CON0   0x000f78       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _CM2CON0bits   0x000f78       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _CM2CONbits   0x000f78       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _CM1CON   0x000f79       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _CM1CON0   0x000f79       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _CM1CON0bits   0x000f79       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _CM1CONbits   0x000f79       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _PIE4   0x000f7a       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _PIE4bits   0x000f7a       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _PIR4   0x000f7b       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _PIR4bits   0x000f7b       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _IPR4   0x000f7c       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _IPR4bits   0x000f7c       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _PIE5   0x000f7d       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _PIE5bits   0x000f7d       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _PIR5   0x000f7e       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _PIR5bits   0x000f7e       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _IPR5   0x000f7f       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _IPR5bits   0x000f7f       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _PORTA   0x000f80       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _PORTAbits   0x000f80       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _PORTB   0x000f81       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _PORTBbits   0x000f81       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _PORTC   0x000f82       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _PORTCbits   0x000f82       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _PORTE   0x000f84       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _PORTEbits   0x000f84       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _LATA   0x000f89       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _LATAbits   0x000f89       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _LATB   0x000f8a       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _LATBbits   0x000f8a       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _LATC   0x000f8b       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _LATCbits   0x000f8b       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _DDRA   0x000f92       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _DDRAbits   0x000f92       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _TRISA   0x000f92       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _TRISAbits   0x000f92       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _DDRB   0x000f93       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _DDRBbits   0x000f93       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _TRISB   0x000f93       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _TRISBbits   0x000f93       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _DDRC   0x000f94       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _DDRCbits   0x000f94       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _TRISC   0x000f94       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _TRISCbits   0x000f94       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _TRISE   0x000f96       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _TRISEbits   0x000f96       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _OSCTUNE   0x000f9b       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _OSCTUNEbits   0x000f9b       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _HLVDCON   0x000f9c       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _HLVDCONbits   0x000f9c       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _LVDCON   0x000f9c       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _LVDCONbits   0x000f9c       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _PIE1   0x000f9d       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _PIE1bits   0x000f9d       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _PIR1   0x000f9e       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _PIR1bits   0x000f9e       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _IPR1   0x000f9f       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _IPR1bits   0x000f9f       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _PIE2   0x000fa0       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _PIE2bits   0x000fa0       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _PIR2   0x000fa1       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _PIR2bits   0x000fa1       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _IPR2   0x000fa2       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _IPR2bits   0x000fa2       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _PIE3   0x000fa3       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _PIE3bits   0x000fa3       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _PIR3   0x000fa4       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _PIR3bits   0x000fa4       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _IPR3   0x000fa5       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _IPR3bits   0x000fa5       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _EECON1   0x000fa6       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _EECON1bits   0x000fa6       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _EECON2   0x000fa7       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _EEDATA   0x000fa8       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _EEADR   0x000fa9       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _EEADRbits   0x000fa9       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _EEADRH   0x000faa       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _EEADRHbits   0x000faa       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _RC1STA   0x000fab       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _RC1STAbits   0x000fab       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _RCSTA   0x000fab       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _RCSTA1   0x000fab       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _RCSTA1bits   0x000fab       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _RCSTAbits   0x000fab       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _TX1STA   0x000fac       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _TX1STAbits   0x000fac       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _TXSTA   0x000fac       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _TXSTA1   0x000fac       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _TXSTA1bits   0x000fac       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _TXSTAbits   0x000fac       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _TX1REG   0x000fad       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _TXREG   0x000fad       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _TXREG1   0x000fad       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _RC1REG   0x000fae       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _RCREG   0x000fae       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _RCREG1   0x000fae       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _SP1BRG   0x000faf       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _SPBRG   0x000faf       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _SPBRG1   0x000faf       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _SP1BRGH   0x000fb0       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _SPBRGH   0x000fb0       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _SPBRGH1   0x000fb0       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _T3CON   0x000fb1       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _T3CONbits   0x000fb1       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _TMR3   0x000fb2       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _TMR3L   0x000fb2       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _TMR3H   0x000fb3       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _T3GCON   0x000fb4       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _T3GCONbits   0x000fb4       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _ECCP1AS   0x000fb6       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _ECCP1ASbits   0x000fb6       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _ECCPAS   0x000fb6       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _ECCPASbits   0x000fb6       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _PWM1CON   0x000fb7       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _PWM1CONbits   0x000fb7       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _PWMCON   0x000fb7       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _PWMCONbits   0x000fb7       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _BAUD1CON   0x000fb8       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _BAUD1CONbits   0x000fb8       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _BAUDCON   0x000fb8       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _BAUDCON1   0x000fb8       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _BAUDCON1bits   0x000fb8       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _BAUDCONbits   0x000fb8       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _BAUDCTL   0x000fb8       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _BAUDCTLbits   0x000fb8       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _PSTR1CON   0x000fb9       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _PSTR1CONbits   0x000fb9       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _PSTRCON   0x000fb9       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _PSTRCONbits   0x000fb9       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _T2CON   0x000fba       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _T2CONbits   0x000fba       data     extern libdev18f26k22_a-pic18f26k22.asm
+                     _PR2   0x000fbb       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _TMR2   0x000fbc       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _CCP1CON   0x000fbd       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _CCP1CONbits   0x000fbd       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _CCPR1   0x000fbe       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _CCPR1L   0x000fbe       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _CCPR1H   0x000fbf       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _ADCON2   0x000fc0       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _ADCON2bits   0x000fc0       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _ADCON1   0x000fc1       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _ADCON1bits   0x000fc1       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _ADCON0   0x000fc2       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _ADCON0bits   0x000fc2       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _ADRES   0x000fc3       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _ADRESL   0x000fc3       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _ADRESH   0x000fc4       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _SSP1CON2   0x000fc5       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _SSP1CON2bits   0x000fc5       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _SSPCON2   0x000fc5       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _SSPCON2bits   0x000fc5       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _SSP1CON1   0x000fc6       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _SSP1CON1bits   0x000fc6       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _SSPCON1   0x000fc6       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _SSPCON1bits   0x000fc6       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _SSP1STAT   0x000fc7       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _SSP1STATbits   0x000fc7       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _SSPSTAT   0x000fc7       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _SSPSTATbits   0x000fc7       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _SSP1ADD   0x000fc8       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _SSPADD   0x000fc8       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _SSP1BUF   0x000fc9       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _SSPBUF   0x000fc9       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _SSP1MSK   0x000fca       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _SSP1MSKbits   0x000fca       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _SSPMSK   0x000fca       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _SSPMSKbits   0x000fca       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _SSP1CON3   0x000fcb       data     extern libdev18f26k22_a-pic18f26k22.asm
+            _SSP1CON3bits   0x000fcb       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _SSPCON3   0x000fcb       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _SSPCON3bits   0x000fcb       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _T1GCON   0x000fcc       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _T1GCONbits   0x000fcc       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _T1CON   0x000fcd       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _T1CONbits   0x000fcd       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _TMR1   0x000fce       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _TMR1L   0x000fce       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _TMR1H   0x000fcf       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _RCON   0x000fd0       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _RCONbits   0x000fd0       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _WDTCON   0x000fd1       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _WDTCONbits   0x000fd1       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _OSCCON2   0x000fd2       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _OSCCON2bits   0x000fd2       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _OSCCON   0x000fd3       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _OSCCONbits   0x000fd3       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _T0CON   0x000fd5       data     extern libdev18f26k22_a-pic18f26k22.asm
+               _T0CONbits   0x000fd5       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _TMR0   0x000fd6       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _TMR0L   0x000fd6       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _TMR0H   0x000fd7       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _STATUS   0x000fd8       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _STATUSbits   0x000fd8       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _FSR2L   0x000fd9       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _FSR2H   0x000fda       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _PLUSW2   0x000fdb       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _PREINC2   0x000fdc       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _POSTDEC2   0x000fdd       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _POSTINC2   0x000fde       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _INDF2   0x000fdf       data     extern libdev18f26k22_a-pic18f26k22.asm
+                     _BSR   0x000fe0       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _FSR1L   0x000fe1       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _FSR1H   0x000fe2       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _PLUSW1   0x000fe3       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _PREINC1   0x000fe4       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _POSTDEC1   0x000fe5       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _POSTINC1   0x000fe6       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _INDF1   0x000fe7       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _WREG   0x000fe8       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _FSR0L   0x000fe9       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _FSR0H   0x000fea       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _PLUSW0   0x000feb       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _PREINC0   0x000fec       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _POSTDEC0   0x000fed       data     extern libdev18f26k22_a-pic18f26k22.asm
+                _POSTINC0   0x000fee       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _INDF0   0x000fef       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _INTCON3   0x000ff0       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _INTCON3bits   0x000ff0       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _INTCON2   0x000ff1       data     extern libdev18f26k22_a-pic18f26k22.asm
+             _INTCON2bits   0x000ff1       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _INTCON   0x000ff2       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _INTCONbits   0x000ff2       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _PROD   0x000ff3       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _PRODL   0x000ff3       data     extern libdev18f26k22_a-pic18f26k22.asm
+                   _PRODH   0x000ff4       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _TABLAT   0x000ff5       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _TBLPTR   0x000ff6       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _TBLPTRL   0x000ff6       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _TBLPTRH   0x000ff7       data     extern libdev18f26k22_a-pic18f26k22.asm
+                 _TBLPTRU   0x000ff8       data     extern libdev18f26k22_a-pic18f26k22.asm
+                      _PC   0x000ff9       data     extern libdev18f26k22_a-pic18f26k22.asm
+                     _PCL   0x000ff9       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _PCLATH   0x000ffa       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _PCLATU   0x000ffb       data     extern libdev18f26k22_a-pic18f26k22.asm
+                  _STKPTR   0x000ffc       data     extern libdev18f26k22_a-pic18f26k22.asm
+              _STKPTRbits   0x000ffc       data     extern libdev18f26k22_a-pic18f26k22.asm
+                     _TOS   0x000ffd       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _TOSL   0x000ffd       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _TOSH   0x000ffe       data     extern libdev18f26k22_a-pic18f26k22.asm
+                    _TOSU   0x000fff       data     extern libdev18f26k22_a-pic18f26k22.asm
+       ___eeprom_gptrput1   0x0033f6    program     extern /dvpt/sdcc/sources/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrput1_dispatch.S
+       ___eeprom_gptrput2   0x0033fa    program     extern /dvpt/sdcc/sources/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrput2_dispatch.S
+       ___eeprom_gptrput4   0x0033fe    program     extern /dvpt/sdcc/sources/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrput4_dispatch.S
+       ___eeprom_gptrget1   0x003402    program     extern /dvpt/sdcc/sources/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrget1_dispatch.S
+       ___eeprom_gptrget2   0x003406    program     extern /dvpt/sdcc/sources/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrget2_dispatch.S
+       ___eeprom_gptrget4   0x00340a    program     extern /dvpt/sdcc/sources/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrget4_dispatch.S
+                    r0x00   00000000       data     static modulong.asm
+                    r0x01   0x000001       data     static modulong.asm
+                    r0x02   0x000002       data     static modulong.asm
+                    r0x03   0x000003       data     static modulong.asm
+                    r0x04   0x000004       data     static modulong.asm
+                    r0x05   0x000005       data     static modulong.asm
+                    r0x06   0x000006       data     static modulong.asm
+                    r0x07   0x000007       data     static modulong.asm
+                    r0x08   0x000008       data     static modulong.asm
+                    r0x09   0x000009       data     static modulong.asm
+                    r0x0a   0x00000a       data     static modulong.asm
+               __modulong   0x00180e    program     extern modulong.asm
+               _00107_DS_   0x001876    program     static modulong.asm
+               _00136_DS_   0x0018a2    program     static modulong.asm
+               _00106_DS_   0x0018b0    program     static modulong.asm
+               _00112_DS_   0x0018b8    program     static modulong.asm
+               _00137_DS_   0x0018ce    program     static modulong.asm
+               _00111_DS_   0x0018e0    program     static modulong.asm
+     ___eeprom16_gptrget1   0x0032f2    program     extern eeprom16_gptrget1.asm
+     ___eeprom16_gptrget2   0x00320e    program     extern eeprom16_gptrget2.asm
+               __gptrput3   0x00329c    program     extern gptrput3.asm
+                 _lab_01_   0x0032b2    program     static gptrput3.asm
+     ___eeprom16_gptrget4   0x002fd6    program     extern eeprom16_gptrget4.asm
+                    r0x00   00000000       data     static divulong.asm
+                    r0x01   0x000001       data     static divulong.asm
+                    r0x02   0x000002       data     static divulong.asm
+                    r0x03   0x000003       data     static divulong.asm
+                    r0x04   0x000004       data     static divulong.asm
+                    r0x05   0x000005       data     static divulong.asm
+                    r0x06   0x000006       data     static divulong.asm
+                    r0x07   0x000007       data     static divulong.asm
+                    r0x08   0x000008       data     static divulong.asm
+                    r0x09   0x000009       data     static divulong.asm
+                    r0x0a   0x00000a       data     static divulong.asm
+                    r0x0b   0x00000b       data     static divulong.asm
+                    r0x0c   0x00000c       data     static divulong.asm
+                    r0x0d   0x00000d       data     static divulong.asm
+               __divulong   0x001b68    program     extern divulong.asm
+               _00109_DS_   0x001be4    program     static divulong.asm
+               _00128_DS_   0x001c1c    program     static divulong.asm
+               _00110_DS_   0x001c30    program     static divulong.asm
+     ___eeprom16_gptrput1   0x003234    program     extern eeprom16_gptrput1.asm
+     ___eeprom16_gptrput2   0x0031ba    program     extern eeprom16_gptrput2.asm
+               __gptrget3   0x003010    program     extern gptrget3.asm
+                 _lab_01_   0x003024    program     static gptrget3.asm
+     ___eeprom16_gptrput4   0x002f9a    program     extern eeprom16_gptrput4.asm
+        ___eeprom16_write   0x00337c    program     extern eeprom16_write.asm
+           wait_till_done   0x003386    program     static eeprom16_write.asm
+       ___eeprom_gptrget3   0x00340e    program     extern /dvpt/sdcc/sources/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrget3_dispatch.S
+       ___eeprom_gptrput3   0x003412    program     extern /dvpt/sdcc/sources/sdcc/device/non-free/lib/pic16/libdev/gptr/eeprom16_gptrput3_dispatch.S
+     ___eeprom16_gptrput3   0x003046    program     extern eeprom16_gptrput3.asm
+     ___eeprom16_gptrget3   0x0030aa    program     extern eeprom16_gptrget3.asm
+                   _cinit   0x0033ac    program     extern  
+ 

@@ -1,0 +1,6 @@
+warning: Relocation symbol "_cinit" [0x000000] has no section. (pass 0)
+warning: Relocation symbol "_cinit" [0x000004] has no section. (pass 0)
+warning: Relocation symbol "_cinit" [0x000008] has no section. (pass 0)
+warning: Relocation symbol "_cinit" [0x000000] has no section. (pass 0)
+warning: Relocation symbol "_cinit" [0x000004] has no section. (pass 0)
+warning: Relocation symbol "_cinit" [0x000008] has no section. (pass 0)
