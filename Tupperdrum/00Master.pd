@@ -1,24 +1,21 @@
 #N canvas 536 112 498 464 10;
-#X declare -stdpath iemlib -lib iemlib1;
 #X declare -path ../domoTools/gammabs;
 #X declare -path ../domoTools/domonet;
 #X declare -path ../domoTools/notebank;
 #X declare -path ../domoTools/effects;
 #X declare -path ../domoTools/rhythmic;
 #X declare -path ../domoTools/song;
-#X declare -stdpath motex -path motex -lib motex -path ggee -lib ggee
--path moonlib -path AutoPreset;
 #X declare -path creb -lib creb;
+#X declare -path motex -lib motex -path ggee -lib ggee -path moonlib -path AutoPreset;
 #X declare -path iemlib -lib iemlib;
 #X obj 24 37 fraise_interface;
 #X obj 25 84 r CLOCK;
 #X obj 25 127 unpack f f;
-#X floatatom 25 149 5 0 0 0 - - -;
-#X floatatom 82 149 5 0 0 0 - - -;
-#X obj 25 174 bng 50 50 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
+#X floatatom 25 149 5 0 0 0 - - - 0;
+#X floatatom 82 149 5 0 0 0 - - - 0;
+#X obj 25 174 bng 50 50 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000;
 #X obj 102 179 r /BPM;
-#X floatatom 102 203 5 0 0 0 - - -;
+#X floatatom 102 203 5 0 0 0 - - - 0;
 #X obj 25 105 route list;
 #X obj 126 61 r TEMPOLED;
 #X obj 25 230 GAMMEKBV /GAMME;
@@ -32,7 +29,7 @@
 #X obj 328 71 dac~;
 #X obj 340 406 s PLAYER1;
 #X text 268 424 play PLAYER_VOICENB BANK_NB NOTE_NB [KEY];
-#X floatatom 340 231 5 0 0 0 - - -;
+#X floatatom 340 231 5 0 0 0 - - - 0;
 #X msg 340 385 play \$1 \$2 \$3 0;
 #X obj 340 252 t b f, f 10;
 #X obj 340 273 i;
@@ -41,26 +38,24 @@
 #X msg 340 357 \$1 \$2 \$3;
 #X msg 429 285 1;
 #X msg 429 305 3;
-#X floatatom 453 367 5 0 0 0 - - -;
+#X floatatom 453 367 5 0 0 0 - - - 0;
 #X msg 453 387 transpose \$1;
 #X obj 119 326 *~ 0.4;
 #X obj 61 431 throw~ master;
-#X floatatom 464 277 5 0 0 0 - - -;
+#X floatatom 464 277 5 0 0 0 - - - 0;
 #X obj 468 202 + 1;
 #X obj 459 105 metro 200;
-#X obj 462 63 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 462 63 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 164 405 throw~ reverb;
 #X obj 164 380 *~ 0.8;
 #X obj 468 181 random 16;
 #X obj 558 325 getnbnotes;
-#X floatatom 558 346 5 0 0 0 - - -;
+#X floatatom 558 346 5 0 0 0 - - - 0;
 #X obj 119 304 clone noteplayer 2 PLAYER1;
 #X obj 340 315 mod 2;
 #X obj 18 29 l notebank 2 4 CollectionChantsCollectifs;
 #X obj 113 104 s reloadNotes;
-#X obj 116 84 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
+#X obj 116 84 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000;
 #X obj 18 9 l notebank 1 7 Ant1-wavtables;
 #X connect 2 0 3 0;
 #X connect 3 0 0 0;
@@ -97,9 +92,8 @@
 #X restore 26 371 pd notebanks;
 #N canvas 666 282 625 384 General 0;
 #X obj 26 94 getenv HOME;
-#X obj 245 117 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X symbolatom 26 115 10 0 0 0 - - -;
+#X obj 245 117 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000;
+#X symbolatom 26 115 10 0 0 0 - - - 0;
 #X obj 245 179 s DATASDIR;
 #X obj 245 96 loadbang;
 #X obj 411 49 loadbang;
@@ -110,28 +104,25 @@
 #X msg 417 161 145;
 #X obj 426 108 loadbang;
 #X msg 386 127 1;
-#X obj 27 217 bng 15 250 50 0 empty empty empty 17 7 0 10 -258113 -1
--1;
+#X obj 27 217 bng 15 250 50 0 empty empty empty 17 7 0 10 #fc0400 #000000 #000000;
 #X msg 134 573 symbol test1;
 #X obj 85 248 s /UNLOCKSNAP;
-#X obj 85 229 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 85 229 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X msg 216 573 symbol test2;
 #X obj 134 594 s /SONG;
 #X obj 27 271 songMaster SONGS SETTINGS;
 #X obj 27 247 5clicks;
 #X msg 26 135 symbol \$1/Datas/Domozic/Baguettes;
 #N canvas 1 81 450 300 declares 0;
-#X obj 21 83 declare -stdpath iemlib -lib iemlib1;
 #X obj 22 106 declare -path ../domoTools/gammabs;
 #X obj 22 124 declare -path ../domoTools/domonet;
 #X obj 22 142 declare -path ../domoTools/notebank;
 #X obj 22 160 declare -path ../domoTools/effects;
 #X obj 22 179 declare -path ../domoTools/rhythmic;
 #X obj 22 197 declare -path ../domoTools/song;
-#X obj 21 11 declare -stdpath motex -path motex -lib motex -path ggee
--lib ggee -path moonlib -path AutoPreset;
 #X obj 21 44 declare -path creb -lib creb;
+#X obj 21 11 declare -path motex -lib motex -path ggee -lib ggee -path moonlib -path AutoPreset;
+#X obj 21 83 declare -path iemlib -lib iemlib;
 #X restore 27 9 pd declares;
 #X obj 245 135 getdir;
 #X msg 245 157 symbol \$1/WAVS;
@@ -158,8 +149,7 @@
 #X connect 24 0 3 0;
 #X connect 25 0 1 0;
 #X restore 24 58 pd General;
-#X obj 126 82 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 126 82 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 126 123 s LEDROUGE;
 #X obj 196 60 r BOUTONROUGE;
 #X obj 196 81 == 0;
@@ -175,22 +165,19 @@
 #X msg 264 197 \$1 20;
 #X obj 264 218 line~;
 #X obj 133 259 *~;
-#X obj 323 146 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 6350 1;
+#X obj 323 146 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 380 102 loadbang;
 #X msg 380 123 0.5;
 #X obj 264 176 pow 2;
 #X obj 349 299 l rev3~ 100 92 2000 20;
 #X obj 295 -3 r POTHIP;
 #X obj 222 78 mtof;
-#X floatatom 281 67 8 0 0 0 - - -;
-#X obj 262 86 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+#X floatatom 281 67 8 0 0 0 - - - 0;
+#X obj 262 86 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 222 57 + 120;
 #X obj 222 37 * -110;
 #X obj 134 47 hip~ 10;
 #X obj 134 98 hp6_butt~ 14 20;
-#X obj 371 207 declare -path iemlib -lib iemlib;
 #X obj 133 153 dist~ 0;
 #X msg 487 114 1 \$1;
 #X obj 487 136 /;
@@ -205,7 +192,7 @@
 #X obj 487 5 - 1;
 #X obj 487 71 * 10;
 #X obj 487 93 + 0.1;
-#X floatatom 539 89 5 0 0 0 - - -;
+#X floatatom 539 89 5 0 0 0 - - - 0;
 #X obj 487 27 max 0;
 #X obj 487 49 pow 4;
 #X connect 0 0 3 1;
@@ -222,33 +209,33 @@
 #X connect 11 0 12 0;
 #X connect 12 0 10 0;
 #X connect 13 0 7 0;
-#X connect 15 0 33 0;
+#X connect 15 0 32 0;
 #X connect 16 0 22 1;
 #X connect 18 0 20 0;
 #X connect 19 0 16 0;
 #X connect 20 0 19 0;
 #X connect 21 0 22 0;
-#X connect 22 0 28 0;
-#X connect 22 0 31 0;
-#X connect 24 0 32 0;
+#X connect 22 0 27 0;
+#X connect 22 0 30 0;
+#X connect 23 0 31 0;
+#X connect 24 0 25 0;
 #X connect 25 0 26 0;
-#X connect 26 0 27 0;
-#X connect 27 0 32 1;
-#X connect 28 0 30 0;
-#X connect 29 0 30 0;
-#X connect 30 0 9 0;
-#X connect 31 0 24 0;
-#X connect 32 0 29 0;
-#X connect 33 0 34 0;
-#X connect 33 0 35 0;
-#X connect 34 0 20 0;
-#X connect 35 0 39 0;
+#X connect 26 0 31 1;
+#X connect 27 0 29 0;
+#X connect 28 0 29 0;
+#X connect 29 0 9 0;
+#X connect 30 0 23 0;
+#X connect 31 0 28 0;
+#X connect 32 0 33 0;
+#X connect 32 0 34 0;
+#X connect 33 0 20 0;
+#X connect 34 0 38 0;
+#X connect 35 0 36 0;
 #X connect 36 0 37 0;
-#X connect 37 0 38 0;
-#X connect 37 0 31 1;
-#X connect 37 0 25 0;
-#X connect 39 0 40 0;
-#X connect 40 0 36 0;
+#X connect 36 0 30 1;
+#X connect 36 0 24 0;
+#X connect 38 0 39 0;
+#X connect 39 0 35 0;
 #X restore 23 15 pd MASTER;
 #X obj 170 282 TUPPER 1;
 #X text 229 284 grosse caisse;
@@ -257,8 +244,7 @@
 #X text 249 358 basse;
 #X text 232 255 hélicon;
 #X obj 326 76 sel 1;
-#X obj 326 99 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 326 99 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 326 119 sel 0 1;
 #X msg 321 143 symbol /CHORD;
 #X msg 344 169 symbol /GAMME;
@@ -311,19 +297,17 @@
 #X obj 138 42 route _loaded TUPPER3_LED TUPPER4_LED;
 #X obj 211 67 s TUPPER3_LED;
 #X obj 301 67 s TUPPER4_LED;
-#X floatatom 401 85 5 0 0 0 - - -;
-#X floatatom 80 199 5 0 0 0 - - -;
-#X obj 105 162 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
+#X floatatom 401 85 5 0 0 0 - - - 0;
+#X floatatom 80 199 5 0 0 0 - - - 0;
+#X obj 105 162 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000;
 #X msg 56 100 145;
 #X obj 16 53 f;
-#X floatatom 57 57 5 0 0 0 - - -;
+#X floatatom 57 57 5 0 0 0 - - - 0;
 #X obj 16 10 r /CHORD;
 #X msg 16 79 /CHORD \$1;
 #X msg 79 17 0;
 #X obj 138 84 del 1000;
-#X obj 185 330 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
+#X obj 185 330 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000;
 #X connect 0 0 36 0;
 #X connect 1 0 48 0;
 #X connect 2 0 4 0;
@@ -382,7 +366,7 @@
 #X connect 48 0 14 0;
 #X connect 48 0 43 0;
 #X restore 316 370 pd params;
-#N canvas 604 256 751 310 params 1;
+#N canvas 604 256 751 310 params 0;
 #X obj 138 18 inlet;
 #X obj 138 42 route _loaded;
 #X obj 138 63 b;
@@ -404,9 +388,8 @@
 #X obj 606 153 r PHARE_SEL2;
 #X msg 606 217 PHARE_SEL2 \$1;
 #X obj 39 267 outlet;
-#X obj 13 189 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X floatatom 5 230 5 0 0 0 - - -;
+#X obj 13 189 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000;
+#X floatatom 5 230 5 0 0 0 - - - 0;
 #X msg 167 217 PHARE_ASSIETTE \$1 \$2;
 #X obj 167 191 pack f f;
 #X connect 0 0 1 0;

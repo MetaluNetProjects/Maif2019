@@ -1,2 +1,0 @@
-Main timer : TIMER0
-Servo : TIMER5

@@ -1,6 +1,5 @@
 #N canvas 477 127 405 478 10;
-#X declare -path ../Fraise;
-#X obj 21 38 pied/pied 0 41424;
+#X declare -path Fraise -path Fraise/pic;
 #X obj 23 134 fruit/fruit 1 PHARE 10 fwPhare;
 #X obj 25 204 fruit/fruit 1 TUPPER1 11 fwTupper;
 #N canvas 60 119 573 539 Phare 0;
@@ -17,15 +16,13 @@
 #X obj 394 422 s POTVOL;
 #X obj 168 258 route 0 1 2;
 #X obj 168 237 spigot;
-#X floatatom 168 293 5 0 0 0 - - -;
-#X floatatom 206 292 5 0 0 0 - - -;
-#X floatatom 244 292 5 0 0 0 - - -;
-#X obj 201 215 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X floatatom 168 293 5 0 0 0 - - - 0;
+#X floatatom 206 292 5 0 0 0 - - - 0;
+#X floatatom 244 292 5 0 0 0 - - - 0;
+#X obj 201 215 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 58 238 unpack f f;
 #X obj 58 281 pack f f, f 10;
-#X obj 456 367 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 456 367 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X msg 433 307 S\$1 \, L\$1;
 #X obj 58 302 route 0 1 2;
 #X obj 115 259 / 8192;
@@ -160,8 +157,8 @@
 #X obj 23 169 s PHARE_ATTACK;
 #X obj 22 476 s PHARE_ASSIETTE;
 #X obj 22 207 r AXLSLOWPHARE;
-#X floatatom 259 465 5 0 0 0 - - -;
-#X floatatom 82 534 5 0 0 0 - - -;
+#X floatatom 259 465 5 0 0 0 - - - 0;
+#X floatatom 82 534 5 0 0 0 - - - 0;
 #X msg 22 255 \$2 \$1 \$3;
 #X connect 0 0 30 0;
 #X connect 1 0 8 0;
@@ -209,16 +206,12 @@
 #X obj 19 485 s PHARE_BOUTON;
 #X obj 19 419 route 0 1 2;
 #X obj 40 465 s PHARE_SEL1;
-#X obj 11 514 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 62 504 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 126 482 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 11 514 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 62 504 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 126 482 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 61 443 s PHARE_SEL2;
 #X obj 346 328 fruit/send2 PHARE;
-#X obj 387 255 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 387 255 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 58 333 s PHARE_VOLUME;
 #X connect 2 0 27 0;
 #X connect 2 1 3 0;
@@ -270,26 +263,21 @@
 #X obj 394 422 s POTVOL;
 #X obj 168 258 route 0 1 2;
 #X obj 168 237 spigot;
-#X floatatom 168 293 5 0 0 0 - - -;
-#X floatatom 206 292 5 0 0 0 - - -;
-#X floatatom 244 292 5 0 0 0 - - -;
-#X obj 201 215 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X floatatom 168 293 5 0 0 0 - - - 0;
+#X floatatom 206 292 5 0 0 0 - - - 0;
+#X floatatom 244 292 5 0 0 0 - - - 0;
+#X obj 201 215 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 58 238 unpack f f;
 #X obj 58 281 pack f f, f 10;
-#X obj 456 367 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 456 367 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X msg 433 307 S\$1 \, L\$1;
 #X obj 58 302 route 0 1 2;
 #X obj 115 259 / 8192;
 #X text 209 74 I2C1: K5:SCK K7:SDA;
 #X obj 19 419 route 0 1 2;
-#X obj 11 514 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 62 504 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 153 487 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 11 514 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 62 504 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 153 487 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 19 177 fruit/receive BOUILLOIRE;
 #X obj 19 485 s BOUILLOIRE_BOUTON;
 #X obj 304 337 fruit/send2 BOUILLOIRE;
@@ -323,5 +311,6 @@
 #X connect 28 0 2 0;
 #X restore 285 430 pd Bouilloire;
 #X obj 25 412 fruit/fruit 1 BOUILLOIRE 15 fwBouilloire;
-#X obj 220 63 moonlib/numsymbols-help;
-#X obj 21 16 declare -path ../Fraise;
+#X obj 21 16 declare -path Fraise -path Fraise/pic;
+#X obj 21 38 pied/pied 1;
+#X obj 220 63 rem moonlib/numsymbols-help;
