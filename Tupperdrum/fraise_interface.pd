@@ -1,6 +1,5 @@
 #N canvas 477 127 405 478 10;
-#X declare -path Fraise -stdpath Fraise;
-#X obj 21 16 declare -path Fraise -stdpath Fraise;
+#X declare -path ../Fraise;
 #X obj 21 38 pied/pied 0 41424;
 #X obj 23 134 fruit/fruit 1 PHARE 10 fwPhare;
 #X obj 25 204 fruit/fruit 1 TUPPER1 11 fwTupper;
@@ -325,3 +324,4 @@
 #X restore 285 430 pd Bouilloire;
 #X obj 25 412 fruit/fruit 1 BOUILLOIRE 15 fwBouilloire;
 #X obj 220 63 moonlib/numsymbols-help;
+#X obj 21 16 declare -path ../Fraise;
