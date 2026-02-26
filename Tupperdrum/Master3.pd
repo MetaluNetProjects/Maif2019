@@ -1,9 +1,8 @@
-#N canvas 894 243 450 300 12;
+#N canvas 1055 117 457 312 12;
 #X declare -path effects -path rhythmic -path moonlib;
 #X declare -path AutoPreset -lib creb;
 #X declare -path iemlib;
-#X declare -stdpath motex -path motex -lib motex -path ggee -lib ggee
--path moonlib -path AutoPreset;
+#X declare -stdpath motex -path motex -lib motex -path ggee -lib ggee -path moonlib -path AutoPreset;
 #X declare -path ../domoTools/gammabs;
 #X declare -path ../domoTools/domonet;
 #X declare -path ../domoTools/notebank;
@@ -16,8 +15,7 @@
 #X obj 21 36 declare -path effects -path rhythmic -path moonlib;
 #X obj 21 57 declare -path AutoPreset -lib creb;
 #X obj 117 85 declare -path iemlib;
-#X obj 32 122 declare -stdpath motex -path motex -lib motex -path ggee
--lib ggee -path moonlib -path AutoPreset;
+#X obj 32 122 declare -stdpath motex -path motex -lib motex -path ggee -lib ggee -path moonlib -path AutoPreset;
 #X obj 31 159 declare -path ../domoTools/gammabs;
 #X obj 30 181 declare -path ../domoTools/domonet;
 #X obj 29 203 declare -path ../domoTools/notebank;
@@ -35,6 +33,7 @@
 #X obj 274 199 r TUPPER4_LED;
 #X msg 274 224 TUPPER4_LED \$1;
 #X obj 290 41 v /GAMME;
+#X obj 289 69 v /CHORD;
 #X connect 3 0 4 0;
 #X connect 5 0 6 0;
 #X connect 7 0 8 0;
