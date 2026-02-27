@@ -20,20 +20,22 @@ void setup(void) {
 			
 	pinModeDigitalOut(LED); 	// set the LED pin mode to digital out
 	pinModeAnalogOut(SWLED); 	// set the LED pin mode to digital out
+	analogWrite(SWLED, 400);
 
 //----------- Analog setup ----------------
 	analogInit();		// init analog module	
-	analogSelect(0,POT1);
-	analogSelect(1,POT2);
-	analogSelect(2,POT3);
+	analogSelect(0, POT1);
+	analogSelect(1, POT2);
+	analogSelect(2, POT3);
 	
 	switchInit();
 	INTCON2bits.RBPU = 0; // enable pullups on PORTB
-	switchSelect(0,SWITCH);
+	switchSelect(0, SWITCH);
+	switchSelect(1, SELECT);
 
 //----------- setup I2C master ----------------
 	i2cm_init(I2C_MASTER, I2C_SLEW_ON, FOSC/400000/4-1);
-	
+
 //----------- setup ADXL345 ----------------
 	ADXL345Init(&adxl1, 1); // ADXL345's SDO pin is low voltage level
 
@@ -41,7 +43,6 @@ void setup(void) {
 }
 
 unsigned char cycle = 0;
-
 
 void loop() {
 // ---------- Main loop ------------
@@ -100,6 +101,6 @@ void fraiseReceive()
 	c = fraiseGetChar();
 	if(c == 1){		//switch SWLED pwm
 		i = fraiseGetInt();
-		analogWrite(SWLED, i);		
+		analogWrite(SWLED, i);
 	}
 }

@@ -7,6 +7,7 @@
 #define I2CMASTER_PORT 1 // 0=noir +3V=rouge SCL=K5=jaune SDA=K7=orange
 
 #define SWITCH K11
+#define SELECT K12
 #define SWLED K6
 
 #define POT1 K8
