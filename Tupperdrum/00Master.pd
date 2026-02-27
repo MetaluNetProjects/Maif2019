@@ -432,6 +432,7 @@
 #X connect 28 0 20 0;
 #X restore 281 219 pd params;
 #X obj 407 385 throw~ master;
+#X obj 171 398 DECOUPEUR 2;
 #X connect 2 0 3 0;
 #X connect 2 1 4 0;
 #X connect 3 0 5 0;

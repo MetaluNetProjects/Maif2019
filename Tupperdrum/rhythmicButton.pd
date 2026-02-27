@@ -1,5 +1,5 @@
-#N canvas 0 79 361 362 10;
-#X obj 37 37 inlet;
+#N canvas 0 79 425 362 10;
+#X obj 37 10 inlet;
 #X obj 37 58 sel 1 0;
 #X msg 37 130 1;
 #X msg 71 131 0;
@@ -24,7 +24,12 @@
 #X obj 116 96 loadbang;
 #X obj 116 117 del 200;
 #X msg 116 138 1 \, 0;
-#X connect 0 0 1 0;
+#X obj 270 11 r \$1-on;
+#X obj 270 63 tgl 18 0 empty empty empty 0 -9 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 270 86 sel 0;
+#X msg 270 109 1 \, 0;
+#X obj 37 34 spigot 1;
+#X connect 0 0 29 0;
 #X connect 1 0 6 0;
 #X connect 1 0 21 0;
 #X connect 1 1 3 0;
@@ -59,3 +64,10 @@
 #X connect 23 0 24 0;
 #X connect 24 0 11 0;
 #X connect 24 0 5 0;
+#X connect 25 0 26 0;
+#X connect 26 0 27 0;
+#X connect 26 0 29 1;
+#X connect 27 0 28 0;
+#X connect 28 0 10 0;
+#X connect 28 0 4 0;
+#X connect 29 0 1 0;
